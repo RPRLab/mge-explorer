@@ -19,7 +19,7 @@ const Index = () => {
       <HeroSection />
 
       {/* Main Content with Tabs */}
-      <main className="container mx-auto px-4 pt-0 pb-6">
+      <main className="container mx-auto px-4 -mt-6 pb-6">
         <Tabs defaultValue="overview" className="space-y-8">
           <TabsList className="flex flex-wrap h-auto gap-3 bg-card/50 backdrop-blur-sm p-3 rounded-full border border-border/50 shadow-lg justify-center">
             <TabsTrigger 
