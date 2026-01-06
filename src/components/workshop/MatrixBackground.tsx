@@ -283,7 +283,7 @@ const MatrixBackground = () => {
               ctx.shadowBlur = 0;
             }
           } else if (col.section === 3) {
-            // DNA - colored by base
+            // DNA - pastel colors by base
             let hue = 168;
             if (char === "A") hue = 0;
             else if (char === "T") hue = 35;
@@ -291,11 +291,11 @@ const MatrixBackground = () => {
             else if (char === "G") hue = 140;
             
             if (isHead) {
-              ctx.fillStyle = `hsla(${hue}, 80%, 75%, ${opacity})`;
-              ctx.shadowColor = `hsla(${hue}, 80%, 60%, 0.8)`;
-              ctx.shadowBlur = 15;
+              ctx.fillStyle = `hsla(${hue}, 50%, 70%, ${opacity})`;
+              ctx.shadowColor = `hsla(${hue}, 50%, 60%, 0.6)`;
+              ctx.shadowBlur = 12;
             } else {
-              ctx.fillStyle = `hsla(${hue}, 70%, ${40 - i * 1}%, ${opacity * 0.9})`;
+              ctx.fillStyle = `hsla(${hue}, 45%, ${55 - i * 0.8}%, ${opacity * 0.85})`;
               ctx.shadowBlur = 0;
             }
           }
