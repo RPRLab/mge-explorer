@@ -20,38 +20,38 @@ const Index = () => {
       {/* Main Content with Tabs */}
       <main className="container mx-auto px-4 py-12">
         <Tabs defaultValue="overview" className="space-y-8">
-          <TabsList className="flex flex-wrap h-auto gap-3 bg-card/50 backdrop-blur-sm p-2 rounded-2xl border border-border/50 shadow-lg justify-center">
+          <TabsList className="flex flex-wrap h-auto gap-3 bg-card/50 backdrop-blur-sm p-3 rounded-full border border-border/50 shadow-lg justify-center">
             <TabsTrigger 
               value="overview" 
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
               <BookOpen className="w-4 h-4" />
               Overview
             </TabsTrigger>
             <TabsTrigger 
               value="program"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
               <Calendar className="w-4 h-4" />
               Program
             </TabsTrigger>
             <TabsTrigger 
               value="speakers"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
               <Users className="w-4 h-4" />
               Speakers
             </TabsTrigger>
             <TabsTrigger 
               value="practical"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
               <Info className="w-4 h-4" />
               Practical Info
             </TabsTrigger>
             <TabsTrigger 
               value="registration"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
               <ClipboardList className="w-4 h-4" />
               Registration
