@@ -6,10 +6,14 @@ import ProgramTab from "@/components/workshop/ProgramTab";
 import SpeakersTab from "@/components/workshop/SpeakersTab";
 import PracticalInfoTab from "@/components/workshop/PracticalInfoTab";
 import RegistrationTab from "@/components/workshop/RegistrationTab";
+import MatrixBackground from "@/components/workshop/MatrixBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      {/* Full-page Matrix background with 4 sections */}
+      <MatrixBackground />
+      
       {/* Hero Section */}
       <HeroSection />
 

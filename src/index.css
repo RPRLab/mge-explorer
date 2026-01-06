@@ -113,17 +113,17 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 
-  /* More rounded UI elements */
+  /* Fully rounded buttons (pill shape) */
   button, .btn, [role="button"] {
-    @apply rounded-xl;
+    @apply rounded-full;
   }
 
   input, textarea, select {
-    @apply rounded-xl;
+    @apply rounded-full;
   }
 
   .card, [data-slot="card"] {
-    @apply rounded-2xl;
+    @apply rounded-3xl;
   }
 }
 
