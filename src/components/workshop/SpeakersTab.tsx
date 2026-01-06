@@ -49,6 +49,15 @@ const speakers = [
     color: "bg-science-navy",
     bio: "Researcher focused on defense systems in bacteria and the evolutionary dynamics of mobile genetic elements.",
   },
+  {
+    name: "Mario R Mestre",
+    title: "PhD Student",
+    institution: "Section of Microbiology, University of Copenhagen",
+    location: "Copenhagen, Denmark",
+    initials: "MM",
+    color: "bg-primary",
+    bio: "Researcher in computational approaches for mobile genetic element discovery and annotation. Workshop co-organizer.",
+  },
 ];
 
 const SpeakersTab = () => {

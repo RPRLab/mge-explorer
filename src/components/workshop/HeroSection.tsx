@@ -1,4 +1,5 @@
-import { Calendar, MapPin, Clock } from "lucide-react";
+import { Calendar, MapPin, Clock, Ticket } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const HeroSection = () => {
   return (
@@ -20,10 +21,16 @@ const HeroSection = () => {
           </h1>
           
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
             A three-day intensive workshop on computational methods for the detection, 
             analysis, and annotation of MGEs across different stages of genomic data processing.
           </p>
+
+          {/* Free attendance badge */}
+          <Badge variant="secondary" className="mb-10 px-4 py-2 text-base bg-primary/15 text-primary border-primary/30 rounded-full">
+            <Ticket className="w-4 h-4 mr-2" />
+            Free Attendance — Registration Required
+          </Badge>
           
           {/* Event details - more polished cards */}
           <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
