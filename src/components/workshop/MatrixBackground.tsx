@@ -15,9 +15,9 @@ const MatrixBackground = () => {
     const binaryChars = "01";
     const dnaChars = "ATCG";
     
-    const fontSize = 16;
-    const lineHeight = fontSize * 1.4;
-    const columnSpacing = 60; // Even more spacing to avoid overlap
+    const fontSize = 18;
+    const columnSpacing = 55;
+    const trailLength = 25;
 
     interface Column {
       x: number;
@@ -27,7 +27,20 @@ const MatrixBackground = () => {
       section: number;
     }
 
+    interface FallingItem {
+      x: number;
+      y: number;
+      speed: number;
+      opacity: number;
+      rotation: number;
+      rotationSpeed: number;
+      scale: number;
+      type?: "bacillus" | "coccus";
+    }
+
     let columns: Column[] = [];
+    let phageItems: FallingItem[] = [];
+    let bacteriaItems: FallingItem[] = [];
 
     const resizeCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
@@ -38,6 +51,7 @@ const MatrixBackground = () => {
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
       initColumns();
+      initBioItems();
     };
 
     const getCharForSection = (section: number): string => {
@@ -54,98 +68,63 @@ const MatrixBackground = () => {
       const screenWidth = window.innerWidth;
       const sectionWidth = screenWidth / 4;
       
-      // Section 0: Binary (left quarter)
-      const section0Start = 0;
-      const section0End = sectionWidth;
-      for (let x = section0Start + columnSpacing / 2; x < section0End; x += columnSpacing) {
+      // Section 0: Binary (left quarter) - unique X positions
+      for (let x = columnSpacing / 2; x < sectionWidth; x += columnSpacing) {
         const chars: string[] = [];
-        for (let j = 0; j < 30; j++) {
+        for (let j = 0; j < trailLength + 5; j++) {
           chars.push(getCharForSection(0));
         }
         columns.push({
           x,
-          y: Math.random() * -50 - 10,
-          speed: 0.08 + Math.random() * 0.12, // Much slower speed
+          y: Math.random() * window.innerHeight * 0.5,
+          speed: 0.8 + Math.random() * 1.2,
           chars,
           section: 0,
         });
       }
       
-      // Section 3: DNA (right quarter)
-      const section3Start = sectionWidth * 3;
-      const section3End = screenWidth;
-      for (let x = section3Start + columnSpacing / 2; x < section3End; x += columnSpacing) {
+      // Section 3: DNA (right quarter) - unique X positions
+      for (let x = sectionWidth * 3 + columnSpacing / 2; x < screenWidth; x += columnSpacing) {
         const chars: string[] = [];
-        for (let j = 0; j < 30; j++) {
+        for (let j = 0; j < trailLength + 5; j++) {
           chars.push(getCharForSection(3));
         }
         columns.push({
           x,
-          y: Math.random() * -50 - 10,
-          speed: 0.08 + Math.random() * 0.12, // Much slower speed
+          y: Math.random() * window.innerHeight * 0.5,
+          speed: 0.8 + Math.random() * 1.2,
           chars,
           section: 3,
         });
       }
     };
 
-    const getColorForSection = (section: number, char: string, isHead: boolean, opacity: number): string => {
-      if (section === 0) {
-        const lightness = isHead ? 70 : 42;
-        return `hsla(168, 76%, ${lightness}%, ${opacity})`;
-      } else if (section === 3) {
-        let hue = 168;
-        if (char === "A") hue = 0;
-        else if (char === "T") hue = 35;
-        else if (char === "C") hue = 200;
-        else if (char === "G") hue = 140;
-        
-        const lightness = isHead ? 65 : 38;
-        return `hsla(${hue}, 70%, ${lightness}%, ${opacity})`;
-      }
-      return "transparent";
-    };
-
-    interface FallingItem {
-      x: number;
-      y: number;
-      speed: number;
-      opacity: number;
-      rotation: number;
-      rotationSpeed: number;
-      scale: number;
-      type?: "bacillus" | "coccus";
-    }
-
-    const phageItems: FallingItem[] = [];
-    const bacteriaItems: FallingItem[] = [];
-
     const initBioItems = () => {
       const sectionWidth = window.innerWidth / 4;
       
-      phageItems.length = 0;
+      phageItems = [];
       for (let i = 0; i < 8; i++) {
         phageItems.push({
           x: sectionWidth + Math.random() * sectionWidth,
           y: Math.random() * window.innerHeight,
-          speed: 0.3 + Math.random() * 0.5,
-          opacity: 0.08 + Math.random() * 0.12,
+          speed: 0.4 + Math.random() * 0.6,
+          opacity: 0.15 + Math.random() * 0.15,
           rotation: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.008,
-          scale: 0.18 + Math.random() * 0.12,
+          rotationSpeed: (Math.random() - 0.5) * 0.01,
+          scale: 0.2 + Math.random() * 0.15,
         });
       }
       
-      bacteriaItems.length = 0;
+      bacteriaItems = [];
       for (let i = 0; i < 10; i++) {
         bacteriaItems.push({
           x: sectionWidth * 2 + Math.random() * sectionWidth,
           y: Math.random() * window.innerHeight,
-          speed: 0.2 + Math.random() * 0.4,
-          opacity: 0.08 + Math.random() * 0.12,
+          speed: 0.3 + Math.random() * 0.5,
+          opacity: 0.15 + Math.random() * 0.15,
           rotation: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.006,
-          scale: 0.3 + Math.random() * 0.3,
+          rotationSpeed: (Math.random() - 0.5) * 0.008,
+          scale: 0.35 + Math.random() * 0.25,
           type: Math.random() > 0.5 ? "bacillus" : "coccus",
         });
       }
@@ -157,6 +136,7 @@ const MatrixBackground = () => {
       ctx.rotate(item.rotation);
       ctx.scale(item.scale, item.scale);
       
+      // Head (icosahedral)
       ctx.beginPath();
       ctx.moveTo(0, -25);
       ctx.lineTo(15, -15);
@@ -168,9 +148,11 @@ const MatrixBackground = () => {
       ctx.fillStyle = `hsla(200, 80%, 50%, ${item.opacity})`;
       ctx.fill();
       
+      // Tail
       ctx.fillStyle = `hsla(200, 70%, 45%, ${item.opacity * 0.8})`;
       ctx.fillRect(-2.5, 15, 5, 30);
       
+      // Base plate
       ctx.beginPath();
       ctx.moveTo(-10, 45);
       ctx.lineTo(10, 45);
@@ -179,8 +161,9 @@ const MatrixBackground = () => {
       ctx.closePath();
       ctx.fill();
       
-      ctx.strokeStyle = `hsla(200, 60%, 55%, ${item.opacity * 0.5})`;
-      ctx.lineWidth = 1.2;
+      // Tail fibers
+      ctx.strokeStyle = `hsla(200, 60%, 55%, ${item.opacity * 0.6})`;
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(-7, 52);
       ctx.quadraticCurveTo(-14, 62, -20, 72);
@@ -210,12 +193,14 @@ const MatrixBackground = () => {
       ctx.fillStyle = `hsla(155, 60%, 45%, ${item.opacity})`;
       ctx.fill();
       
+      // Highlight
       ctx.beginPath();
       ctx.roundRect(-width / 2 + 5, -height / 2 + 4, width - 10, height / 3, radius / 2);
       ctx.fillStyle = `hsla(155, 60%, 60%, ${item.opacity * 0.3})`;
       ctx.fill();
       
-      ctx.strokeStyle = `hsla(155, 50%, 50%, ${item.opacity * 0.4})`;
+      // Flagellum
+      ctx.strokeStyle = `hsla(155, 50%, 50%, ${item.opacity * 0.5})`;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(-width / 2, 0);
@@ -241,6 +226,7 @@ const MatrixBackground = () => {
       ctx.fillStyle = `hsla(168, 70%, 45%, ${item.opacity * 0.9})`;
       ctx.fill();
       
+      // Highlights
       ctx.beginPath();
       ctx.arc(-12, -5, 5, 0, Math.PI * 2);
       ctx.fillStyle = `hsla(168, 76%, 60%, ${item.opacity * 0.3})`;
@@ -255,73 +241,96 @@ const MatrixBackground = () => {
     };
 
     resizeCanvas();
-    initBioItems();
-    window.addEventListener("resize", () => {
-      resizeCanvas();
-      initBioItems();
-    });
-
-    const trailLength = 18;
+    window.addEventListener("resize", resizeCanvas);
 
     const animate = () => {
-      // Clear with slight fade for trail effect
-      ctx.fillStyle = "rgba(253, 254, 254, 0.04)";
-      ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      
+      // Clear canvas completely - no trails
+      ctx.clearRect(0, 0, w, h);
 
-      ctx.font = `bold ${fontSize}px 'Space Grotesk', monospace`;
+      ctx.font = `bold ${fontSize}px 'Courier New', monospace`;
       ctx.textAlign = "center";
+      ctx.textBaseline = "top";
 
-      // Draw each unique column
+      // Draw each column with trail
       columns.forEach((col) => {
-        const headY = col.y * lineHeight;
-
-        for (let j = 0; j < trailLength; j++) {
-          const y = headY - j * lineHeight;
-          if (y < -lineHeight || y > window.innerHeight + lineHeight) continue;
-
-          const charIndex = Math.abs(Math.floor(col.y) + j) % col.chars.length;
-          const char = col.chars[charIndex];
+        for (let i = 0; i < trailLength; i++) {
+          const charY = col.y - i * fontSize * 1.2;
           
-          const fadeRatio = 1 - j / trailLength;
-          const opacity = fadeRatio * 0.85;
-          const isHead = j === 0;
-
-          ctx.fillStyle = getColorForSection(col.section, char, isHead, opacity);
+          if (charY < -fontSize || charY > h + fontSize) continue;
           
-          if (isHead) {
-            ctx.shadowColor = getColorForSection(col.section, char, true, 0.7);
-            ctx.shadowBlur = 10;
-          } else {
-            ctx.shadowBlur = 0;
+          const charIndex = (Math.floor(col.y / fontSize) + i) % col.chars.length;
+          const char = col.chars[Math.abs(charIndex)];
+          
+          // Calculate opacity - head is brightest, fades down the trail
+          const fadeRatio = 1 - i / trailLength;
+          const opacity = fadeRatio * fadeRatio; // Quadratic fade for smoother trail
+          
+          const isHead = i === 0;
+          
+          // Color based on section
+          if (col.section === 0) {
+            // Binary - teal/green
+            if (isHead) {
+              ctx.fillStyle = `rgba(180, 255, 200, ${opacity})`;
+              ctx.shadowColor = "rgba(100, 255, 150, 0.8)";
+              ctx.shadowBlur = 15;
+            } else {
+              ctx.fillStyle = `hsla(168, 76%, ${45 - i * 1.2}%, ${opacity * 0.9})`;
+              ctx.shadowBlur = 0;
+            }
+          } else if (col.section === 3) {
+            // DNA - colored by base
+            let hue = 168;
+            if (char === "A") hue = 0;
+            else if (char === "T") hue = 35;
+            else if (char === "C") hue = 200;
+            else if (char === "G") hue = 140;
+            
+            if (isHead) {
+              ctx.fillStyle = `hsla(${hue}, 80%, 75%, ${opacity})`;
+              ctx.shadowColor = `hsla(${hue}, 80%, 60%, 0.8)`;
+              ctx.shadowBlur = 15;
+            } else {
+              ctx.fillStyle = `hsla(${hue}, 70%, ${40 - i * 1}%, ${opacity * 0.9})`;
+              ctx.shadowBlur = 0;
+            }
           }
 
-          ctx.fillText(char, col.x, y);
+          ctx.fillText(char, col.x, charY);
         }
 
         ctx.shadowBlur = 0;
 
+        // Update position
         col.y += col.speed;
 
-        if (col.y * lineHeight > window.innerHeight + trailLength * lineHeight) {
-          col.y = Math.random() * -15 - 5;
+        // Reset when off screen
+        if (col.y - trailLength * fontSize * 1.2 > h) {
+          col.y = -fontSize * 2;
+          // Regenerate characters
           for (let j = 0; j < col.chars.length; j++) {
             col.chars[j] = getCharForSection(col.section);
           }
         }
       });
 
-      const viewSectionWidth = window.innerWidth / 4;
+      const sectionWidth = w / 4;
 
+      // Draw and update phages
       phageItems.forEach((item) => {
         drawPhage(item);
         item.y += item.speed;
         item.rotation += item.rotationSpeed;
-        if (item.y > window.innerHeight + 100) {
+        if (item.y > h + 100) {
           item.y = -100;
-          item.x = viewSectionWidth + Math.random() * viewSectionWidth;
+          item.x = sectionWidth + Math.random() * sectionWidth;
         }
       });
 
+      // Draw and update bacteria
       bacteriaItems.forEach((item) => {
         if (item.type === "bacillus") {
           drawBacillus(item);
@@ -330,9 +339,9 @@ const MatrixBackground = () => {
         }
         item.y += item.speed;
         item.rotation += item.rotationSpeed;
-        if (item.y > window.innerHeight + 80) {
+        if (item.y > h + 80) {
           item.y = -80;
-          item.x = viewSectionWidth * 2 + Math.random() * viewSectionWidth;
+          item.x = sectionWidth * 2 + Math.random() * sectionWidth;
           item.type = Math.random() > 0.5 ? "bacillus" : "coccus";
         }
       });
