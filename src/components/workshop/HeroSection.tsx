@@ -1,16 +1,8 @@
 import { Calendar, MapPin, Clock } from "lucide-react";
-import MatrixBackground from "./MatrixBackground";
-import BioDecorations from "./BioDecorations";
 
 const HeroSection = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-accent/5 min-h-[70vh] flex items-center">
-      {/* Matrix-style falling characters */}
-      <MatrixBackground />
-      
-      {/* Bacteria and Bacteriophage decorations */}
-      <BioDecorations />
-      
       {/* Subtle floating orbs */}
       <div className="absolute top-20 left-1/4 w-64 h-64 rounded-full bg-gradient-to-br from-primary/8 to-transparent blur-3xl" />
       <div className="absolute bottom-20 right-1/4 w-80 h-80 rounded-full bg-gradient-to-br from-accent/8 to-transparent blur-3xl" />
