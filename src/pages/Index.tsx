@@ -94,17 +94,11 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="border-t bg-card/90 backdrop-blur-sm py-10">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground space-y-3">
+        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground space-y-2">
           <p className="font-semibold text-foreground">
             Mobile Genetic Elements Computational Workshop 2026
           </p>
-          <p>
-            Organized by <strong>Mario R Mestre</strong>, <strong>Dana Ronin</strong>, and <strong>Leighton J Payne</strong>
-          </p>
-          <p className="text-muted-foreground/80">
-            Section of Microbiology, University of Copenhagen
-          </p>
-          <p className="text-xs text-muted-foreground/70 pt-2">
+          <p className="text-xs text-muted-foreground/70">
             Funded by the Microbiology Cluster, Department of Biology, University of Copenhagen
           </p>
         </div>
