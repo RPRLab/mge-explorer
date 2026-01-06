@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Calendar, Users, Info, ClipboardList } from "lucide-react";
+import { BookOpen, Calendar, Users, Info, ClipboardList, UserCog } from "lucide-react";
 import HeroSection from "@/components/workshop/HeroSection";
 import OverviewTab from "@/components/workshop/OverviewTab";
 import ProgramTab from "@/components/workshop/ProgramTab";
@@ -7,7 +7,7 @@ import SpeakersTab from "@/components/workshop/SpeakersTab";
 import PracticalInfoTab from "@/components/workshop/PracticalInfoTab";
 import RegistrationTab from "@/components/workshop/RegistrationTab";
 import MatrixBackground from "@/components/workshop/MatrixBackground";
-import OrganizersSection from "@/components/workshop/OrganizersSection";
+import OrganizersTab from "@/components/workshop/OrganizersSection";
 
 const Index = () => {
   return (
@@ -17,11 +17,6 @@ const Index = () => {
       
       {/* Hero Section */}
       <HeroSection />
-
-      {/* Organizers Section */}
-      <div className="container mx-auto px-4 py-8">
-        <OrganizersSection />
-      </div>
 
       {/* Main Content with Tabs */}
       <main className="container mx-auto px-4 py-12">
@@ -49,6 +44,13 @@ const Index = () => {
               Speakers
             </TabsTrigger>
             <TabsTrigger 
+              value="organizers"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+            >
+              <UserCog className="w-4 h-4" />
+              Organizers
+            </TabsTrigger>
+            <TabsTrigger 
               value="practical"
               className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
@@ -74,6 +76,10 @@ const Index = () => {
 
           <TabsContent value="speakers">
             <SpeakersTab />
+          </TabsContent>
+
+          <TabsContent value="organizers">
+            <OrganizersTab />
           </TabsContent>
 
           <TabsContent value="practical">
