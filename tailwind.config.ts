@@ -57,6 +57,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Scientific theme colors
+        "dna-teal": "hsl(var(--dna-teal))",
+        "dna-teal-light": "hsl(var(--dna-teal-light))",
+        "bio-blue": "hsl(var(--bio-blue))",
+        "bio-blue-light": "hsl(var(--bio-blue-light))",
+        "genome-green": "hsl(var(--genome-green))",
+        "genome-green-light": "hsl(var(--genome-green-light))",
+        "science-navy": "hsl(var(--science-navy))",
       },
       borderRadius: {
         lg: "var(--radius)",
