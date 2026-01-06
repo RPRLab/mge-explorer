@@ -2,11 +2,7 @@ import { Calendar, MapPin, Clock } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-accent/5 min-h-[70vh] flex items-center">
-      {/* Subtle floating orbs */}
-      <div className="absolute top-20 left-1/4 w-64 h-64 rounded-full bg-gradient-to-br from-primary/8 to-transparent blur-3xl" />
-      <div className="absolute bottom-20 right-1/4 w-80 h-80 rounded-full bg-gradient-to-br from-accent/8 to-transparent blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-genome-green/5 to-transparent blur-3xl" />
+    <section className="relative overflow-hidden min-h-[70vh] flex items-center">
       
       <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -53,12 +49,6 @@ const HeroSection = () => {
         </div>
       </div>
       
-      {/* Bottom wave - smoother curve */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" preserveAspectRatio="none">
-          <path d="M0 100L48 95C96 90 192 80 288 72C384 64 480 58 576 58C672 58 768 64 864 68C960 72 1056 74 1152 74C1248 74 1344 72 1392 71L1440 70V100H1392C1344 100 1248 100 1152 100C1056 100 960 100 864 100C768 100 672 100 576 100C480 100 384 100 288 100C192 100 96 100 48 100H0Z" fill="hsl(var(--background))"/>
-        </svg>
-      </div>
     </section>
   );
 };
