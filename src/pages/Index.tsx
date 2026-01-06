@@ -19,9 +19,10 @@ const Index = () => {
       <HeroSection />
 
       {/* Main Content with Tabs */}
-      <main className="container mx-auto px-4 -mt-12 pb-6">
+      <main className="container mx-auto px-4 -mt-12 pb-6 relative z-10">
         <Tabs defaultValue="overview" className="space-y-8">
-          <TabsList className="inline-flex flex-wrap h-auto gap-2 bg-card/80 backdrop-blur-sm p-2 rounded-full border border-border/50 shadow-lg justify-center">
+          <div className="flex justify-center">
+            <TabsList className="inline-flex flex-wrap h-auto gap-2 bg-card/80 backdrop-blur-sm p-2 rounded-full border border-border/50 shadow-lg">
             <TabsTrigger 
               value="overview" 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
@@ -64,7 +65,8 @@ const Index = () => {
               <ClipboardList className="w-4 h-4" />
               Registration
             </TabsTrigger>
-          </TabsList>
+            </TabsList>
+          </div>
 
           <TabsContent value="overview" className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg">
             <OverviewTab />
