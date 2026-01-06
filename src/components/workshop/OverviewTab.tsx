@@ -108,7 +108,7 @@ const OverviewTab = () => {
       </div>
 
       {/* Note for advanced participants */}
-      <div className="p-4 rounded-lg bg-accent/10 border border-accent/20">
+      <div className="p-4 rounded-3xl bg-card/95 backdrop-blur-sm border border-accent/20 shadow-lg">
         <p className="text-sm text-muted-foreground">
           <strong className="text-foreground">Note for advanced participants:</strong> Those with more advanced 
           computational backgrounds will have opportunities to explore more complex analyses during group work.

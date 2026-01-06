@@ -11,16 +11,23 @@ const MatrixBackground = () => {
     if (!ctx) return;
 
     let animationId: number;
-    let columns: number[] = [];
-    let columnChars: string[][] = [];
-    let columnSpeeds: number[] = [];
     
     const binaryChars = "01";
     const dnaChars = "ATCG";
     
     const fontSize = 16;
     const lineHeight = fontSize * 1.4;
-    const columnSpacing = 45; // Much more spacing between columns
+    const columnSpacing = 60; // Even more spacing to avoid overlap
+
+    interface Column {
+      x: number;
+      y: number;
+      speed: number;
+      chars: string[];
+      section: number;
+    }
+
+    let columns: Column[] = [];
 
     const resizeCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
@@ -28,36 +35,58 @@ const MatrixBackground = () => {
       canvas.height = window.innerHeight * dpr;
       canvas.style.width = window.innerWidth + "px";
       canvas.style.height = window.innerHeight + "px";
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
       initColumns();
     };
 
-    const initColumns = () => {
-      const totalColumns = Math.floor(window.innerWidth / columnSpacing);
-      columns = [];
-      columnChars = [];
-      columnSpeeds = [];
-      
-      for (let i = 0; i < totalColumns; i++) {
-        columns[i] = Math.random() * -50;
-        columnSpeeds[i] = 0.3 + Math.random() * 0.4; // Much slower
-        columnChars[i] = [];
-        for (let j = 0; j < 30; j++) {
-          columnChars[i][j] = getCharForColumn(i, totalColumns);
-        }
-      }
-    };
-
-    const getCharForColumn = (colIndex: number, totalColumns: number): string => {
-      const sectionWidth = totalColumns / 4;
-      const section = Math.floor(colIndex / sectionWidth);
-      
+    const getCharForSection = (section: number): string => {
       if (section === 0) {
         return binaryChars[Math.floor(Math.random() * binaryChars.length)];
       } else if (section === 3) {
         return dnaChars[Math.floor(Math.random() * dnaChars.length)];
       }
       return "";
+    };
+
+    const initColumns = () => {
+      columns = [];
+      const screenWidth = window.innerWidth;
+      const sectionWidth = screenWidth / 4;
+      
+      // Section 0: Binary (left quarter)
+      const section0Start = 0;
+      const section0End = sectionWidth;
+      for (let x = section0Start + columnSpacing / 2; x < section0End; x += columnSpacing) {
+        const chars: string[] = [];
+        for (let j = 0; j < 30; j++) {
+          chars.push(getCharForSection(0));
+        }
+        columns.push({
+          x,
+          y: Math.random() * -50 - 10,
+          speed: 0.08 + Math.random() * 0.12, // Much slower speed
+          chars,
+          section: 0,
+        });
+      }
+      
+      // Section 3: DNA (right quarter)
+      const section3Start = sectionWidth * 3;
+      const section3End = screenWidth;
+      for (let x = section3Start + columnSpacing / 2; x < section3End; x += columnSpacing) {
+        const chars: string[] = [];
+        for (let j = 0; j < 30; j++) {
+          chars.push(getCharForSection(3));
+        }
+        columns.push({
+          x,
+          y: Math.random() * -50 - 10,
+          speed: 0.08 + Math.random() * 0.12, // Much slower speed
+          chars,
+          section: 3,
+        });
+      }
     };
 
     const getColorForSection = (section: number, char: string, isHead: boolean, opacity: number): string => {
@@ -235,57 +264,51 @@ const MatrixBackground = () => {
     const trailLength = 18;
 
     const animate = () => {
-      ctx.fillStyle = "rgba(253, 254, 254, 0.06)";
+      // Clear with slight fade for trail effect
+      ctx.fillStyle = "rgba(253, 254, 254, 0.04)";
       ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
-
-      const totalColumns = columns.length;
-      const sectionWidth = totalColumns / 4;
 
       ctx.font = `bold ${fontSize}px 'Space Grotesk', monospace`;
       ctx.textAlign = "center";
 
-      for (let i = 0; i < totalColumns; i++) {
-        const section = Math.floor(i / sectionWidth);
-        
-        if (section !== 0 && section !== 3) continue;
-
-        const x = i * columnSpacing + columnSpacing / 2;
-        const headY = columns[i] * lineHeight;
+      // Draw each unique column
+      columns.forEach((col) => {
+        const headY = col.y * lineHeight;
 
         for (let j = 0; j < trailLength; j++) {
           const y = headY - j * lineHeight;
           if (y < -lineHeight || y > window.innerHeight + lineHeight) continue;
 
-          const charIndex = Math.abs(Math.floor(columns[i]) + j) % columnChars[i].length;
-          const char = columnChars[i][charIndex];
+          const charIndex = Math.abs(Math.floor(col.y) + j) % col.chars.length;
+          const char = col.chars[charIndex];
           
           const fadeRatio = 1 - j / trailLength;
           const opacity = fadeRatio * 0.85;
           const isHead = j === 0;
 
-          ctx.fillStyle = getColorForSection(section, char, isHead, opacity);
+          ctx.fillStyle = getColorForSection(col.section, char, isHead, opacity);
           
           if (isHead) {
-            ctx.shadowColor = getColorForSection(section, char, true, 0.7);
+            ctx.shadowColor = getColorForSection(col.section, char, true, 0.7);
             ctx.shadowBlur = 10;
           } else {
             ctx.shadowBlur = 0;
           }
 
-          ctx.fillText(char, x, y);
+          ctx.fillText(char, col.x, y);
         }
 
         ctx.shadowBlur = 0;
 
-        columns[i] += columnSpeeds[i];
+        col.y += col.speed;
 
-        if (columns[i] * lineHeight > window.innerHeight + trailLength * lineHeight) {
-          columns[i] = Math.random() * -15;
-          for (let j = 0; j < columnChars[i].length; j++) {
-            columnChars[i][j] = getCharForColumn(i, totalColumns);
+        if (col.y * lineHeight > window.innerHeight + trailLength * lineHeight) {
+          col.y = Math.random() * -15 - 5;
+          for (let j = 0; j < col.chars.length; j++) {
+            col.chars[j] = getCharForSection(col.section);
           }
         }
-      }
+      });
 
       const viewSectionWidth = window.innerWidth / 4;
 
