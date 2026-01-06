@@ -247,8 +247,9 @@ const MatrixBackground = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
       
-      // Clear canvas completely - no trails
-      ctx.clearRect(0, 0, w, h);
+      // Fade effect for motion blur - use dark overlay instead of clearing
+      ctx.fillStyle = "rgba(253, 254, 254, 0.12)";
+      ctx.fillRect(0, 0, w, h);
 
       ctx.font = `bold ${fontSize}px 'Courier New', monospace`;
       ctx.textAlign = "center";

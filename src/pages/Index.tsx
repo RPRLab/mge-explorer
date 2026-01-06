@@ -7,6 +7,7 @@ import SpeakersTab from "@/components/workshop/SpeakersTab";
 import PracticalInfoTab from "@/components/workshop/PracticalInfoTab";
 import RegistrationTab from "@/components/workshop/RegistrationTab";
 import MatrixBackground from "@/components/workshop/MatrixBackground";
+import OrganizersSection from "@/components/workshop/OrganizersSection";
 
 const Index = () => {
   return (
@@ -16,6 +17,11 @@ const Index = () => {
       
       {/* Hero Section */}
       <HeroSection />
+
+      {/* Organizers Section */}
+      <div className="container mx-auto px-4 py-8">
+        <OrganizersSection />
+      </div>
 
       {/* Main Content with Tabs */}
       <main className="container mx-auto px-4 py-12">
@@ -81,13 +87,19 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t bg-gradient-to-b from-muted/30 to-muted/50 py-10">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p className="mb-2 font-medium">
+      <footer className="border-t bg-card/90 backdrop-blur-sm py-10">
+        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground space-y-3">
+          <p className="font-semibold text-foreground">
             Mobile Genetic Elements Computational Workshop 2026
           </p>
+          <p>
+            Organized by <strong>Mario R Mestre</strong>, <strong>Dana Ronin</strong>, and <strong>Leighton J Payne</strong>
+          </p>
           <p className="text-muted-foreground/80">
-            Organized by the Section of Microbiology, University of Copenhagen
+            Section of Microbiology, University of Copenhagen
+          </p>
+          <p className="text-xs text-muted-foreground/70 pt-2">
+            Funded by the Microbiology Cluster, Department of Biology, University of Copenhagen
           </p>
         </div>
       </footer>
