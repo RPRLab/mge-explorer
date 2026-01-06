@@ -50,7 +50,12 @@ const HeroSection = () => {
               <div className="p-2 rounded-full bg-primary/10">
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
-              <span className="font-semibold">Copenhagen, Denmark 🇩🇰</span>
+              <span className="font-semibold">Copenhagen, Denmark</span>
+              <svg className="w-5 h-4 rounded-sm shadow-sm" viewBox="0 0 37 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="37" height="28" fill="#C8102E"/>
+                <rect x="12" width="4" height="28" fill="white"/>
+                <rect y="12" width="37" height="4" fill="white"/>
+              </svg>
             </div>
           </div>
         </div>
