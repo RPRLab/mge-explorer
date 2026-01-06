@@ -50,7 +50,7 @@ const HeroSection = () => {
               <div className="p-2 rounded-full bg-primary/10">
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
-              <span className="font-semibold">Copenhagen, Denmark</span>
+              <span className="font-semibold">Copenhagen, Denmark 🇩🇰</span>
             </div>
           </div>
         </div>
