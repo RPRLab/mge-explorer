@@ -283,7 +283,7 @@ const MatrixBackground = () => {
               ctx.shadowBlur = 0;
             }
           } else if (col.section === 3) {
-            // DNA - pastel colors by base
+            // DNA - very soft pastel colors by base
             let hue = 168;
             if (char === "A") hue = 0;
             else if (char === "T") hue = 35;
@@ -291,11 +291,11 @@ const MatrixBackground = () => {
             else if (char === "G") hue = 140;
             
             if (isHead) {
-              ctx.fillStyle = `hsla(${hue}, 50%, 70%, ${opacity})`;
-              ctx.shadowColor = `hsla(${hue}, 50%, 60%, 0.6)`;
-              ctx.shadowBlur = 12;
+              ctx.fillStyle = `hsla(${hue}, 35%, 75%, ${opacity})`;
+              ctx.shadowColor = `hsla(${hue}, 35%, 70%, 0.4)`;
+              ctx.shadowBlur = 10;
             } else {
-              ctx.fillStyle = `hsla(${hue}, 45%, ${55 - i * 0.8}%, ${opacity * 0.85})`;
+              ctx.fillStyle = `hsla(${hue}, 30%, ${65 - i * 0.5}%, ${opacity * 0.8})`;
               ctx.shadowBlur = 0;
             }
           }
