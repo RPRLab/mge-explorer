@@ -21,72 +21,72 @@ const Index = () => {
       {/* Main Content with Tabs */}
       <main className="container mx-auto px-4 -mt-12 pb-6">
         <Tabs defaultValue="overview" className="space-y-8">
-          <TabsList className="flex flex-wrap h-auto gap-3 bg-card/50 backdrop-blur-sm p-3 rounded-full border border-border/50 shadow-lg justify-center">
+          <TabsList className="inline-flex flex-wrap h-auto gap-2 bg-card/80 backdrop-blur-sm p-2 rounded-full border border-border/50 shadow-lg justify-center">
             <TabsTrigger 
               value="overview" 
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
               <BookOpen className="w-4 h-4" />
               Overview
             </TabsTrigger>
             <TabsTrigger 
               value="program"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
               <Calendar className="w-4 h-4" />
               Program
             </TabsTrigger>
             <TabsTrigger 
               value="speakers"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
               <Users className="w-4 h-4" />
               Speakers
             </TabsTrigger>
             <TabsTrigger 
               value="organizers"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
               <UserCog className="w-4 h-4" />
               Organizers
             </TabsTrigger>
             <TabsTrigger 
               value="practical"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
               <Info className="w-4 h-4" />
               Practical Info
             </TabsTrigger>
             <TabsTrigger 
               value="registration"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
               <ClipboardList className="w-4 h-4" />
               Registration
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="overview">
+          <TabsContent value="overview" className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg">
             <OverviewTab />
           </TabsContent>
 
-          <TabsContent value="program">
+          <TabsContent value="program" className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg">
             <ProgramTab />
           </TabsContent>
 
-          <TabsContent value="speakers">
+          <TabsContent value="speakers" className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg">
             <SpeakersTab />
           </TabsContent>
 
-          <TabsContent value="organizers">
+          <TabsContent value="organizers" className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg">
             <OrganizersTab />
           </TabsContent>
 
-          <TabsContent value="practical">
+          <TabsContent value="practical" className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg">
             <PracticalInfoTab />
           </TabsContent>
 
-          <TabsContent value="registration">
+          <TabsContent value="registration" className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg">
             <RegistrationTab />
           </TabsContent>
         </Tabs>
