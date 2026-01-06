@@ -27,20 +27,20 @@ const HeroSection = () => {
           
           {/* Event details - more polished cards */}
           <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-            <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 shadow-lg shadow-black/5 hover:shadow-xl hover:scale-105 transition-all duration-300">
-              <div className="p-2 rounded-xl bg-primary/10">
+            <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 shadow-lg shadow-black/5 hover:shadow-xl hover:scale-105 transition-all duration-300">
+              <div className="p-2 rounded-full bg-primary/10">
                 <Calendar className="w-5 h-5 text-primary" />
               </div>
               <span className="font-semibold">March 18–20, 2026</span>
             </div>
-            <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 shadow-lg shadow-black/5 hover:shadow-xl hover:scale-105 transition-all duration-300">
-              <div className="p-2 rounded-xl bg-primary/10">
+            <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 shadow-lg shadow-black/5 hover:shadow-xl hover:scale-105 transition-all duration-300">
+              <div className="p-2 rounded-full bg-primary/10">
                 <Clock className="w-5 h-5 text-primary" />
               </div>
               <span className="font-semibold">8:00 AM – 5:00 PM</span>
             </div>
-            <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 shadow-lg shadow-black/5 hover:shadow-xl hover:scale-105 transition-all duration-300">
-              <div className="p-2 rounded-xl bg-primary/10">
+            <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 shadow-lg shadow-black/5 hover:shadow-xl hover:scale-105 transition-all duration-300">
+              <div className="p-2 rounded-full bg-primary/10">
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
               <span className="font-semibold">Copenhagen, Denmark</span>

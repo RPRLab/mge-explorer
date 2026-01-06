@@ -13,12 +13,14 @@ const MatrixBackground = () => {
     let animationId: number;
     let columns: number[] = [];
     let columnChars: string[][] = [];
+    let columnSpeeds: number[] = [];
     
     const binaryChars = "01";
     const dnaChars = "ATCG";
     
-    const fontSize = 18;
-    const lineHeight = fontSize * 1.2;
+    const fontSize = 16;
+    const lineHeight = fontSize * 1.4;
+    const columnSpacing = 45; // Much more spacing between columns
 
     const resizeCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
@@ -31,16 +33,16 @@ const MatrixBackground = () => {
     };
 
     const initColumns = () => {
-      const totalColumns = Math.floor(window.innerWidth / fontSize);
+      const totalColumns = Math.floor(window.innerWidth / columnSpacing);
       columns = [];
       columnChars = [];
+      columnSpeeds = [];
       
       for (let i = 0; i < totalColumns; i++) {
-        // Random starting position (negative = starts above screen)
-        columns[i] = Math.random() * -100;
-        // Pre-generate random chars for each column
+        columns[i] = Math.random() * -50;
+        columnSpeeds[i] = 0.3 + Math.random() * 0.4; // Much slower
         columnChars[i] = [];
-        for (let j = 0; j < 50; j++) {
+        for (let j = 0; j < 30; j++) {
           columnChars[i][j] = getCharForColumn(i, totalColumns);
         }
       }
@@ -51,10 +53,8 @@ const MatrixBackground = () => {
       const section = Math.floor(colIndex / sectionWidth);
       
       if (section === 0) {
-        // Binary section
         return binaryChars[Math.floor(Math.random() * binaryChars.length)];
       } else if (section === 3) {
-        // DNA section
         return dnaChars[Math.floor(Math.random() * dnaChars.length)];
       }
       return "";
@@ -62,24 +62,21 @@ const MatrixBackground = () => {
 
     const getColorForSection = (section: number, char: string, isHead: boolean, opacity: number): string => {
       if (section === 0) {
-        // Binary - teal/green
-        const lightness = isHead ? 75 : 45;
+        const lightness = isHead ? 70 : 42;
         return `hsla(168, 76%, ${lightness}%, ${opacity})`;
       } else if (section === 3) {
-        // DNA - colored by nucleotide
         let hue = 168;
-        if (char === "A") hue = 0;      // Red
-        else if (char === "T") hue = 35; // Orange
-        else if (char === "C") hue = 200; // Blue
-        else if (char === "G") hue = 140; // Green
+        if (char === "A") hue = 0;
+        else if (char === "T") hue = 35;
+        else if (char === "C") hue = 200;
+        else if (char === "G") hue = 140;
         
-        const lightness = isHead ? 70 : 40;
+        const lightness = isHead ? 65 : 38;
         return `hsla(${hue}, 70%, ${lightness}%, ${opacity})`;
       }
       return "transparent";
     };
 
-    // Bacteriophage and bacteria items
     interface FallingItem {
       x: number;
       y: number;
@@ -97,7 +94,6 @@ const MatrixBackground = () => {
     const initBioItems = () => {
       const sectionWidth = window.innerWidth / 4;
       
-      // Bacteriophages (section 2)
       phageItems.length = 0;
       for (let i = 0; i < 8; i++) {
         phageItems.push({
@@ -111,7 +107,6 @@ const MatrixBackground = () => {
         });
       }
       
-      // Bacteria (section 3)
       bacteriaItems.length = 0;
       for (let i = 0; i < 10; i++) {
         bacteriaItems.push({
@@ -133,7 +128,6 @@ const MatrixBackground = () => {
       ctx.rotate(item.rotation);
       ctx.scale(item.scale, item.scale);
       
-      // Icosahedral head
       ctx.beginPath();
       ctx.moveTo(0, -25);
       ctx.lineTo(15, -15);
@@ -145,11 +139,9 @@ const MatrixBackground = () => {
       ctx.fillStyle = `hsla(200, 80%, 50%, ${item.opacity})`;
       ctx.fill();
       
-      // Tail
       ctx.fillStyle = `hsla(200, 70%, 45%, ${item.opacity * 0.8})`;
       ctx.fillRect(-2.5, 15, 5, 30);
       
-      // Baseplate
       ctx.beginPath();
       ctx.moveTo(-10, 45);
       ctx.lineTo(10, 45);
@@ -158,7 +150,6 @@ const MatrixBackground = () => {
       ctx.closePath();
       ctx.fill();
       
-      // Tail fibers
       ctx.strokeStyle = `hsla(200, 60%, 55%, ${item.opacity * 0.5})`;
       ctx.lineWidth = 1.2;
       ctx.beginPath();
@@ -181,7 +172,6 @@ const MatrixBackground = () => {
       ctx.rotate(item.rotation);
       ctx.scale(item.scale, item.scale);
       
-      // Pill shape (fully rounded rectangle)
       const width = 70;
       const height = 22;
       const radius = height / 2;
@@ -191,13 +181,11 @@ const MatrixBackground = () => {
       ctx.fillStyle = `hsla(155, 60%, 45%, ${item.opacity})`;
       ctx.fill();
       
-      // Highlight
       ctx.beginPath();
       ctx.roundRect(-width / 2 + 5, -height / 2 + 4, width - 10, height / 3, radius / 2);
       ctx.fillStyle = `hsla(155, 60%, 60%, ${item.opacity * 0.3})`;
       ctx.fill();
       
-      // Flagella
       ctx.strokeStyle = `hsla(155, 50%, 50%, ${item.opacity * 0.4})`;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
@@ -214,7 +202,6 @@ const MatrixBackground = () => {
       ctx.rotate(item.rotation);
       ctx.scale(item.scale, item.scale);
       
-      // Diplococci
       ctx.beginPath();
       ctx.arc(-10, 0, 14, 0, Math.PI * 2);
       ctx.fillStyle = `hsla(168, 76%, 40%, ${item.opacity})`;
@@ -225,7 +212,6 @@ const MatrixBackground = () => {
       ctx.fillStyle = `hsla(168, 70%, 45%, ${item.opacity * 0.9})`;
       ctx.fill();
       
-      // Highlights
       ctx.beginPath();
       ctx.arc(-12, -5, 5, 0, Math.PI * 2);
       ctx.fillStyle = `hsla(168, 76%, 60%, ${item.opacity * 0.3})`;
@@ -246,12 +232,10 @@ const MatrixBackground = () => {
       initBioItems();
     });
 
-    const speed = 1.8;
-    const trailLength = 25;
+    const trailLength = 18;
 
     const animate = () => {
-      // Semi-transparent overlay for trail effect
-      ctx.fillStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.fillStyle = "rgba(253, 254, 254, 0.06)";
       ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
       const totalColumns = columns.length;
@@ -260,17 +244,14 @@ const MatrixBackground = () => {
       ctx.font = `bold ${fontSize}px 'Space Grotesk', monospace`;
       ctx.textAlign = "center";
 
-      // Draw falling characters for sections 1 (binary) and 4 (DNA)
       for (let i = 0; i < totalColumns; i++) {
         const section = Math.floor(i / sectionWidth);
         
-        // Only draw text in sections 0 and 3
         if (section !== 0 && section !== 3) continue;
 
-        const x = i * fontSize + fontSize / 2;
+        const x = i * columnSpacing + columnSpacing / 2;
         const headY = columns[i] * lineHeight;
 
-        // Draw trail
         for (let j = 0; j < trailLength; j++) {
           const y = headY - j * lineHeight;
           if (y < -lineHeight || y > window.innerHeight + lineHeight) continue;
@@ -279,14 +260,14 @@ const MatrixBackground = () => {
           const char = columnChars[i][charIndex];
           
           const fadeRatio = 1 - j / trailLength;
-          const opacity = fadeRatio * 0.9;
+          const opacity = fadeRatio * 0.85;
           const isHead = j === 0;
 
           ctx.fillStyle = getColorForSection(section, char, isHead, opacity);
           
           if (isHead) {
-            ctx.shadowColor = getColorForSection(section, char, true, 0.8);
-            ctx.shadowBlur = 12;
+            ctx.shadowColor = getColorForSection(section, char, true, 0.7);
+            ctx.shadowBlur = 10;
           } else {
             ctx.shadowBlur = 0;
           }
@@ -296,20 +277,16 @@ const MatrixBackground = () => {
 
         ctx.shadowBlur = 0;
 
-        // Move column down
-        columns[i] += speed * (0.5 + Math.random() * 0.5);
+        columns[i] += columnSpeeds[i];
 
-        // Reset when off screen
         if (columns[i] * lineHeight > window.innerHeight + trailLength * lineHeight) {
-          columns[i] = Math.random() * -20;
-          // Regenerate chars
+          columns[i] = Math.random() * -15;
           for (let j = 0; j < columnChars[i].length; j++) {
             columnChars[i][j] = getCharForColumn(i, totalColumns);
           }
         }
       }
 
-      // Draw biological items
       const viewSectionWidth = window.innerWidth / 4;
 
       phageItems.forEach((item) => {
