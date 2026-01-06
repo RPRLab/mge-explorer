@@ -247,8 +247,8 @@ const MatrixBackground = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
       
-      // Fade effect for motion blur - use transparent overlay
-      ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+      // Fade effect for motion blur - white background with subtle trail
+      ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
       ctx.fillRect(0, 0, w, h);
 
       ctx.font = `bold ${fontSize}px 'Courier New', monospace`;
