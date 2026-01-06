@@ -111,7 +111,7 @@ const SpeakersTab = () => {
       </div>
 
       {/* Note about more speakers */}
-      <div className="p-4 rounded-lg bg-muted/50 border text-center">
+      <div className="p-4 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg text-center">
         <p className="text-sm text-muted-foreground">
           Additional speakers and session chairs may be announced. Check back for updates.
         </p>
