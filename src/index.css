@@ -34,7 +34,7 @@
     --input: 180 20% 88%;
     --ring: 168 76% 36%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     /* Custom scientific theme colors */
     --dna-teal: 168 76% 36%;
@@ -110,7 +110,20 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* More rounded UI elements */
+  button, .btn, [role="button"] {
+    @apply rounded-xl;
+  }
+
+  input, textarea, select {
+    @apply rounded-xl;
+  }
+
+  .card, [data-slot="card"] {
+    @apply rounded-2xl;
   }
 }
 
