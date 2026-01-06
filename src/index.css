@@ -114,12 +114,19 @@
   }
 
   /* Fully rounded buttons (pill shape) */
-  button, .btn, [role="button"] {
-    @apply rounded-full;
+  button:not([class*="rounded-"]), 
+  .btn:not([class*="rounded-"]), 
+  [role="button"]:not([class*="rounded-"]) {
+    border-radius: 9999px !important;
   }
 
-  input, textarea, select {
-    @apply rounded-full;
+  input:not([type="checkbox"]):not([type="radio"]):not([class*="rounded-"]), 
+  select:not([class*="rounded-"]) {
+    border-radius: 9999px !important;
+  }
+
+  textarea:not([class*="rounded-"]) {
+    border-radius: 1.5rem !important;
   }
 
   .card, [data-slot="card"] {
