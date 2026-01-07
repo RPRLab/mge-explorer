@@ -4,13 +4,13 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const organizers = [
   {
-    name: "Mario R. Mestre",
-    title: "Postdoctoral Researcher",
-    institution: "Section of Microbiology, University of Copenhagen",
+    name: "Mario Rodríguez Mestre",
+    title: "PhD Researcher",
+    institution: "Section of Microbiology, University of Copenhagen (currently at JGI, Berkeley)",
     location: "Copenhagen, Denmark",
     initials: "MM",
     color: "bg-primary",
-    bio: "Expert in prokaryotic defense systems, reverse transcriptases, and retrons. Co-author of research on UG/Abi defense systems. Previously at Universidad Autónoma de Madrid.",
+    bio: "Computational biologist from Andalucía, Spain. Focuses on mobile genetic elements and anti-phage defense systems. Expert in interactive data visualization. Currently on research stay at Joint Genome Institute.",
   },
   {
     name: "Dana Ronin",
@@ -24,11 +24,11 @@ const organizers = [
   {
     name: "Leighton J. Payne",
     title: "Postdoctoral Researcher",
-    institution: "Section of Microbiology, University of Copenhagen",
+    institution: "Pinilla-Redondo Lab, Section of Microbiology, University of Copenhagen",
     location: "Copenhagen, Denmark",
     initials: "LP",
     color: "bg-genome-green",
-    bio: "Researches how bacteria adapt to threats posed by mobile genetic elements like bacteriophages and plasmids. Expert in bacterial defense systems and CRISPR-Cas biology.",
+    bio: "PhD from University of Otago (New Zealand), specialized in identifying and characterizing bacterial defenses against phages. Passionate about microbial immunity.",
   },
 ];
 
