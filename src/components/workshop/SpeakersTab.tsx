@@ -11,7 +11,7 @@ const speakers = [
     location: "Campinas, Brazil",
     initials: "AC",
     color: "bg-primary",
-    bio: "Develops computational methods for mobile genetic element detection in metagenomes. Creator of geNomad, a widely-used tool for plasmid and virus identification.",
+    bio: "Maintainer of IMG/VR, JGI's database of viral genomes from metagenomes. Creator of geNomad for plasmid and virus identification.",
   },
   {
     name: "Susanna R. Grigson",
@@ -20,7 +20,7 @@ const speakers = [
     location: "Berkeley, CA, USA",
     initials: "SG",
     color: "bg-accent",
-    bio: "Specializes in computational viromics and metagenomic binning. Develops methods for phage genomics and sequence analysis in complex microbial communities.",
+    bio: "Developer of Phynteny, a tool that uses synteny-based deep learning to annotate hypothetical phage genes. Specializes in computational viromics.",
   },
   {
     name: "Yunha Hwang",
@@ -29,7 +29,7 @@ const speakers = [
     location: "Cambridge, MA, USA",
     initials: "YH",
     color: "bg-genome-green",
-    bio: "Combines machine learning with experimentation to study microbial systems. Co-founder of Tatta Bio, focused on advancing genomic AI for biological discovery.",
+    bio: "Developer of Gaia for context-aware protein search and gLM2, the first mixed-modality genomic language model. Co-founder of Tatta Bio.",
   },
   {
     name: "Pau Piera Líndez",
@@ -38,7 +38,7 @@ const speakers = [
     location: "Copenhagen, Denmark",
     initials: "PP",
     color: "bg-bio-blue",
-    bio: "Develops machine learning and graph-based methods for plasmid reconstruction from metagenomics data. Builds tools for mobile genetic element detection.",
+    bio: "Developer of PlasMAAG, a tool for plasmid reconstruction from metagenomics data using graph-based methods. Focuses on mobile genetic element detection.",
   },
   {
     name: "Leighton J. Payne",
@@ -47,7 +47,7 @@ const speakers = [
     location: "Copenhagen, Denmark",
     initials: "LP",
     color: "bg-science-navy",
-    bio: "Researches bacterial defense systems against phages. Specializes in discovering and characterizing novel anti-phage immune mechanisms.",
+    bio: "Developer of PADLOC, a tool for identification and classification of antiviral defense systems in bacteria and archaea. Discovers novel anti-phage mechanisms.",
   },
   {
     name: "Mario Rodríguez Mestre",
@@ -56,7 +56,7 @@ const speakers = [
     location: "Copenhagen, Denmark",
     initials: "MM",
     color: "bg-primary",
-    bio: "Focuses on mobile genetic elements and anti-phage defense systems, especially reverse transcriptase-containing ones. Develops computational tools for defense system discovery.",
+    bio: "Developer of Hoodini, an interactive tool for gene neighborhood visualization and exploration. Focuses on mobile genetic elements and defense systems.",
   },
 ];
 
