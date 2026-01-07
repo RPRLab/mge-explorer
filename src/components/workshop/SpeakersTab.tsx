@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 const speakers = [
   {
     name: "Antônio Pedro Camargo",
-    title: "Research Scientist",
+    title: "Assistant Professor",
     institution: "Institute of Biology, University of Campinas (UNICAMP)",
     location: "Campinas, Brazil",
     initials: "AC",
@@ -15,7 +15,7 @@ const speakers = [
   },
   {
     name: "Susanna R. Grigson",
-    title: "Researcher",
+    title: "Postdoctoral Researcher",
     institution: "DOE Joint Genome Institute, Lawrence Berkeley National Laboratory",
     location: "Berkeley, CA, USA",
     initials: "SG",
