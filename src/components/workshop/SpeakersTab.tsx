@@ -56,7 +56,7 @@ const speakers = [
     location: "Copenhagen, Denmark",
     initials: "MM",
     color: "bg-primary",
-    bio: "Focuses on mobile genetic elements and anti-phage defense systems, especially reverse transcriptase-containing ones. Currently on research stay at JGI, Berkeley.",
+    bio: "Focuses on mobile genetic elements and anti-phage defense systems, especially reverse transcriptase-containing ones. Develops computational tools for defense system discovery.",
   },
 ];
 
