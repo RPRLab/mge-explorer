@@ -285,7 +285,7 @@ const MatrixBackground = () => {
           } else if (col.section === 3) {
             // DNA - very soft pastel colors by base
             let hue = 168;
-            if (char === "A") hue = 0;
+            if (char === "A") hue = 341; // #ff0051
             else if (char === "T") hue = 35;
             else if (char === "C") hue = 200;
             else if (char === "G") hue = 140;
