@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send, CheckCircle2 } from "lucide-react";
+import { Send, CheckCircle2, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,9 +8,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
+// ⚠️ CONFIGURA AQUÍ TU GOOGLE APPS SCRIPT WEB APP URL
+const GOOGLE_SCRIPT_URL = "";
+
 const RegistrationTab = () => {
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -25,7 +29,7 @@ const RegistrationTab = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -38,13 +42,47 @@ const RegistrationTab = () => {
       return;
     }
 
-    // Simulate form submission
-    console.log("Registration submitted:", formData);
-    setIsSubmitted(true);
-    toast({
-      title: "Registration Submitted!",
-      description: "We'll be in touch with confirmation details.",
-    });
+    if (!GOOGLE_SCRIPT_URL) {
+      toast({
+        title: "Configuration needed",
+        description: "Google Script URL not configured. Contact the organizers.",
+        variant: "destructive",
+      });
+      console.log("Registration data (not sent):", formData);
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      // With no-cors we can't check response, but request was sent
+      setIsSubmitted(true);
+      toast({
+        title: "Registration Submitted!",
+        description: "We'll be in touch with confirmation details.",
+      });
+    } catch (error) {
+      console.error("Error submitting registration:", error);
+      toast({
+        title: "Submission error",
+        description: "There was a problem. Please try again or contact the organizers.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {
@@ -176,9 +214,13 @@ const RegistrationTab = () => {
             </div>
 
             {/* Submit button */}
-            <Button type="submit" className="w-full gap-2" size="lg">
-              <Send className="w-4 h-4" />
-              Submit Registration
+            <Button type="submit" className="w-full gap-2" size="lg" disabled={isLoading}>
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Send className="w-4 h-4" />
+              )}
+              {isLoading ? "Submitting..." : "Submit Registration"}
             </Button>
 
             <p className="text-xs text-center text-muted-foreground">
