@@ -4,31 +4,31 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const organizers = [
   {
-    name: "Mario R Mestre",
-    title: "PhD Student",
+    name: "Mario R. Mestre",
+    title: "Postdoctoral Researcher",
     institution: "Section of Microbiology, University of Copenhagen",
     location: "Copenhagen, Denmark",
     initials: "MM",
     color: "bg-primary",
-    bio: "Researcher in computational approaches for mobile genetic element discovery and annotation.",
+    bio: "Expert in prokaryotic defense systems, reverse transcriptases, and retrons. Co-author of research on UG/Abi defense systems. Previously at Universidad Autónoma de Madrid.",
   },
   {
     name: "Dana Ronin",
-    title: "PhD",
+    title: "PhD Researcher",
     institution: "Section of Microbiology, University of Copenhagen",
     location: "Copenhagen, Denmark",
     initials: "DR",
     color: "bg-accent",
-    bio: "Specialist in microbial genomics and bioinformatics analysis of mobile genetic elements.",
+    bio: "Specialist in microbial genomics and bioinformatics analysis of mobile genetic elements and bacterial communities.",
   },
   {
-    name: "Leighton J Payne",
+    name: "Leighton J. Payne",
     title: "Postdoctoral Researcher",
     institution: "Section of Microbiology, University of Copenhagen",
     location: "Copenhagen, Denmark",
     initials: "LP",
     color: "bg-genome-green",
-    bio: "Researcher focused on defense systems in bacteria and the evolutionary dynamics of mobile genetic elements.",
+    bio: "Researches how bacteria adapt to threats posed by mobile genetic elements like bacteriophages and plasmids. Expert in bacterial defense systems and CRISPR-Cas biology.",
   },
 ];
 
