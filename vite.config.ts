@@ -4,6 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
+// GitHub Pages deployment configured
 export default defineConfig(({ mode }) => ({
   base: "/mge-explorer/",
   server: {
