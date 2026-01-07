@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 
 // ⚠️ CONFIGURA AQUÍ TU GOOGLE APPS SCRIPT WEB APP URL
-const GOOGLE_SCRIPT_URL = "";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyIfFk9t80UN7OtBqawHX2bHJ6isOGthlxBUnoLM4gB545u4Yp5laCIqOLPrFzQCruU/exec";
 
 const RegistrationTab = () => {
   const { toast } = useToast();
