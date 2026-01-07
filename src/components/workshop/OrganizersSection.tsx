@@ -10,7 +10,7 @@ const organizers = [
     location: "Copenhagen, Denmark",
     initials: "MM",
     color: "bg-primary",
-    bio: "Focuses on mobile genetic elements and anti-phage defense systems, especially reverse transcriptase-containing ones. Develops computational tools for defense system discovery.",
+    bio: "Developer of Hoodini, an interactive tool for gene neighborhood visualization and exploration. Focuses on mobile genetic elements and defense systems.",
   },
   {
     name: "Dana Ronin",
@@ -28,7 +28,7 @@ const organizers = [
     location: "Copenhagen, Denmark",
     initials: "LP",
     color: "bg-genome-green",
-    bio: "Researches bacterial defense systems against phages. Specializes in discovering and characterizing novel anti-phage immune mechanisms.",
+    bio: "Developer of PADLOC, a tool for identification and classification of antiviral defense systems in bacteria and archaea. Discovers novel anti-phage mechanisms.",
   },
 ];
 
