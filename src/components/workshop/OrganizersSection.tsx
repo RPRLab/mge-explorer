@@ -14,12 +14,12 @@ const organizers = [
   },
   {
     name: "Dana Ronin",
-    title: "PhD Researcher",
+    title: "PhD Fellow",
     institution: "Section of Microbiology, University of Copenhagen",
     location: "Copenhagen, Denmark",
     initials: "DR",
     color: "bg-accent",
-    bio: "Specialist in microbial genomics and bioinformatics analysis of mobile genetic elements and bacterial communities.",
+    bio: "Researcher in multispecies biofilms, bacterial interactions, and sociomicrobiology. Previously at University of Maryland. Organizer of the 'Ecology and Cocktails' event series.",
   },
   {
     name: "Leighton J. Payne",
