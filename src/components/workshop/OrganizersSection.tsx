@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 const organizers = [
   {
     name: "Mario Rodríguez Mestre",
-    title: "PhD Researcher",
+    title: "PhD Student",
     institution: "Section of Microbiology, University of Copenhagen",
     location: "Copenhagen, Denmark",
     initials: "MM",
@@ -14,7 +14,7 @@ const organizers = [
   },
   {
     name: "Dana Ronin",
-    title: "PhD Fellow",
+    title: "PhD",
     institution: "Section of Microbiology, University of Copenhagen",
     location: "Copenhagen, Denmark",
     initials: "DR",
@@ -24,7 +24,7 @@ const organizers = [
   {
     name: "Leighton J. Payne",
     title: "Postdoctoral Researcher",
-    institution: "Pinilla-Redondo Lab, Section of Microbiology, University of Copenhagen",
+    institution: "Section of Microbiology, University of Copenhagen",
     location: "Copenhagen, Denmark",
     initials: "LP",
     color: "bg-genome-green",
