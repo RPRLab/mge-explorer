@@ -11,7 +11,7 @@ const speakers = [
     location: "Campinas, Brazil",
     initials: "AC",
     color: "bg-primary",
-    bio: "Developer of geNomad, a tool for identifying mobile genetic elements in sequencing data. PhD from UNICAMP, specialist in computational methods for plasmid and virus detection in metagenomes.",
+    bio: "Develops computational methods for mobile genetic element detection in metagenomes. Creator of geNomad, a widely-used tool for plasmid and virus identification.",
   },
   {
     name: "Susanna R. Grigson",
@@ -20,7 +20,7 @@ const speakers = [
     location: "Berkeley, CA, USA",
     initials: "SG",
     color: "bg-accent",
-    bio: "Specialist in computational viromics, metagenomic binning, and phage genomics. Co-author of publications on solving genomic puzzles in metagenomics.",
+    bio: "Specializes in computational viromics and metagenomic binning. Develops methods for phage genomics and sequence analysis in complex microbial communities.",
   },
   {
     name: "Yunha Hwang",
@@ -29,7 +29,7 @@ const speakers = [
     location: "Cambridge, MA, USA",
     initials: "YH",
     color: "bg-genome-green",
-    bio: "Samuel A. Goldblith Career Development Professor at MIT. Co-founder of Tatta Bio. Combines machine learning and experimentation to study biochemistry, ecology and evolution of microbial systems. PhD from Harvard.",
+    bio: "Combines machine learning with experimentation to study microbial systems. Co-founder of Tatta Bio, focused on advancing genomic AI for biological discovery.",
   },
   {
     name: "Pau Piera Líndez",
@@ -38,7 +38,7 @@ const speakers = [
     location: "Copenhagen, Denmark",
     initials: "PP",
     color: "bg-bio-blue",
-    bio: "Computational biologist working on plasmid reconstruction from metagenomics data using machine learning and graph-based methods. Developer of tools for mobile genetic element detection.",
+    bio: "Develops machine learning and graph-based methods for plasmid reconstruction from metagenomics data. Builds tools for mobile genetic element detection.",
   },
   {
     name: "Leighton J. Payne",
@@ -47,16 +47,16 @@ const speakers = [
     location: "Copenhagen, Denmark",
     initials: "LP",
     color: "bg-science-navy",
-    bio: "PhD from University of Otago (New Zealand), specialized in identifying and characterizing bacterial defenses against phages. Passionate about microbial immunity. Enjoys hiking, climbing, and fly fishing.",
+    bio: "Researches bacterial defense systems against phages. Specializes in discovering and characterizing novel anti-phage immune mechanisms.",
   },
   {
     name: "Mario Rodríguez Mestre",
     title: "PhD Researcher",
-    institution: "Section of Microbiology, University of Copenhagen (currently at JGI, Berkeley)",
-    location: "Copenhagen, Denmark / Berkeley, CA, USA",
+    institution: "Section of Microbiology, University of Copenhagen",
+    location: "Copenhagen, Denmark",
     initials: "MM",
     color: "bg-primary",
-    bio: "Computational biologist from Andalucía, Spain. Focuses on mobile genetic elements and anti-phage defense systems, especially reverse transcriptase-containing ones. Expert in interactive data visualization. Currently on research stay at Joint Genome Institute.",
+    bio: "Focuses on mobile genetic elements and anti-phage defense systems, especially reverse transcriptase-containing ones. Currently on research stay at JGI, Berkeley.",
   },
 ];
 

@@ -6,11 +6,11 @@ const organizers = [
   {
     name: "Mario Rodríguez Mestre",
     title: "PhD Researcher",
-    institution: "Section of Microbiology, University of Copenhagen (currently at JGI, Berkeley)",
+    institution: "Section of Microbiology, University of Copenhagen",
     location: "Copenhagen, Denmark",
     initials: "MM",
     color: "bg-primary",
-    bio: "Computational biologist from Andalucía, Spain. Focuses on mobile genetic elements and anti-phage defense systems. Expert in interactive data visualization. Currently on research stay at Joint Genome Institute.",
+    bio: "Focuses on mobile genetic elements and anti-phage defense systems, especially reverse transcriptase-containing ones. Currently on research stay at JGI, Berkeley.",
   },
   {
     name: "Dana Ronin",
@@ -19,7 +19,7 @@ const organizers = [
     location: "Copenhagen, Denmark",
     initials: "DR",
     color: "bg-accent",
-    bio: "Researcher in multispecies biofilms, bacterial interactions, and sociomicrobiology. Previously at University of Maryland. Organizer of the 'Ecology and Cocktails' event series.",
+    bio: "Researches multispecies biofilms, bacterial interactions, and sociomicrobiology. Organizer of the 'Ecology and Cocktails' scientific outreach series.",
   },
   {
     name: "Leighton J. Payne",
@@ -28,7 +28,7 @@ const organizers = [
     location: "Copenhagen, Denmark",
     initials: "LP",
     color: "bg-genome-green",
-    bio: "PhD from University of Otago (New Zealand), specialized in identifying and characterizing bacterial defenses against phages. Passionate about microbial immunity.",
+    bio: "Researches bacterial defense systems against phages. Specializes in discovering and characterizing novel anti-phage immune mechanisms.",
   },
 ];
 
