@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { BookOpen, Terminal, Package, Zap, Cloud, FileText, CheckCircle2, AlertTriangle, Lightbulb, Database } from "lucide-react";
+import { BookOpen, Terminal, Package, Zap, Cloud, FileText, CheckCircle2, AlertTriangle, Lightbulb, Database, ArrowRightLeft, Microscope, FlaskConical } from "lucide-react";
 
 const PreCourseGuideTab = () => {
   return (
@@ -148,6 +148,317 @@ const PreCourseGuideTab = () => {
           <div className="p-3 rounded-xl bg-muted/30 border border-border/50 text-xs text-muted-foreground">
             <strong className="text-foreground">Reference:</strong> Lang, Buchan & Burrus (2025). "Interactions and
             evolutionary relationships among bacterial mobile genetic elements." <em>Nature Reviews Microbiology</em>, 23, 423–438.
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* ── SECTION 1b: HGT Mechanisms & Adaptive Evolution ── */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <ArrowRightLeft className="w-5 h-5 text-primary" />
+            Horizontal Gene Transfer & Adaptive Evolution
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <p className="text-muted-foreground leading-relaxed">
+            Horizontal gene transfer (HGT) is one of the most distinctive features of bacterial evolution.
+            Evidence for HGT is found in most bacterial genomes, though many transfer events may be
+            evolutionarily neutral. When adaptive transfers occur, HGT combined with positive selection
+            produces specific, detectable signatures in genomes.
+          </p>
+
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="mechanisms">
+              <AccordionTrigger className="text-sm font-semibold">Mechanisms of DNA Transfer</AccordionTrigger>
+              <AccordionContent className="space-y-4">
+                <img
+                  src={import.meta.env.BASE_URL + "images/arnold-fig1.jpg"}
+                  alt="Overview of HGT mechanisms: transformation, transduction, conjugation and non-canonical routes"
+                  className="w-full rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  Fig. 1: Mechanisms of DNA uptake and integration. Classic routes (transformation, transduction, conjugation)
+                  and non-canonical mechanisms (membrane vesicles, nanotubes, GTAs) (Arnold et al. 2022).
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {[
+                    { name: "Transformation", desc: "Uptake of free DNA from the environment. Can be constitutive or induced by DNA damage/starvation, and may preferentially target same-species DNA." },
+                    { name: "Transduction", desc: "Phage-mediated transfer of DNA. As diverse as the phages that enable it, ranging from generalized to specialized to lateral transduction." },
+                    { name: "Conjugation", desc: "Direct cell-to-cell transfer via conjugative pili, used by plasmids and ICEs. Enables transfer of very large DNA segments." },
+                    { name: "Non-canonical", desc: "Transfer via membrane vesicles, nanotubes, or gene transfer agents (GTAs). Their contribution to overall HGT is still being quantified." },
+                  ].map((item) => (
+                    <div key={item.name} className="p-3 rounded-xl bg-muted/50 border border-border/50">
+                      <p className="font-semibold text-sm text-foreground">{item.name}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="genomic-signatures">
+              <AccordionTrigger className="text-sm font-semibold">Genomic Signatures of HGT</AccordionTrigger>
+              <AccordionContent className="space-y-4">
+                <img
+                  src={import.meta.env.BASE_URL + "images/arnold-fig2.jpg"}
+                  alt="Impacts of allele transfer and gene transfer on genomic variation"
+                  className="w-full rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  Fig. 2: Allele transfer vs. gene transfer and their impacts on genomic variation (Arnold et al. 2022).
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Two distinct types of recombination leave different genomic footprints:
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "Allele transfer (AT): replaces one allele with another from the same or a different population. Breaks or creates linkage depending on donor relatedness.",
+                    "Gene transfer (GT): alters the gene content of the genome. Genomic islands are commonly transferred via transduction or conjugation, leaving behind mobilization-associated genes.",
+                    "Gene-specific sweeps occur when recombination unlinks a beneficial allele from the rest of the genome, allowing selection to act on individual loci.",
+                    "Detecting HGT relies on atypical G+C content, codon usage, k-mer signatures, or phylogenetic incongruence between gene trees and species trees.",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="selection">
+              <AccordionTrigger className="text-sm font-semibold">HGT & Natural Selection</AccordionTrigger>
+              <AccordionContent className="space-y-3">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Selection and HGT interact to create distinctive signatures in bacterial genomes:
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "Many transfer events are evolutionarily neutral, representing an incessant process that only occasionally produces beneficial outcomes.",
+                    "When adaptive transfers occur, gene-specific sweeps can be observed across marine, soil and pathogenic species.",
+                    "Negative frequency-dependent selection (NFDS) and adaptation to multiple ecological niches both promote gene-specific sweeps by maintaining genetic diversity at other loci.",
+                    "The accessory genome (pangenome) reflects a balance between rapid gene acquisition, short-term persistence and selective elimination of costly genes.",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          <div className="p-3 rounded-xl bg-muted/30 border border-border/50 text-xs text-muted-foreground">
+            <strong className="text-foreground">Reference:</strong> Arnold, Huang & Hanage (2022). "Horizontal gene transfer
+            and adaptive evolution in bacteria." <em>Nature Reviews Microbiology</em>, 20, 206–218.
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* ── SECTION 1c: MGE-MGE Interactions ── */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FlaskConical className="w-5 h-5 text-primary" />
+            MGE-MGE Interactions & Their Effects on HGT
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <p className="text-muted-foreground leading-relaxed">
+            MGEs are agents with their own evolutionary interests. Their interactions with each
+            other can both promote and inhibit the acquisition of new genetic material, shaping
+            the flow of adaptive traits through microbial communities.
+          </p>
+
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="collaborations">
+              <AccordionTrigger className="text-sm font-semibold">Collaborations Between MGEs</AccordionTrigger>
+              <AccordionContent className="space-y-4">
+                <img
+                  src={import.meta.env.BASE_URL + "images/horne-fig1.jpg"}
+                  alt="Diversity of interactions in the MGE menagerie"
+                  className="w-full rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  Fig. 1: The MGE interaction menagerie, showing collaborations and conflicts between different element types (Horne, Orr & Hall 2023).
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "Transposable elements form nested structures within plasmids, creating 'Russian-doll' mobility that drives global dissemination of resistance genes like blaNDM.",
+                    "Multicopy plasmids amplify gene dosage for transposon-encoded resistance genes, offering enhanced protection and selective advantages for TEs.",
+                    "Mobilizable plasmids lack conjugation genes but exploit helper plasmids for transfer. Their relaxases often evolve to interface with diverse conjugative machineries.",
+                    "Phage-plasmids (hybrids of phages and plasmids) are common, sometimes comprising up to 50% of phages and plasmids in some genera, and are ancient rather than recent fusions.",
+                    "Lateral transduction by integrative phages can transfer adjacent host DNA at orders of magnitude higher efficiency than canonical HGT mechanisms.",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="conflicts">
+              <AccordionTrigger className="text-sm font-semibold">Conflicts & Defence Systems</AccordionTrigger>
+              <AccordionContent className="space-y-3">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  New MGEs can pose risks: phages lyse cells, plasmids impose costs, and transposons disrupt genes.
+                  Defence systems that restrict gene acquisition reshape patterns of HGT:
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "Defence systems are being discovered at a rapid rate, with diverse molecular functions. Many are encoded on MGEs themselves and serve the element's interests.",
+                    "PICIs parasitize helper phages, hijacking capsids for their own transfer. This can increase phage-mediated transduction by protecting recipients from lysis.",
+                    "In Vibrio cholerae, phage ICP1 and chromosomal islands (PLE, ICEs) engage in ongoing warfare: CRISPR-Cas, restriction-modification, and counter-defence systems trade dominance across seasons.",
+                    "Multidrug resistance plasmids carry 'defence islands' with multiple cooperating anti-phage systems (e.g. BREX + type-IV restriction).",
+                    "Anti-plasmid systems like Wadjet discriminate targets based on size and circularity rather than sequence, extruding and cleaving small circular plasmids.",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="tangled">
+              <AccordionTrigger className="text-sm font-semibold">A Tangled Web</AccordionTrigger>
+              <AccordionContent className="space-y-3">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  MGE interactions cannot be easily pigeonholed into conflict or collaboration.
+                  Entities may collaborate to suppress others, while antagonism at one level drives
+                  cooperation at another. PICIs are classic 'hyperparasites' (parasites of parasites),
+                  creating dynamics that are dependent on, and conflicting with, their hosts
+                  and the hosts of their hosts. Surface modifications like capsule switching
+                  wire bacteria into different networks of phage-mediated gene exchange,
+                  linking MGE interactions to the physical properties of the cell.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          <div className="p-3 rounded-xl bg-muted/30 border border-border/50 text-xs text-muted-foreground">
+            <strong className="text-foreground">Reference:</strong> Horne, Orr & Hall (2023). "How do interactions between
+            mobile genetic elements affect horizontal gene transfer?" <em>Current Opinion in Microbiology</em>, 73, 102282.
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* ── SECTION 1d: Studying HGT in Microbial Communities ── */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Microscope className="w-5 h-5 text-primary" />
+            Studying HGT in Microbial Communities
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <p className="text-muted-foreground leading-relaxed">
+            A suite of computational algorithms and experimental approaches now enables us to study
+            the genes being transferred and the ecology of HGT in natural microbial communities
+            such as the human gut, soil and marine environments.
+          </p>
+
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="methods">
+              <AccordionTrigger className="text-sm font-semibold">Methods for Detecting MGEs</AccordionTrigger>
+              <AccordionContent className="space-y-4">
+                <img
+                  src={import.meta.env.BASE_URL + "images/brito-fig1.jpg"}
+                  alt="General routes of horizontal gene transfer within natural communities"
+                  className="w-full rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  Fig. 1: General routes of HGT within natural communities, including transformation, transduction, conjugation and additional mechanisms (Brito 2021).
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs border-collapse">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-2 pr-3 font-semibold text-foreground">Goal</th>
+                        <th className="text-left py-2 pr-3 font-semibold text-foreground">Method</th>
+                        <th className="text-left py-2 font-semibold text-foreground">Trade-off</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-muted-foreground">
+                      {[
+                        { goal: "Identify MGEs", method: "Gene markers in metagenomes", tradeoff: "High confidence but dependent on reference databases" },
+                        { goal: "Identify MGEs", method: "k-mer partitioning / binning", tradeoff: "De novo, but lower sensitivity" },
+                        { goal: "Genomic context", method: "Long-read sequencing", tradeoff: "Full-length elements, but higher cost and error" },
+                        { goal: "Genomic context", method: "Methylation signatures", tradeoff: "High accuracy, but limited resolution" },
+                        { goal: "Link MGE to host", method: "Proximity ligation (Hi-C)", tradeoff: "Comprehensive, but expensive and low sensitivity" },
+                        { goal: "Link MGE to host", method: "Single-cell fusion PCR", tradeoff: "High sensitivity, but low throughput" },
+                      ].map((row, i) => (
+                        <tr key={i} className="border-b border-border/30">
+                          <td className="py-2 pr-3">{row.goal}</td>
+                          <td className="py-2 pr-3">{row.method}</td>
+                          <td className="py-2">{row.tradeoff}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="challenges">
+              <AccordionTrigger className="text-sm font-semibold">Metagenomic Challenges</AccordionTrigger>
+              <AccordionContent className="space-y-4">
+                <img
+                  src={import.meta.env.BASE_URL + "images/brito-fig2.jpg"}
+                  alt="Metagenomic assessment of the mobilome: assembly challenges"
+                  className="w-full rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  Fig. 2: Challenges in metagenomic assessment of the mobilome, including repeat-driven misassembly, variable sequencing depth, and unbinned contigs (Brito 2021).
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "Short-read sequencing (100-300 bp) struggles with repetitive and structurally complex MGE regions, producing fragmented assemblies.",
+                    "MGEs often have variable sequencing depth compared to host genomes due to free-floating phages, high-copy plasmids, and shared mobile genes across elements.",
+                    "Mobile contigs are often left unbinned or incorporated into only a subset of their host genomes during metagenomic binning.",
+                    "Reference databases of MGEs are notoriously incomplete and biased towards well-studied pathogenic organisms.",
+                    "Long-read sequencing (PacBio, Nanopore) can span entire transposon insertions, prophages, and even full plasmids, but cannot link non-integrative plasmids to hosts.",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="dynamics">
+              <AccordionTrigger className="text-sm font-semibold">HGT Dynamics in Communities</AccordionTrigger>
+              <AccordionContent className="space-y-3">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Key ecological insights from studying HGT in natural communities:
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "In addition to genetic relatedness, shared ecology governs HGT. Organisms in the same environment transfer genes more frequently.",
+                    "Broad host-range plasmids can disperse across phyla within a mouse gut in vivo, and more dramatically than in equivalent in vitro experiments.",
+                    "Gene transfer often occurs in punctuated bursts rather than at regular frequencies, triggered by inflammation, antibiotic exposure, or cellular stress signals.",
+                    "Travellers accumulate more antibiotic resistance genes after travel, suggesting the mobile gene pool is flexible and responds to selective pressures.",
+                    "MGEs interact with host genomes in specific ways: plasmid-associated genes can modulate host gene expression to promote colonization of new niches.",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          <div className="p-3 rounded-xl bg-muted/30 border border-border/50 text-xs text-muted-foreground">
+            <strong className="text-foreground">Reference:</strong> Brito (2021). "Examining horizontal gene transfer in
+            microbial communities." <em>Nature Reviews Microbiology</em>, 19, 442–453.
           </div>
         </CardContent>
       </Card>
