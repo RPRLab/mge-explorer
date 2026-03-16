@@ -141,8 +141,8 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t bg-card/90 backdrop-blur-sm py-10">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground space-y-2">
+      <footer className="border-t border-border/30 glass-card grain-overlay py-10 mt-8">
+        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground space-y-2 relative z-10">
           <p className="font-semibold text-foreground">
             Mobile Genetic Elements Computational Workshop 2026
           </p>
