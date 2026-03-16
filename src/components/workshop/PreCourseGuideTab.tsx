@@ -15,15 +15,15 @@ const PreCourseGuideTab = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-muted-foreground leading-relaxed">
-            Mobile genetic elements (MGEs) are segments of DNA capable of moving within genomes and/or among cells.
-            They have profound influence on the ecology and evolution of bacteria — mediating{" "}
-            <strong className="text-foreground">horizontal gene transfer</strong>, driving genome plasticity, and
-            enabling the rapid acquisition of traits such as antimicrobial resistance, virulence and novel metabolic
+            Mobile genetic elements (MGEs) are segments of DNA capable of moving within genomes and among cells.
+            They mediate{" "}
+            <strong className="text-foreground">horizontal gene transfer</strong>, drive genome plasticity, and
+            enable bacteria to acquire traits such as antimicrobial resistance, virulence and new metabolic
             capabilities. Prophages are found in ~75% of complete bacterial genomes, and MGEs can account for ~25%
             of a species' pangenome (e.g. <em>E. coli</em>).
           </p>
           <p className="text-muted-foreground leading-relaxed text-sm">
-            Rather than discrete, independent entities, MGEs are best understood as a{" "}
+            MGEs are best understood as a{" "}
             <strong className="text-foreground">spectrum of inter-related elements</strong> that share and exchange
             genes, interact cooperatively or antagonistically within cells, and blur traditional classification
             boundaries.
@@ -35,14 +35,14 @@ const PreCourseGuideTab = () => {
               <AccordionContent>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {[
-                    { name: "Insertion Sequences (IS)", desc: "Simplest MGEs: a transposase gene flanked by inverted repeats. Capable of intracellular mobility but not self-transmissible — they piggyback on conjugative plasmids or phages." },
-                    { name: "Transposons", desc: "Structurally more complex than IS elements; carry additional cargo genes such as antibiotic resistance determinants alongside transposition machinery." },
+                    { name: "Insertion Sequences (IS)", desc: "The simplest MGEs: a transposase gene flanked by inverted repeats. They move within a genome but need a conjugative plasmid or phage for cell-to-cell transfer." },
+                    { name: "Transposons", desc: "More complex than IS elements, carrying additional cargo genes (e.g. antibiotic resistance determinants) alongside transposition machinery." },
                     { name: "Integrons", desc: "Genetic platforms that capture and express gene cassettes via site-specific recombination. Class 1 integrons are the most clinically prevalent." },
                     { name: "Plasmids", desc: "Autonomously replicating extrachromosomal elements varying greatly in size and copy number. Conjugative plasmids encode their own transfer machinery; mobilizable plasmids rely on helper elements." },
                     { name: "Prophages", desc: "Genomes of temperate phages during the lysogenic cycle, integrated into the chromosome or maintained as plasmids. Induced by signals like the SOS response." },
-                    { name: "Phage-plasmids", desc: "Hybrids that function as temperate phages but are maintained as multi-copy extrachromosomal plasmids. Spread horizontally as virions and vertically as plasmids." },
-                    { name: "ICEs", desc: "Integrative and Conjugative Elements: large MGEs integrated in chromosomes that can excise, circularize and self-transfer by conjugation. Not size-constrained by a capsid." },
-                    { name: "IMEs", desc: "Integrative and Mobilizable Elements: similar to ICEs but lack conjugative apparatus — they exploit the transfer machinery of a helper conjugative element." },
+                    { name: "Phage-plasmids", desc: "Hybrids that function as temperate phages and are maintained as multi-copy extrachromosomal plasmids. They spread horizontally as virions and vertically as plasmids." },
+                    { name: "ICEs", desc: "Integrative and Conjugative Elements: large chromosomally integrated MGEs that can excise, circularize and self-transfer by conjugation. Their size is unconstrained by a capsid." },
+                    { name: "IMEs", desc: "Integrative and Mobilizable Elements: similar to ICEs but lacking conjugative apparatus. They exploit the transfer machinery of a helper conjugative element." },
                     { name: "PICIs", desc: "Phage-Inducible Chromosomal Islands: phage parasites that excise, replicate and hijack helper phage capsids for their own packaging and transfer." },
                     { name: "GTAs", desc: "Gene Transfer Agents: phage-like particles that package random pieces of host genomic DNA and transfer it to recipient cells." },
                   ].map((item) => (
@@ -58,15 +58,15 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Interactions Among MGEs</AccordionTrigger>
               <AccordionContent className="space-y-3">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  MGEs do not act in isolation — they form complex interaction networks within cells:
+                  MGEs form complex interaction networks within cells:
                 </p>
                 <ul className="space-y-2">
                   {[
-                    "Conjugative plasmids often harbour IS elements, transposons and integrons carrying antibiotic resistance genes — creating nested 'Matryoshka doll' arrangements.",
-                    "Phage-inducible chromosomal islands (PICIs) parasitize helper phages, hijacking their capsid proteins for their own transfer.",
-                    "Some IMEs (e.g. SGI1) are exquisite parasites that strongly impair transfer of their helper plasmid while boosting their own propagation.",
-                    "MGEs carry anti-phage defence systems (restriction–modification, CRISPR–Cas, abortive infection) that shape phage–host dynamics.",
-                    "The SOS DNA damage response acts as a molecular switch, triggering excision and transfer of diverse MGEs including ICEs and prophages.",
+                    "Conjugative plasmids often harbour IS elements, transposons and integrons carrying antibiotic resistance genes, creating nested 'Matryoshka doll' arrangements.",
+                    "Phage-inducible chromosomal islands (PICIs) parasitize helper phages, hijacking their capsid proteins for transfer.",
+                    "Some IMEs (e.g. SGI1) strongly impair transfer of their helper plasmid while boosting their own propagation.",
+                    "MGEs carry anti-phage defence systems (restriction-modification, CRISPR-Cas, abortive infection) that shape phage-host dynamics.",
+                    "The SOS DNA damage response triggers excision and transfer of diverse MGEs including ICEs and prophages.",
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
                       <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
@@ -103,11 +103,10 @@ const PreCourseGuideTab = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Studying MGEs requires comparing hundreds of genomes simultaneously, detecting repetitive and
                   structurally complex sequences, and tracking transfer events across taxa. Modern sequencers
-                  generate millions of reads per sample — bioinformatics pipelines transform this raw data into
-                  assembled genomes, annotated features, phylogenies, and comparative analyses. Advances in
-                  sequencing technologies continue to reveal that the magnitude of MGE content in bacterial genomes
-                  is staggering, with many previously uncharacterized genomic regions now recognized as mobile
-                  defence islands and other MGE-derived structures.
+                  generate millions of reads per sample. Bioinformatics pipelines transform this raw data into
+                  assembled genomes, annotated features, phylogenies, and comparative analyses. Recent sequencing
+                  advances keep revealing new MGE content in bacterial genomes, with many previously uncharacterized
+                  regions now recognized as mobile defence islands and other MGE-derived structures.
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -131,7 +130,7 @@ const PreCourseGuideTab = () => {
         <CardContent className="space-y-4">
           <p className="text-muted-foreground leading-relaxed">
             Everything you need to set up your environment, understand key file formats,
-            and run your first MGE discovery analyses — from the command line to the cloud.
+            and run your first MGE discovery analyses, from the command line to the cloud.
           </p>
 
           <div className="space-y-2">
@@ -234,7 +233,7 @@ const PreCourseGuideTab = () => {
         <CardContent className="space-y-4">
           <p className="text-muted-foreground leading-relaxed text-sm">
             Bioinformatics tools have complex, often conflicting dependencies. Package managers solve this by
-            creating isolated <em>environments</em> — sandboxes where each tool has exactly the versions it
+            creating isolated <em>environments</em>, sandboxes where each tool has exactly the versions it
             needs without interfering with anything else.
           </p>
 
@@ -247,7 +246,7 @@ const PreCourseGuideTab = () => {
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 
-# — OR — install Mambaforge (conda + mamba, recommended)
+# Or install Mambaforge (conda + mamba, recommended)
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
 bash Mambaforge-Linux-x86_64.sh
 
@@ -300,7 +299,7 @@ conda config --set channel_priority strict`}
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="mamba">
-              <AccordionTrigger className="text-sm font-semibold">Mamba — Conda but 10× Faster</AccordionTrigger>
+              <AccordionTrigger className="text-sm font-semibold">Mamba: Conda but 10× Faster</AccordionTrigger>
               <AccordionContent>
                 <p className="text-sm text-muted-foreground mb-3">
                   Mamba is a drop-in replacement that uses C++ dependency solving, making environment creation dramatically faster.
@@ -331,7 +330,7 @@ prokka --version`}
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="w-5 h-5 text-primary" />
-            Pixi — Project-Based Environment Management
+            Pixi: Project-Based Environment Management
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -432,7 +431,7 @@ prokka --version`}
         <CardContent className="space-y-4">
           <p className="text-muted-foreground leading-relaxed text-sm">
             Google Colaboratory is a free cloud Jupyter notebook environment with a temporary Linux VM,
-            Python, and optional GPU — no local installation required.
+            Python, and optional GPU. No local installation required.
           </p>
 
           <div className="space-y-2">
@@ -463,7 +462,7 @@ prokka --version`}
             <AccordionItem value="colab-tools">
               <AccordionTrigger className="text-sm font-semibold">Installing Bioinformatics Tools in Colab</AccordionTrigger>
               <AccordionContent className="space-y-3">
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 1 — conda/mamba via condacolab</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 1: conda/mamba via condacolab</p>
                 <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`!pip install -q condacolab
 import condacolab
@@ -472,12 +471,12 @@ condacolab.install()  # restarts the runtime
 # --- after restart, in a new cell ---
 !mamba install -c bioconda -c conda-forge prokka isescan -y`}
                 </pre>
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 2 — apt-get</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 2: apt-get</p>
                 <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`!apt-get update -qq
 !apt-get install -y -qq ncbi-blast+ samtools`}
                 </pre>
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 3 — pip</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 3: pip</p>
                 <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`!pip install biopython pyrodigal`}
                 </pre>
