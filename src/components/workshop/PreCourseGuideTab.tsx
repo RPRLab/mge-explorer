@@ -103,11 +103,10 @@ const PreCourseGuideTab = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Studying MGEs requires comparing hundreds of genomes simultaneously, detecting repetitive and
                   structurally complex sequences, and tracking transfer events across taxa. Modern sequencers
-                  generate millions of reads per sample — bioinformatics pipelines transform this raw data into
-                  assembled genomes, annotated features, phylogenies, and comparative analyses. Advances in
-                  sequencing technologies continue to reveal that the magnitude of MGE content in bacterial genomes
-                  is staggering, with many previously uncharacterized genomic regions now recognized as mobile
-                  defence islands and other MGE-derived structures.
+                  generate millions of reads per sample. Bioinformatics pipelines transform this raw data into
+                  assembled genomes, annotated features, phylogenies, and comparative analyses. Recent sequencing
+                  advances keep revealing new MGE content in bacterial genomes, with many previously uncharacterized
+                  regions now recognized as mobile defence islands and other MGE-derived structures.
                 </p>
               </AccordionContent>
             </AccordionItem>
