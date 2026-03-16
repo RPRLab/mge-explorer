@@ -7,7 +7,7 @@ const speakers = [
   {
     name: "Antônio Pedro Camargo",
     title: "Assistant Professor",
-    institution: "Institute of Biology, University of Campinas (UNICAMP)",
+    institution: "Department of Biochemistry, Institute of Chemistry, University of São Paulo",
     location: "Campinas, Brazil",
     initials: "AC",
     color: "bg-primary",
