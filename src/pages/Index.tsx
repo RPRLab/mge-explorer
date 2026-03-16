@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookOpen, Calendar, Users, Info, ClipboardList, UserCog, GraduationCap } from "lucide-react";
 import HeroSection from "@/components/workshop/HeroSection";
@@ -10,7 +11,26 @@ import MatrixBackground from "@/components/workshop/MatrixBackground";
 import OrganizersTab from "@/components/workshop/OrganizersSection";
 import PreCourseGuideTab from "@/components/workshop/PreCourseGuideTab";
 
+const VALID_TABS = ["overview", "program", "speakers", "organizers", "precourse", "practical", "registration"];
+
+const getTabFromHash = () => {
+  const hash = window.location.hash.replace("#", "");
+  return VALID_TABS.includes(hash) ? hash : "overview";
+};
+
 const Index = () => {
+  const [activeTab, setActiveTab] = useState(getTabFromHash);
+
+  useEffect(() => {
+    const onHashChange = () => setActiveTab(getTabFromHash());
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    window.history.replaceState(null, "", `#${value}`);
+  };
   return (
     <div className="min-h-screen bg-background relative">
       {/* Full-page Matrix background with 4 sections */}
