@@ -15,11 +15,18 @@ const PreCourseGuideTab = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-muted-foreground leading-relaxed">
-            Mobile Genetic Elements (MGEs) — transposons, insertion sequences, integrons, plasmids, and prophages —
-            are segments of DNA that can move within and between genomes. They are the engines of
-            <strong className="text-foreground"> horizontal gene transfer</strong> and genome evolution, enabling
-            bacteria to rapidly acquire new functions such as antibiotic resistance, virulence factors, and
-            metabolic capabilities.
+            Mobile genetic elements (MGEs) are segments of DNA capable of moving within genomes and/or among cells.
+            They have profound influence on the ecology and evolution of bacteria — mediating{" "}
+            <strong className="text-foreground">horizontal gene transfer</strong>, driving genome plasticity, and
+            enabling the rapid acquisition of traits such as antimicrobial resistance, virulence and novel metabolic
+            capabilities. Prophages are found in ~75% of complete bacterial genomes, and MGEs can account for ~25%
+            of a species' pangenome (e.g. <em>E. coli</em>).
+          </p>
+          <p className="text-muted-foreground leading-relaxed text-sm">
+            Rather than discrete, independent entities, MGEs are best understood as a{" "}
+            <strong className="text-foreground">spectrum of inter-related elements</strong> that share and exchange
+            genes, interact cooperatively or antagonistically within cells, and blur traditional classification
+            boundaries.
           </p>
 
           <Accordion type="single" collapsible className="w-full">
@@ -28,15 +35,62 @@ const PreCourseGuideTab = () => {
               <AccordionContent>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {[
-                    { name: "Insertion Sequences (IS)", desc: "Simplest transposable elements; encode only a transposase flanked by inverted repeats." },
-                    { name: "Transposons", desc: "Carry additional genes (e.g., antibiotic resistance) alongside transposition machinery." },
-                    { name: "Integrons", desc: "Capture and express gene cassettes via site-specific recombination." },
-                    { name: "Plasmids", desc: "Self-replicating extrachromosomal DNA; often carry accessory genes and can transfer via conjugation." },
-                    { name: "Prophages", desc: "Bacteriophage genomes integrated into the host chromosome; can excise and become lytic." },
-                    { name: "ICEs", desc: "Integrative and Conjugative Elements combine features of phages and plasmids." },
+                    { name: "Insertion Sequences (IS)", desc: "Simplest MGEs: a transposase gene flanked by inverted repeats. Capable of intracellular mobility but not self-transmissible — they piggyback on conjugative plasmids or phages." },
+                    { name: "Transposons", desc: "Structurally more complex than IS elements; carry additional cargo genes such as antibiotic resistance determinants alongside transposition machinery." },
+                    { name: "Integrons", desc: "Genetic platforms that capture and express gene cassettes via site-specific recombination. Class 1 integrons are the most clinically prevalent." },
+                    { name: "Plasmids", desc: "Autonomously replicating extrachromosomal elements varying greatly in size and copy number. Conjugative plasmids encode their own transfer machinery; mobilizable plasmids rely on helper elements." },
+                    { name: "Prophages", desc: "Genomes of temperate phages during the lysogenic cycle, integrated into the chromosome or maintained as plasmids. Induced by signals like the SOS response." },
+                    { name: "Phage-plasmids", desc: "Hybrids that function as temperate phages but are maintained as multi-copy extrachromosomal plasmids. Spread horizontally as virions and vertically as plasmids." },
+                    { name: "ICEs", desc: "Integrative and Conjugative Elements: large MGEs integrated in chromosomes that can excise, circularize and self-transfer by conjugation. Not size-constrained by a capsid." },
+                    { name: "IMEs", desc: "Integrative and Mobilizable Elements: similar to ICEs but lack conjugative apparatus — they exploit the transfer machinery of a helper conjugative element." },
+                    { name: "PICIs", desc: "Phage-Inducible Chromosomal Islands: phage parasites that excise, replicate and hijack helper phage capsids for their own packaging and transfer." },
+                    { name: "GTAs", desc: "Gene Transfer Agents: phage-like particles that package random pieces of host genomic DNA and transfer it to recipient cells." },
                   ].map((item) => (
                     <div key={item.name} className="p-3 rounded-xl bg-muted/50 border border-border/50">
                       <p className="font-semibold text-sm text-foreground">{item.name}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="interactions">
+              <AccordionTrigger className="text-sm font-semibold">Interactions Among MGEs</AccordionTrigger>
+              <AccordionContent className="space-y-3">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  MGEs do not act in isolation — they form complex interaction networks within cells:
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "Conjugative plasmids often harbour IS elements, transposons and integrons carrying antibiotic resistance genes — creating nested 'Matryoshka doll' arrangements.",
+                    "Phage-inducible chromosomal islands (PICIs) parasitize helper phages, hijacking their capsid proteins for their own transfer.",
+                    "Some IMEs (e.g. SGI1) are exquisite parasites that strongly impair transfer of their helper plasmid while boosting their own propagation.",
+                    "MGEs carry anti-phage defence systems (restriction–modification, CRISPR–Cas, abortive infection) that shape phage–host dynamics.",
+                    "The SOS DNA damage response acts as a molecular switch, triggering excision and transfer of diverse MGEs including ICEs and prophages.",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="effects">
+              <AccordionTrigger className="text-sm font-semibold">Impact on Host & Ecosystems</AccordionTrigger>
+              <AccordionContent className="space-y-3">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  MGE effects span from individual cells to entire ecosystems:
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {[
+                    { label: "Antimicrobial Resistance", desc: "Transposons and integrons within plasmids are key drivers of multidrug resistance spread." },
+                    { label: "Virulence", desc: "Prophages and pathogenicity islands encode toxins, adhesins and secretion systems." },
+                    { label: "Phage Susceptibility", desc: "MGE-encoded defence systems alter which phages can infect a cell." },
+                    { label: "Nutrient Cycling", desc: "Phage-mediated lysis releases cellular contents, influencing biogeochemical cycles." },
+                  ].map((item) => (
+                    <div key={item.label} className="p-3 rounded-xl bg-muted/50 border border-border/50">
+                      <p className="font-semibold text-xs text-foreground">{item.label}</p>
                       <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
                     </div>
                   ))}
@@ -50,11 +104,19 @@ const PreCourseGuideTab = () => {
                   Studying MGEs requires comparing hundreds of genomes simultaneously, detecting repetitive and
                   structurally complex sequences, and tracking transfer events across taxa. Modern sequencers
                   generate millions of reads per sample — bioinformatics pipelines transform this raw data into
-                  biological knowledge: assembled genomes, annotated features, phylogenies, and comparative analyses.
+                  assembled genomes, annotated features, phylogenies, and comparative analyses. Advances in
+                  sequencing technologies continue to reveal that the magnitude of MGE content in bacterial genomes
+                  is staggering, with many previously uncharacterized genomic regions now recognized as mobile
+                  defence islands and other MGE-derived structures.
                 </p>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+
+          <div className="p-3 rounded-xl bg-muted/30 border border-border/50 text-xs text-muted-foreground">
+            <strong className="text-foreground">Reference:</strong> Lang, Buchan & Burrus (2025). "Interactions and
+            evolutionary relationships among bacterial mobile genetic elements." <em>Nature Reviews Microbiology</em>, 23, 423–438.
+          </div>
         </CardContent>
       </Card>
 
