@@ -1060,6 +1060,29 @@ done`}
           </div>
         </CardContent>
       </Card>
+      {/* ── Dialogs ── */}
+      <Dialog open={!!selectedMge} onOpenChange={() => setSelectedMge(null)}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle>{selectedMge?.name}</DialogTitle>
+            <DialogDescription className="sr-only">Details about {selectedMge?.name}</DialogDescription>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground leading-relaxed">{selectedMge?.detail}</p>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!selectedImpact} onOpenChange={() => setSelectedImpact(null)}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <span className="text-xl">{selectedImpact?.icon}</span>
+              {selectedImpact?.label}
+            </DialogTitle>
+            <DialogDescription className="sr-only">Details about {selectedImpact?.label}</DialogDescription>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground leading-relaxed">{selectedImpact?.detail}</p>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
