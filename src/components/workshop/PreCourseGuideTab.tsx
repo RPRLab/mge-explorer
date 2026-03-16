@@ -35,14 +35,14 @@ const PreCourseGuideTab = () => {
               <AccordionContent>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {[
-                    { name: "Insertion Sequences (IS)", desc: "Simplest MGEs: a transposase gene flanked by inverted repeats. Capable of intracellular mobility but not self-transmissible — they piggyback on conjugative plasmids or phages." },
-                    { name: "Transposons", desc: "Structurally more complex than IS elements; carry additional cargo genes such as antibiotic resistance determinants alongside transposition machinery." },
+                    { name: "Insertion Sequences (IS)", desc: "The simplest MGEs: a transposase gene flanked by inverted repeats. They move within a genome but need a conjugative plasmid or phage for cell-to-cell transfer." },
+                    { name: "Transposons", desc: "More complex than IS elements, carrying additional cargo genes (e.g. antibiotic resistance determinants) alongside transposition machinery." },
                     { name: "Integrons", desc: "Genetic platforms that capture and express gene cassettes via site-specific recombination. Class 1 integrons are the most clinically prevalent." },
                     { name: "Plasmids", desc: "Autonomously replicating extrachromosomal elements varying greatly in size and copy number. Conjugative plasmids encode their own transfer machinery; mobilizable plasmids rely on helper elements." },
                     { name: "Prophages", desc: "Genomes of temperate phages during the lysogenic cycle, integrated into the chromosome or maintained as plasmids. Induced by signals like the SOS response." },
-                    { name: "Phage-plasmids", desc: "Hybrids that function as temperate phages but are maintained as multi-copy extrachromosomal plasmids. Spread horizontally as virions and vertically as plasmids." },
-                    { name: "ICEs", desc: "Integrative and Conjugative Elements: large MGEs integrated in chromosomes that can excise, circularize and self-transfer by conjugation. Not size-constrained by a capsid." },
-                    { name: "IMEs", desc: "Integrative and Mobilizable Elements: similar to ICEs but lack conjugative apparatus — they exploit the transfer machinery of a helper conjugative element." },
+                    { name: "Phage-plasmids", desc: "Hybrids that function as temperate phages and are maintained as multi-copy extrachromosomal plasmids. They spread horizontally as virions and vertically as plasmids." },
+                    { name: "ICEs", desc: "Integrative and Conjugative Elements: large chromosomally integrated MGEs that can excise, circularize and self-transfer by conjugation. Their size is unconstrained by a capsid." },
+                    { name: "IMEs", desc: "Integrative and Mobilizable Elements: similar to ICEs but lacking conjugative apparatus. They exploit the transfer machinery of a helper conjugative element." },
                     { name: "PICIs", desc: "Phage-Inducible Chromosomal Islands: phage parasites that excise, replicate and hijack helper phage capsids for their own packaging and transfer." },
                     { name: "GTAs", desc: "Gene Transfer Agents: phage-like particles that package random pieces of host genomic DNA and transfer it to recipient cells." },
                   ].map((item) => (
