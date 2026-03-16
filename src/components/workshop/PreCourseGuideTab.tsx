@@ -58,15 +58,15 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Interactions Among MGEs</AccordionTrigger>
               <AccordionContent className="space-y-3">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  MGEs do not act in isolation — they form complex interaction networks within cells:
+                  MGEs form complex interaction networks within cells:
                 </p>
                 <ul className="space-y-2">
                   {[
-                    "Conjugative plasmids often harbour IS elements, transposons and integrons carrying antibiotic resistance genes — creating nested 'Matryoshka doll' arrangements.",
-                    "Phage-inducible chromosomal islands (PICIs) parasitize helper phages, hijacking their capsid proteins for their own transfer.",
-                    "Some IMEs (e.g. SGI1) are exquisite parasites that strongly impair transfer of their helper plasmid while boosting their own propagation.",
-                    "MGEs carry anti-phage defence systems (restriction–modification, CRISPR–Cas, abortive infection) that shape phage–host dynamics.",
-                    "The SOS DNA damage response acts as a molecular switch, triggering excision and transfer of diverse MGEs including ICEs and prophages.",
+                    "Conjugative plasmids often harbour IS elements, transposons and integrons carrying antibiotic resistance genes, creating nested 'Matryoshka doll' arrangements.",
+                    "Phage-inducible chromosomal islands (PICIs) parasitize helper phages, hijacking their capsid proteins for transfer.",
+                    "Some IMEs (e.g. SGI1) strongly impair transfer of their helper plasmid while boosting their own propagation.",
+                    "MGEs carry anti-phage defence systems (restriction-modification, CRISPR-Cas, abortive infection) that shape phage-host dynamics.",
+                    "The SOS DNA damage response triggers excision and transfer of diverse MGEs including ICEs and prophages.",
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
                       <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
