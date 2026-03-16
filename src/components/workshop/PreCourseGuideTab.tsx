@@ -443,7 +443,16 @@ const PreCourseGuideTab = () => {
             </AccordionItem>
             <AccordionItem value="dynamics">
               <AccordionTrigger className="text-sm font-semibold">HGT Dynamics in Communities</AccordionTrigger>
-              <AccordionContent className="space-y-3">
+              <AccordionContent className="space-y-4">
+                <img
+                  src={BASE + "images/brito-fig1.jpg"}
+                  alt="General routes of horizontal gene transfer within natural microbial communities"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  General routes of HGT within natural microbial communities (Brito 2021).
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Key ecological insights from studying HGT in natural communities:
                 </p>
