@@ -195,7 +195,7 @@ const PreCourseGuideTab = () => {
                 <img
                   src={BASE + "images/arnold-fig1.jpg"}
                   alt="Overview of HGT mechanisms: transformation, transduction, conjugation and non-canonical routes"
-                  className="w-full rounded-xl border border-border/50"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
