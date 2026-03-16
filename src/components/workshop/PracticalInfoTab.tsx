@@ -3,7 +3,7 @@ import { MapPin, Coffee, Utensils, ClipboardCheck, Info, Building, Navigation, X
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/6crSEruLxGhen7EK7";
+const GOOGLE_MAPS_URL = "https://www.google.com/maps/place/School+of+Pharmaceutical+Sciences,+University+of+Copenhagen/@55.7025816,12.5611785,19z";
 
 const PracticalInfoTab = () => {
   const [showDirections, setShowDirections] = useState(false);
