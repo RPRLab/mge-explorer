@@ -291,13 +291,13 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Collaborations Between MGEs</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={BASE + "images/horne-fig1.jpg"}
-                  alt="Diversity of interactions in the MGE menagerie"
-                  className="w-full rounded-xl border border-border/50"
+                  src={BASE + "images/mge-fig3.png"}
+                  alt="Shared gene modules across MGE types showing evolutionary connections"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  The MGE interaction menagerie: collaborations and conflicts between different element types (Horne, Orr & Hall 2023).
+                  Shared and exchanged gene modules across MGE types, illustrating collaborative evolutionary connections (Lang, Buchan & Burrus 2025).
                 </p>
                 <ul className="space-y-2">
                   {[
