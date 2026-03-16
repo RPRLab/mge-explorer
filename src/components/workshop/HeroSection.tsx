@@ -3,18 +3,22 @@ import { Badge } from "@/components/ui/badge";
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden min-h-[70vh] flex items-center">
+    <section className="relative overflow-hidden min-h-[70vh] flex items-center grain-overlay">
+      {/* Grainy gradient blobs */}
+      <div className="grainy-blob w-[500px] h-[500px] bg-primary/30 -top-40 -left-40" style={{ position: 'absolute' }} />
+      <div className="grainy-blob w-[400px] h-[400px] bg-accent/25 top-20 right-[-100px]" style={{ position: 'absolute' }} />
+      <div className="grainy-blob w-[350px] h-[350px] bg-genome-green/20 bottom-[-80px] left-1/3" style={{ position: 'absolute' }} />
       
       <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-8 backdrop-blur-sm shadow-lg shadow-primary/5">
             <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-sm font-semibold tracking-wide text-primary uppercase">Computational Biology Workshop</span>
+            <span className="text-sm font-semibold tracking-widest text-primary uppercase">Computational Biology Workshop</span>
           </div>
           
           {/* Title */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight leading-[1.1]">
             <span className="text-gradient-science">Mobile Genetic Elements</span>
             <br />
             <span className="text-foreground">Computational Workshop</span>
@@ -32,21 +36,21 @@ const HeroSection = () => {
             Free Attendance — Registration Required
           </Badge>
           
-          {/* Event details - more polished cards */}
+          {/* Event details - glassmorphism pills */}
           <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-            <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 shadow-lg shadow-black/5 hover:shadow-xl hover:scale-105 transition-all duration-300">
+            <div className="flex items-center gap-3 px-5 py-3 rounded-full glass-card hover:shadow-xl hover:scale-[1.03] transition-all duration-300">
               <div className="p-2 rounded-full bg-primary/10">
                 <Calendar className="w-5 h-5 text-primary" />
               </div>
               <span className="font-semibold">March 18–20, 2026</span>
             </div>
-            <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 shadow-lg shadow-black/5 hover:shadow-xl hover:scale-105 transition-all duration-300">
+            <div className="flex items-center gap-3 px-5 py-3 rounded-full glass-card hover:shadow-xl hover:scale-[1.03] transition-all duration-300">
               <div className="p-2 rounded-full bg-primary/10">
                 <Clock className="w-5 h-5 text-primary" />
               </div>
               <span className="font-semibold">8:00 AM – 5:00 PM</span>
             </div>
-            <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 shadow-lg shadow-black/5 hover:shadow-xl hover:scale-105 transition-all duration-300">
+            <div className="flex items-center gap-3 px-5 py-3 rounded-full glass-card hover:shadow-xl hover:scale-[1.03] transition-all duration-300">
               <div className="p-2 rounded-full bg-primary/10">
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
