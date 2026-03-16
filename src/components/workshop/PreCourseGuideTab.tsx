@@ -299,7 +299,7 @@ conda config --set channel_priority strict`}
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="mamba">
-              <AccordionTrigger className="text-sm font-semibold">Mamba — Conda but 10× Faster</AccordionTrigger>
+              <AccordionTrigger className="text-sm font-semibold">Mamba: Conda but 10× Faster</AccordionTrigger>
               <AccordionContent>
                 <p className="text-sm text-muted-foreground mb-3">
                   Mamba is a drop-in replacement that uses C++ dependency solving, making environment creation dramatically faster.
