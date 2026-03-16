@@ -100,6 +100,12 @@ const Index = () => {
             </div>
           </TabsContent>
 
+          <TabsContent value="precourse" className="flex justify-center">
+            <div className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg w-full max-w-5xl">
+              <PreCourseGuideTab />
+            </div>
+          </TabsContent>
+
           <TabsContent value="practical" className="flex justify-center">
             <div className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg w-full max-w-5xl">
               <PracticalInfoTab />
