@@ -233,7 +233,7 @@ const PreCourseGuideTab = () => {
         <CardContent className="space-y-4">
           <p className="text-muted-foreground leading-relaxed text-sm">
             Bioinformatics tools have complex, often conflicting dependencies. Package managers solve this by
-            creating isolated <em>environments</em> — sandboxes where each tool has exactly the versions it
+            creating isolated <em>environments</em>, sandboxes where each tool has exactly the versions it
             needs without interfering with anything else.
           </p>
 
