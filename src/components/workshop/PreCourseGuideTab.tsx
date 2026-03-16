@@ -112,6 +112,51 @@ const PreCourseGuideTab = () => {
             </AccordionItem>
           </Accordion>
 
+          {/* Figures from Lang, Buchan & Burrus 2025 */}
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="figures">
+              <AccordionTrigger className="text-sm font-semibold">Figures from the Review</AccordionTrigger>
+              <AccordionContent className="space-y-6">
+                {[
+                  {
+                    src: "/images/mge-fig1.png",
+                    title: "Fig. 1: MGEs and their evolutionary connections",
+                    caption: "Overview of different MGE types including lytic and temperate phages, phage-plasmids, GTAs, PICIs, conjugative and mobilizable plasmids, transposons, ICEs, and IMEs.",
+                  },
+                  {
+                    src: "/images/mge-fig2.png",
+                    title: "Fig. 2: Effects of MGEs on host cell phenotypes",
+                    caption: "MGEs modify bacterial phenotypes including antimicrobial resistance, virulence, phage susceptibility, defence against other MGEs, sporulation, EPS production, biofilm formation and membrane vesicle release.",
+                  },
+                  {
+                    src: "/images/mge-fig3.png",
+                    title: "Fig. 3: Evolutionary connections among gene modules in GTAs and phages",
+                    caption: "Shared and distinct gene modules across gene transfer agents and phages, illustrating evolutionary relationships among these elements.",
+                  },
+                  {
+                    src: "/images/mge-fig4.png",
+                    title: "Fig. 4: Mobilization strategies used by IMEs",
+                    caption: "Different strategies IMEs use to exploit conjugative helper elements for their own transfer.",
+                  },
+                ].map((fig) => (
+                  <div key={fig.src} className="space-y-2">
+                    <p className="text-sm font-semibold text-foreground">{fig.title}</p>
+                    <img
+                      src={fig.src}
+                      alt={fig.title}
+                      className="w-full rounded-xl border border-border/50"
+                      loading="lazy"
+                    />
+                    <p className="text-xs text-muted-foreground italic">{fig.caption}</p>
+                  </div>
+                ))}
+                <p className="text-xs text-muted-foreground">
+                  Figures reproduced from Lang, Buchan & Burrus (2025), <em>Nature Reviews Microbiology</em>.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
           <div className="p-3 rounded-xl bg-muted/30 border border-border/50 text-xs text-muted-foreground">
             <strong className="text-foreground">Reference:</strong> Lang, Buchan & Burrus (2025). "Interactions and
             evolutionary relationships among bacterial mobile genetic elements." <em>Nature Reviews Microbiology</em>, 23, 423–438.
