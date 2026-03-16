@@ -246,7 +246,7 @@ const PreCourseGuideTab = () => {
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 
-# — OR — install Mambaforge (conda + mamba, recommended)
+# Or install Mambaforge (conda + mamba, recommended)
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
 bash Mambaforge-Linux-x86_64.sh
 
