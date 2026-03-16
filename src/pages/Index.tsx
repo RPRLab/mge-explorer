@@ -53,6 +53,13 @@ const Index = () => {
               Organizers
             </TabsTrigger>
             <TabsTrigger 
+              value="precourse"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+            >
+              <GraduationCap className="w-4 h-4" />
+              Pre-course Guide
+            </TabsTrigger>
+            <TabsTrigger 
               value="practical"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
