@@ -320,12 +320,12 @@ const PreCourseGuideTab = () => {
               <AccordionContent className="space-y-4">
                 <img
                   src={BASE + "images/mge-fig4.png"}
-                  alt="Mobilization strategies used by IMEs"
-                  className="w-full rounded-xl border border-border/50"
+                  alt="Mobilization strategies used by IMEs to exploit conjugative helper elements"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Mobilization strategies used by IMEs to exploit conjugative helper elements (Lang, Buchan & Burrus 2025).
+                  Mobilization strategies used by IMEs to exploit and conflict with conjugative helper elements (Lang, Buchan & Burrus 2025).
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   New MGEs can pose risks: phages lyse cells, plasmids impose costs, and transposons disrupt genes.
