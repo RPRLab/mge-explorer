@@ -222,7 +222,7 @@ const PreCourseGuideTab = () => {
                 <img
                   src={BASE + "images/arnold-fig2.jpg"}
                   alt="Impacts of allele transfer and gene transfer on genomic variation"
-                  className="w-full rounded-xl border border-border/50"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
