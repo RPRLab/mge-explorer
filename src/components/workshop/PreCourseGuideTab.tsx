@@ -384,15 +384,6 @@ const PreCourseGuideTab = () => {
             <AccordionItem value="methods">
               <AccordionTrigger className="text-sm font-semibold">Methods for Detecting MGEs</AccordionTrigger>
               <AccordionContent className="space-y-4">
-                <img
-                  src={BASE + "images/brito-fig1.jpg"}
-                  alt="General routes of horizontal gene transfer within natural communities"
-                  className="w-full rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  General routes of HGT within natural communities (Brito 2021).
-                </p>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs border-collapse">
                     <thead>
