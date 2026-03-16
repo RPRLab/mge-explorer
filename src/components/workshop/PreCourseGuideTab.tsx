@@ -476,7 +476,7 @@ condacolab.install()  # restarts the runtime
 {`!apt-get update -qq
 !apt-get install -y -qq ncbi-blast+ samtools`}
                 </pre>
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 3 — pip</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 3: pip</p>
                 <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`!pip install biopython pyrodigal`}
                 </pre>
