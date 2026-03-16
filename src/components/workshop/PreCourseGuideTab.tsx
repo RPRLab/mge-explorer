@@ -1,8 +1,37 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { BookOpen, Terminal, Package, Zap, Cloud, FileText, CheckCircle2, AlertTriangle, Lightbulb, Database, ArrowRightLeft, Microscope, FlaskConical } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { BookOpen, Terminal, Package, Zap, Cloud, FileText, CheckCircle2, AlertTriangle, Lightbulb, Database, ArrowRightLeft, Microscope, FlaskConical, ExternalLink, ChevronRight, X } from "lucide-react";
+
+const BASE = import.meta.env.BASE_URL;
+
+/* ── Data for interactive MGE type cards ── */
+const mgeTypes = [
+  { name: "Insertion Sequences (IS)", short: "Simplest MGEs: transposase + inverted repeats.", detail: "Insertion sequences are the simplest autonomous transposable elements, consisting of a transposase gene flanked by inverted repeats. They can duplicate or relocate within a genome but depend on conjugative plasmids or phages for intercellular transfer. Despite their simplicity, IS elements are among the most abundant MGEs in bacterial genomes and play a major role in genome rearrangement and gene regulation. Two copies of the same IS can cooperate to mobilize intervening DNA as a 'composite transposon'.", color: "bg-blue-500/10 border-blue-500/30 hover:border-blue-500/60" },
+  { name: "Transposons", short: "Carry cargo genes (e.g. AMR) plus transposition machinery.", detail: "Transposons are more complex than IS elements and carry additional 'cargo' genes alongside their transposition machinery. These cargo genes often encode antibiotic resistance determinants, making transposons key drivers of resistance spread. Composite transposons are flanked by IS elements, while unit transposons (like Tn3-family) use a different mechanism involving cointegrate formation and resolution. Transposons can jump between replicons within a cell, facilitating gene movement between chromosomes, plasmids and phages.", color: "bg-emerald-500/10 border-emerald-500/30 hover:border-emerald-500/60" },
+  { name: "Integrons", short: "Capture and express gene cassettes via site-specific recombination.", detail: "Integrons are genetic platforms that capture, stockpile and express open reading frames embedded in gene cassettes via site-specific recombination mediated by an integrase (IntI). Class 1 integrons are the most clinically prevalent and are frequently associated with multidrug resistance in Gram-negative bacteria. They are often embedded within transposons on conjugative plasmids, creating multi-layered mobile structures. Integrons can carry dozens of cassettes, functioning as a reservoir of adaptive functions.", color: "bg-violet-500/10 border-violet-500/30 hover:border-violet-500/60" },
+  { name: "Plasmids", short: "Self-replicating extrachromosomal elements of variable size.", detail: "Plasmids are autonomously replicating extrachromosomal DNA molecules that vary enormously in size (1 kb to >1 Mb) and copy number. Conjugative plasmids encode their own transfer machinery (Type IV secretion system) and can self-transfer between cells. Mobilizable plasmids lack full conjugation genes but carry an oriT and relaxase, exploiting helper plasmids for transfer. Plasmids are the primary vehicles for horizontal spread of antibiotic resistance genes. Bacteria regularly harbour multiple plasmids ('coinfection'), and plasmid-plasmid interactions shape patterns of HGT.", color: "bg-amber-500/10 border-amber-500/30 hover:border-amber-500/60" },
+  { name: "Prophages", short: "Temperate phage genomes integrated into the chromosome.", detail: "Prophages are the genomes of temperate bacteriophages during the lysogenic cycle, integrated into the host chromosome or maintained as plasmid-like elements. Found in ~75% of sequenced bacterial genomes, they can be induced by signals like the SOS DNA damage response to enter the lytic cycle. Prophages contribute virulence factors, metabolic genes, and defence systems to their hosts. During induction, they can mediate generalized or specialized transduction, transferring host DNA to new recipients.", color: "bg-red-500/10 border-red-500/30 hover:border-red-500/60" },
+  { name: "Phage-plasmids", short: "Hybrids that function as both phages and plasmids.", detail: "Phage-plasmids are hybrid elements that combine features of temperate phages and plasmids. They can infect new cells as virions (horizontal spread) and replicate as multicopy extrachromosomal plasmids (vertical inheritance). Pfeifer et al. (2022) showed that phage-plasmids are common — up to 50% of phages and plasmids in some genera — and represent a diverse, ancient category rather than recent fusions. Their genetic plasticity and propensity to recombine with other MGEs make them potent vehicles for accessory gene spread.", color: "bg-pink-500/10 border-pink-500/30 hover:border-pink-500/60" },
+  { name: "ICEs", short: "Large self-transferring elements that integrate into chromosomes.", detail: "Integrative and Conjugative Elements are large (often >50 kb) chromosomally integrated MGEs that can excise, circularize, and self-transfer by conjugation. Unlike plasmids, their size is unconstrained by a phage capsid, allowing them to carry extensive cargo including antibiotic resistance islands, metabolic gene clusters, and defence systems. ICEs in Vibrio cholerae carry anti-phage defences (BREX, restriction-modification) that engage in ongoing evolutionary warfare with lytic phages like ICP1.", color: "bg-cyan-500/10 border-cyan-500/30 hover:border-cyan-500/60" },
+  { name: "IMEs", short: "Mobilizable elements that exploit helper conjugative systems.", detail: "Integrative and Mobilizable Elements are similar to ICEs but lack their own conjugative transfer apparatus. They encode an oriT and relaxase but depend on a coresiding conjugative element (plasmid or ICE) for transfer. Some IMEs (e.g. SGI1) strongly impair transfer of their helper while boosting their own propagation — a parasitic strategy. IME relaxases are often phylogenetically distinct from those of conjugative plasmids, possibly to interface with a broader range of helper machineries.", color: "bg-orange-500/10 border-orange-500/30 hover:border-orange-500/60" },
+  { name: "PICIs", short: "Phage parasites that hijack helper phage capsids.", detail: "Phage-Inducible Chromosomal Islands are molecular parasites of bacteriophages. Upon helper phage infection, PICIs excise from the chromosome, replicate, and redirect phage capsid assembly to package PICI DNA instead of phage DNA. About 0.6% of marine viral particles (~3.2 × 10²⁶ globally) are estimated to be encapsidated PICIs or other satellites. PICIs can increase transduction rates by protecting gene recipients from phage lysis. They also encode defence systems that target rival phages while sparing their cognate helper.", color: "bg-teal-500/10 border-teal-500/30 hover:border-teal-500/60" },
+  { name: "GTAs", short: "Phage-like particles packaging random host DNA.", detail: "Gene Transfer Agents are phage-like particles produced by certain bacteria (notably alphaproteobacteria) that package random fragments of the host genome rather than their own DNA. GTAs share evolutionary connections with prophages but have been domesticated for host benefit. They contribute to gene exchange within populations, potentially facilitating repair of deleterious mutations and spread of beneficial alleles. Their regulation is tied to host quorum sensing and stress responses.", color: "bg-indigo-500/10 border-indigo-500/30 hover:border-indigo-500/60" },
+];
+
+/* ── Data for interactive impact cards ── */
+const impactCards = [
+  { label: "Antimicrobial Resistance", short: "Transposons and integrons within plasmids drive multidrug resistance spread.", detail: "Plasmid-borne transposons and integrons are the primary vehicles for horizontal spread of antibiotic resistance genes across species and environments. Composite TEs like those carrying blaNDM have driven global dissemination of carbapenem resistance. The 'Russian-doll' arrangement of TEs within TEs within plasmids creates multilayered mobility that accelerates resistance gene spread in hospitals, farms and wastewater.", icon: "🧬" },
+  { label: "Virulence", short: "Prophages and pathogenicity islands encode toxins and adhesins.", detail: "Many major virulence factors are phage-encoded: cholera toxin (CTXφ), diphtheria toxin, Shiga toxin, and botulinum toxin are all carried by prophages. Pathogenicity islands (genomic islands enriched in virulence genes) can be mobilized by helper elements. A phage within Listeria monocytogenes is transduced during phagocytosis and promotes bacterial survival within the phagosome, showing how MGE-encoded functions can be intimately linked to pathogenesis.", icon: "🦠" },
+  { label: "Phage Susceptibility", short: "MGE-encoded defence systems alter which phages can infect a cell.", detail: "Defence systems (restriction-modification, CRISPR-Cas, abortive infection, BREX) are frequently MGE-encoded and shape phage-host dynamics. In Vibrio lentus, almost all differential phage susceptibility patterns across 22 strains could be attributed to 26 variable defence-encoding MGEs. Defence system turnover is rapid, with 'phage defence elements' coming and going as phage pressure fluctuates. Some defences also target plasmids and other MGEs.", icon: "🛡️" },
+  { label: "Nutrient Cycling", short: "Phage-mediated lysis releases cellular contents into ecosystems.", detail: "Phage lysis of bacterial cells (the 'viral shunt') releases dissolved organic matter, nitrogen and phosphorus back into marine and soil ecosystems, influencing biogeochemical cycles at a global scale. Auxiliary metabolic genes carried by phages (e.g. photosystem genes in cyanophages) can redirect host metabolism during infection. MGE-mediated transfer of carbohydrate-active enzymes between marine bacteria and human gut microbiota shows how HGT shapes metabolic capabilities across environments.", icon: "🌊" },
+];
 
 const PreCourseGuideTab = () => {
+  const [selectedMge, setSelectedMge] = useState<typeof mgeTypes[0] | null>(null);
+  const [selectedImpact, setSelectedImpact] = useState<typeof impactCards[0] | null>(null);
+
   return (
     <div className="space-y-8">
       {/* ── SECTION 1: What are MGEs ── */}
@@ -34,31 +63,30 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Types of MGEs</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={import.meta.env.BASE_URL + "images/mge-fig1.png"}
+                  src={BASE + "images/mge-fig1.png"}
                   alt="MGEs and their evolutionary connections"
                   className="w-full rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Fig. 1: Overview of MGE types and their evolutionary connections (Lang, Buchan & Burrus 2025).
+                  Overview of MGE types and their evolutionary connections (Lang, Buchan & Burrus 2025).
+                </p>
+                <p className="text-xs text-muted-foreground flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3" /> Click any card to learn more
                 </p>
                 <div className="grid gap-3 sm:grid-cols-2">
-                  {[
-                    { name: "Insertion Sequences (IS)", desc: "The simplest MGEs: a transposase gene flanked by inverted repeats. They move within a genome but need a conjugative plasmid or phage for cell-to-cell transfer." },
-                    { name: "Transposons", desc: "More complex than IS elements, carrying additional cargo genes (e.g. antibiotic resistance determinants) alongside transposition machinery." },
-                    { name: "Integrons", desc: "Genetic platforms that capture and express gene cassettes via site-specific recombination. Class 1 integrons are the most clinically prevalent." },
-                    { name: "Plasmids", desc: "Autonomously replicating extrachromosomal elements varying greatly in size and copy number. Conjugative plasmids encode their own transfer machinery; mobilizable plasmids rely on helper elements." },
-                    { name: "Prophages", desc: "Genomes of temperate phages during the lysogenic cycle, integrated into the chromosome or maintained as plasmids. Induced by signals like the SOS response." },
-                    { name: "Phage-plasmids", desc: "Hybrids that function as temperate phages and are maintained as multi-copy extrachromosomal plasmids. They spread horizontally as virions and vertically as plasmids." },
-                    { name: "ICEs", desc: "Integrative and Conjugative Elements: large chromosomally integrated MGEs that can excise, circularize and self-transfer by conjugation. Their size is unconstrained by a capsid." },
-                    { name: "IMEs", desc: "Integrative and Mobilizable Elements: similar to ICEs but lacking conjugative apparatus. They exploit the transfer machinery of a helper conjugative element." },
-                    { name: "PICIs", desc: "Phage-Inducible Chromosomal Islands: phage parasites that excise, replicate and hijack helper phage capsids for their own packaging and transfer." },
-                    { name: "GTAs", desc: "Gene Transfer Agents: phage-like particles that package random pieces of host genomic DNA and transfer it to recipient cells." },
-                  ].map((item) => (
-                    <div key={item.name} className="p-3 rounded-xl bg-muted/50 border border-border/50">
-                      <p className="font-semibold text-sm text-foreground">{item.name}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
-                    </div>
+                  {mgeTypes.map((item) => (
+                    <button
+                      key={item.name}
+                      onClick={() => setSelectedMge(item)}
+                      className={`p-3 rounded-xl border text-left transition-all duration-200 cursor-pointer group ${item.color}`}
+                    >
+                      <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors flex items-center gap-1">
+                        {item.name}
+                        <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-1">{item.short}</p>
+                    </button>
                   ))}
                 </div>
               </AccordionContent>
@@ -67,13 +95,13 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Interactions Among MGEs</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={import.meta.env.BASE_URL + "images/mge-fig3.png"}
+                  src={BASE + "images/mge-fig3.png"}
                   alt="Evolutionary connections among gene modules in GTAs and phages"
                   className="w-full rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Fig. 3: Shared and distinct gene modules across GTAs and phages (Lang, Buchan & Burrus 2025).
+                  Shared and distinct gene modules across GTAs and phages (Lang, Buchan & Burrus 2025).
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   MGEs form complex interaction networks within cells:
@@ -98,41 +126,38 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Impact on Host & Ecosystems</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={import.meta.env.BASE_URL + "images/mge-fig2.png"}
+                  src={BASE + "images/mge-fig2.png"}
                   alt="Effects of MGEs on host cell phenotypes"
                   className="w-full rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Fig. 2: MGE effects on host phenotypes including resistance, virulence and biofilm formation (Lang, Buchan & Burrus 2025).
+                  MGE effects on host phenotypes including resistance, virulence and biofilm formation (Lang, Buchan & Burrus 2025).
+                </p>
+                <p className="text-xs text-muted-foreground flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3" /> Click any card for details and examples
                 </p>
                 <div className="grid gap-3 sm:grid-cols-2">
-                  {[
-                    { label: "Antimicrobial Resistance", desc: "Transposons and integrons within plasmids are key drivers of multidrug resistance spread." },
-                    { label: "Virulence", desc: "Prophages and pathogenicity islands encode toxins, adhesins and secretion systems." },
-                    { label: "Phage Susceptibility", desc: "MGE-encoded defence systems alter which phages can infect a cell." },
-                    { label: "Nutrient Cycling", desc: "Phage-mediated lysis releases cellular contents, influencing biogeochemical cycles." },
-                  ].map((item) => (
-                    <div key={item.label} className="p-3 rounded-xl bg-muted/50 border border-border/50">
-                      <p className="font-semibold text-xs text-foreground">{item.label}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
-                    </div>
+                  {impactCards.map((item) => (
+                    <button
+                      key={item.label}
+                      onClick={() => setSelectedImpact(item)}
+                      className="p-3 rounded-xl bg-muted/50 border border-border/50 hover:border-primary/50 text-left transition-all duration-200 cursor-pointer group"
+                    >
+                      <p className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors flex items-center gap-2">
+                        <span>{item.icon}</span>
+                        {item.label}
+                        <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-1">{item.short}</p>
+                    </button>
                   ))}
                 </div>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="why">
               <AccordionTrigger className="text-sm font-semibold">Why Study MGEs Computationally?</AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <img
-                  src={import.meta.env.BASE_URL + "images/mge-fig4.png"}
-                  alt="Mobilization strategies used by IMEs"
-                  className="w-full rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  Fig. 4: Mobilization strategies used by IMEs to exploit conjugative helper elements (Lang, Buchan & Burrus 2025).
-                </p>
+              <AccordionContent className="space-y-3">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Studying MGEs requires comparing hundreds of genomes simultaneously, detecting repetitive and
                   structurally complex sequences, and tracking transfer events across taxa. Modern sequencers
@@ -144,11 +169,6 @@ const PreCourseGuideTab = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-
-          <div className="p-3 rounded-xl bg-muted/30 border border-border/50 text-xs text-muted-foreground">
-            <strong className="text-foreground">Reference:</strong> Lang, Buchan & Burrus (2025). "Interactions and
-            evolutionary relationships among bacterial mobile genetic elements." <em>Nature Reviews Microbiology</em>, 23, 423–438.
-          </div>
         </CardContent>
       </Card>
 
@@ -173,23 +193,22 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Mechanisms of DNA Transfer</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={import.meta.env.BASE_URL + "images/arnold-fig1.jpg"}
+                  src={BASE + "images/arnold-fig1.jpg"}
                   alt="Overview of HGT mechanisms: transformation, transduction, conjugation and non-canonical routes"
                   className="w-full rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Fig. 1: Mechanisms of DNA uptake and integration. Classic routes (transformation, transduction, conjugation)
-                  and non-canonical mechanisms (membrane vesicles, nanotubes, GTAs) (Arnold et al. 2022).
+                  Mechanisms of DNA uptake and integration: classic routes and non-canonical mechanisms (Arnold, Huang & Hanage 2022).
                 </p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {[
-                    { name: "Transformation", desc: "Uptake of free DNA from the environment. Can be constitutive or induced by DNA damage/starvation, and may preferentially target same-species DNA." },
-                    { name: "Transduction", desc: "Phage-mediated transfer of DNA. As diverse as the phages that enable it, ranging from generalized to specialized to lateral transduction." },
-                    { name: "Conjugation", desc: "Direct cell-to-cell transfer via conjugative pili, used by plasmids and ICEs. Enables transfer of very large DNA segments." },
-                    { name: "Non-canonical", desc: "Transfer via membrane vesicles, nanotubes, or gene transfer agents (GTAs). Their contribution to overall HGT is still being quantified." },
+                    { name: "Transformation", desc: "Uptake of free DNA from the environment. Can be constitutive or induced by DNA damage/starvation, and may preferentially target same-species DNA.", color: "bg-blue-500/10 border-blue-500/30" },
+                    { name: "Transduction", desc: "Phage-mediated transfer of DNA. As diverse as the phages that enable it, ranging from generalized to specialized to lateral transduction.", color: "bg-red-500/10 border-red-500/30" },
+                    { name: "Conjugation", desc: "Direct cell-to-cell transfer via conjugative pili, used by plasmids and ICEs. Enables transfer of very large DNA segments.", color: "bg-emerald-500/10 border-emerald-500/30" },
+                    { name: "Non-canonical", desc: "Transfer via membrane vesicles, nanotubes, or gene transfer agents (GTAs). Their contribution to overall HGT is still being quantified.", color: "bg-violet-500/10 border-violet-500/30" },
                   ].map((item) => (
-                    <div key={item.name} className="p-3 rounded-xl bg-muted/50 border border-border/50">
+                    <div key={item.name} className={`p-3 rounded-xl border ${item.color}`}>
                       <p className="font-semibold text-sm text-foreground">{item.name}</p>
                       <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
                     </div>
@@ -201,13 +220,13 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Genomic Signatures of HGT</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={import.meta.env.BASE_URL + "images/arnold-fig2.jpg"}
+                  src={BASE + "images/arnold-fig2.jpg"}
                   alt="Impacts of allele transfer and gene transfer on genomic variation"
                   className="w-full rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Fig. 2: Allele transfer vs. gene transfer and their impacts on genomic variation (Arnold et al. 2022).
+                  Allele transfer vs. gene transfer and their impacts on genomic variation (Arnold, Huang & Hanage 2022).
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Two distinct types of recombination leave different genomic footprints:
@@ -249,11 +268,6 @@ const PreCourseGuideTab = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-
-          <div className="p-3 rounded-xl bg-muted/30 border border-border/50 text-xs text-muted-foreground">
-            <strong className="text-foreground">Reference:</strong> Arnold, Huang & Hanage (2022). "Horizontal gene transfer
-            and adaptive evolution in bacteria." <em>Nature Reviews Microbiology</em>, 20, 206–218.
-          </div>
         </CardContent>
       </Card>
 
@@ -277,20 +291,20 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Collaborations Between MGEs</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={import.meta.env.BASE_URL + "images/horne-fig1.jpg"}
+                  src={BASE + "images/horne-fig1.jpg"}
                   alt="Diversity of interactions in the MGE menagerie"
                   className="w-full rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Fig. 1: The MGE interaction menagerie, showing collaborations and conflicts between different element types (Horne, Orr & Hall 2023).
+                  The MGE interaction menagerie: collaborations and conflicts between different element types (Horne, Orr & Hall 2023).
                 </p>
                 <ul className="space-y-2">
                   {[
                     "Transposable elements form nested structures within plasmids, creating 'Russian-doll' mobility that drives global dissemination of resistance genes like blaNDM.",
                     "Multicopy plasmids amplify gene dosage for transposon-encoded resistance genes, offering enhanced protection and selective advantages for TEs.",
                     "Mobilizable plasmids lack conjugation genes but exploit helper plasmids for transfer. Their relaxases often evolve to interface with diverse conjugative machineries.",
-                    "Phage-plasmids (hybrids of phages and plasmids) are common, sometimes comprising up to 50% of phages and plasmids in some genera, and are ancient rather than recent fusions.",
+                    "Phage-plasmids are common, sometimes comprising up to 50% of phages and plasmids in some genera, and are ancient rather than recent fusions.",
                     "Lateral transduction by integrative phages can transfer adjacent host DNA at orders of magnitude higher efficiency than canonical HGT mechanisms.",
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
@@ -303,7 +317,16 @@ const PreCourseGuideTab = () => {
             </AccordionItem>
             <AccordionItem value="conflicts">
               <AccordionTrigger className="text-sm font-semibold">Conflicts & Defence Systems</AccordionTrigger>
-              <AccordionContent className="space-y-3">
+              <AccordionContent className="space-y-4">
+                <img
+                  src={BASE + "images/mge-fig4.png"}
+                  alt="Mobilization strategies used by IMEs"
+                  className="w-full rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  Mobilization strategies used by IMEs to exploit conjugative helper elements (Lang, Buchan & Burrus 2025).
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   New MGEs can pose risks: phages lyse cells, plasmids impose costs, and transposons disrupt genes.
                   Defence systems that restrict gene acquisition reshape patterns of HGT:
@@ -339,11 +362,6 @@ const PreCourseGuideTab = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-
-          <div className="p-3 rounded-xl bg-muted/30 border border-border/50 text-xs text-muted-foreground">
-            <strong className="text-foreground">Reference:</strong> Horne, Orr & Hall (2023). "How do interactions between
-            mobile genetic elements affect horizontal gene transfer?" <em>Current Opinion in Microbiology</em>, 73, 102282.
-          </div>
         </CardContent>
       </Card>
 
@@ -367,13 +385,13 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Methods for Detecting MGEs</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={import.meta.env.BASE_URL + "images/brito-fig1.jpg"}
+                  src={BASE + "images/brito-fig1.jpg"}
                   alt="General routes of horizontal gene transfer within natural communities"
                   className="w-full rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Fig. 1: General routes of HGT within natural communities, including transformation, transduction, conjugation and additional mechanisms (Brito 2021).
+                  General routes of HGT within natural communities (Brito 2021).
                 </p>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs border-collapse">
@@ -408,13 +426,13 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Metagenomic Challenges</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={import.meta.env.BASE_URL + "images/brito-fig2.jpg"}
+                  src={BASE + "images/brito-fig2.jpg"}
                   alt="Metagenomic assessment of the mobilome: assembly challenges"
                   className="w-full rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Fig. 2: Challenges in metagenomic assessment of the mobilome, including repeat-driven misassembly, variable sequencing depth, and unbinned contigs (Brito 2021).
+                  Challenges in metagenomic assessment of the mobilome (Brito 2021).
                 </p>
                 <ul className="space-y-2">
                   {[
@@ -455,10 +473,40 @@ const PreCourseGuideTab = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+        </CardContent>
+      </Card>
 
-          <div className="p-3 rounded-xl bg-muted/30 border border-border/50 text-xs text-muted-foreground">
-            <strong className="text-foreground">Reference:</strong> Brito (2021). "Examining horizontal gene transfer in
-            microbial communities." <em>Nature Reviews Microbiology</em>, 19, 442–453.
+      {/* ── Consolidated References ── */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-primary" />
+            Key References
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            {[
+              { authors: "Lang, Buchan & Burrus", year: 2025, title: "Interactions and evolutionary relationships among bacterial mobile genetic elements", journal: "Nature Reviews Microbiology", volume: "23, 423–438", doi: "10.1038/s41579-025-01157-y" },
+              { authors: "Arnold, Huang & Hanage", year: 2022, title: "Horizontal gene transfer and adaptive evolution in bacteria", journal: "Nature Reviews Microbiology", volume: "20, 206–218", doi: "10.1038/s41579-021-00650-4" },
+              { authors: "Horne, Orr & Hall", year: 2023, title: "How do interactions between mobile genetic elements affect horizontal gene transfer?", journal: "Current Opinion in Microbiology", volume: "73, 102282", doi: "10.1016/j.mib.2023.102282" },
+              { authors: "Brito", year: 2021, title: "Examining horizontal gene transfer in microbial communities", journal: "Nature Reviews Microbiology", volume: "19, 442–453", doi: "10.1038/s41579-021-00534-7" },
+            ].map((ref) => (
+              <a
+                key={ref.doi}
+                href={`https://doi.org/${ref.doi}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-3 rounded-xl bg-muted/30 border border-border/50 hover:border-primary/40 transition-colors group"
+              >
+                <p className="text-sm text-foreground font-medium group-hover:text-primary transition-colors">
+                  {ref.authors} ({ref.year})
+                  <ExternalLink className="w-3 h-3 inline ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">{ref.title}</p>
+                <p className="text-xs text-muted-foreground/70 mt-0.5 italic">{ref.journal}, {ref.volume}</p>
+              </a>
+            ))}
           </div>
         </CardContent>
       </Card>
