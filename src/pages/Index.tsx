@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Calendar, Users, Info, ClipboardList, UserCog } from "lucide-react";
+import { BookOpen, Calendar, Users, Info, ClipboardList, UserCog, GraduationCap } from "lucide-react";
 import HeroSection from "@/components/workshop/HeroSection";
 import OverviewTab from "@/components/workshop/OverviewTab";
 import ProgramTab from "@/components/workshop/ProgramTab";
