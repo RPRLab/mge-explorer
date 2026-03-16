@@ -95,13 +95,13 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Interactions Among MGEs</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={BASE + "images/mge-fig3.png"}
-                  alt="Evolutionary connections among gene modules in GTAs and phages"
-                  className="w-full rounded-xl border border-border/50"
+                  src={BASE + "images/horne-fig1.jpg"}
+                  alt="Diversity of interactions in the MGE menagerie"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Shared and distinct gene modules across GTAs and phages (Lang, Buchan & Burrus 2025).
+                  The MGE interaction menagerie: collaborations and conflicts between different element types (Horne, Orr & Hall 2023).
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   MGEs form complex interaction networks within cells:
