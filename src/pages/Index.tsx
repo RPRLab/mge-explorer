@@ -8,6 +8,7 @@ import PracticalInfoTab from "@/components/workshop/PracticalInfoTab";
 import RegistrationTab from "@/components/workshop/RegistrationTab";
 import MatrixBackground from "@/components/workshop/MatrixBackground";
 import OrganizersTab from "@/components/workshop/OrganizersSection";
+import PreCourseGuideTab from "@/components/workshop/PreCourseGuideTab";
 
 const Index = () => {
   return (
