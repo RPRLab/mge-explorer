@@ -8,7 +8,7 @@ const speakers = [
     name: "Antônio Pedro Camargo",
     title: "Assistant Professor",
     institution: "Department of Biochemistry, Institute of Chemistry, University of São Paulo",
-    location: "Campinas, Brazil",
+    location: "São Paulo, Brazil",
     initials: "AC",
     color: "bg-primary",
     bio: "Maintainer of IMG/VR, JGI's database of viral genomes from metagenomes. Creator of geNomad for plasmid and virus identification.",
