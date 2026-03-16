@@ -330,7 +330,7 @@ prokka --version`}
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="w-5 h-5 text-primary" />
-            Pixi — Project-Based Environment Management
+            Pixi: Project-Based Environment Management
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
