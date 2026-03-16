@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { BookOpen, Terminal, Package, Zap, Cloud, FileText, CheckCircle2, AlertTriangle, Lightbulb, Database, ArrowRightLeft, Microscope, FlaskConical, ExternalLink, ChevronRight, X } from "lucide-react";
+import { BookOpen, Terminal, Package, Zap, Cloud, FileText, CheckCircle2, AlertTriangle, Lightbulb, Database, ArrowRightLeft, Microscope, FlaskConical, ExternalLink, ChevronRight } from "lucide-react";
 
 const BASE = import.meta.env.BASE_URL;
 
