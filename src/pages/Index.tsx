@@ -97,43 +97,43 @@ const Index = () => {
           </div>
 
           <TabsContent value="overview" className="flex justify-center">
-            <div className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg w-full max-w-5xl">
+            <div className="p-6 rounded-3xl glass-card grain-overlay w-full max-w-5xl">
               <OverviewTab />
             </div>
           </TabsContent>
 
           <TabsContent value="program" className="flex justify-center">
-            <div className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg w-full max-w-5xl">
+            <div className="p-6 rounded-3xl glass-card grain-overlay w-full max-w-5xl">
               <ProgramTab />
             </div>
           </TabsContent>
 
           <TabsContent value="speakers" className="flex justify-center">
-            <div className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg w-full max-w-5xl">
+            <div className="p-6 rounded-3xl glass-card grain-overlay w-full max-w-5xl">
               <SpeakersTab />
             </div>
           </TabsContent>
 
           <TabsContent value="organizers" className="flex justify-center">
-            <div className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg w-full max-w-5xl">
+            <div className="p-6 rounded-3xl glass-card grain-overlay w-full max-w-5xl">
               <OrganizersTab />
             </div>
           </TabsContent>
 
           <TabsContent value="precourse" className="flex justify-center">
-            <div className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg w-full max-w-5xl">
+            <div className="p-6 rounded-3xl glass-card grain-overlay w-full max-w-5xl">
               <PreCourseGuideTab />
             </div>
           </TabsContent>
 
           <TabsContent value="practical" className="flex justify-center">
-            <div className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg w-full max-w-5xl">
+            <div className="p-6 rounded-3xl glass-card grain-overlay w-full max-w-5xl">
               <PracticalInfoTab />
             </div>
           </TabsContent>
 
           <TabsContent value="registration" className="flex justify-center">
-            <div className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg w-full max-w-xl">
+            <div className="p-6 rounded-3xl glass-card grain-overlay w-full max-w-xl">
               <RegistrationTab />
             </div>
           </TabsContent>
