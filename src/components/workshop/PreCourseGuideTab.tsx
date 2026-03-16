@@ -462,7 +462,7 @@ prokka --version`}
             <AccordionItem value="colab-tools">
               <AccordionTrigger className="text-sm font-semibold">Installing Bioinformatics Tools in Colab</AccordionTrigger>
               <AccordionContent className="space-y-3">
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 1 — conda/mamba via condacolab</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 1: conda/mamba via condacolab</p>
                 <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`!pip install -q condacolab
 import condacolab
