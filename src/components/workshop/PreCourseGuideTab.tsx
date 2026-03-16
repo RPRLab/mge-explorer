@@ -15,15 +15,15 @@ const PreCourseGuideTab = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-muted-foreground leading-relaxed">
-            Mobile genetic elements (MGEs) are segments of DNA capable of moving within genomes and/or among cells.
-            They have profound influence on the ecology and evolution of bacteria — mediating{" "}
-            <strong className="text-foreground">horizontal gene transfer</strong>, driving genome plasticity, and
-            enabling the rapid acquisition of traits such as antimicrobial resistance, virulence and novel metabolic
+            Mobile genetic elements (MGEs) are segments of DNA capable of moving within genomes and among cells.
+            They mediate{" "}
+            <strong className="text-foreground">horizontal gene transfer</strong>, drive genome plasticity, and
+            enable bacteria to acquire traits such as antimicrobial resistance, virulence and new metabolic
             capabilities. Prophages are found in ~75% of complete bacterial genomes, and MGEs can account for ~25%
             of a species' pangenome (e.g. <em>E. coli</em>).
           </p>
           <p className="text-muted-foreground leading-relaxed text-sm">
-            Rather than discrete, independent entities, MGEs are best understood as a{" "}
+            MGEs are best understood as a{" "}
             <strong className="text-foreground">spectrum of inter-related elements</strong> that share and exchange
             genes, interact cooperatively or antagonistically within cells, and blur traditional classification
             boundaries.
