@@ -65,7 +65,7 @@ const PreCourseGuideTab = () => {
                 <img
                   src={BASE + "images/mge-fig1.png"}
                   alt="MGEs and their evolutionary connections"
-                  className="w-full rounded-xl border border-border/50"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
@@ -95,13 +95,13 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Interactions Among MGEs</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={BASE + "images/mge-fig3.png"}
-                  alt="Evolutionary connections among gene modules in GTAs and phages"
-                  className="w-full rounded-xl border border-border/50"
+                  src={BASE + "images/horne-fig1.jpg"}
+                  alt="Diversity of interactions in the MGE menagerie"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Shared and distinct gene modules across GTAs and phages (Lang, Buchan & Burrus 2025).
+                  The MGE interaction menagerie: collaborations and conflicts between different element types (Horne, Orr & Hall 2023).
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   MGEs form complex interaction networks within cells:
@@ -128,7 +128,7 @@ const PreCourseGuideTab = () => {
                 <img
                   src={BASE + "images/mge-fig2.png"}
                   alt="Effects of MGEs on host cell phenotypes"
-                  className="w-full rounded-xl border border-border/50"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
@@ -195,7 +195,7 @@ const PreCourseGuideTab = () => {
                 <img
                   src={BASE + "images/arnold-fig1.jpg"}
                   alt="Overview of HGT mechanisms: transformation, transduction, conjugation and non-canonical routes"
-                  className="w-full rounded-xl border border-border/50"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
@@ -222,7 +222,7 @@ const PreCourseGuideTab = () => {
                 <img
                   src={BASE + "images/arnold-fig2.jpg"}
                   alt="Impacts of allele transfer and gene transfer on genomic variation"
-                  className="w-full rounded-xl border border-border/50"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
@@ -291,13 +291,13 @@ const PreCourseGuideTab = () => {
               <AccordionTrigger className="text-sm font-semibold">Collaborations Between MGEs</AccordionTrigger>
               <AccordionContent className="space-y-4">
                 <img
-                  src={BASE + "images/horne-fig1.jpg"}
-                  alt="Diversity of interactions in the MGE menagerie"
-                  className="w-full rounded-xl border border-border/50"
+                  src={BASE + "images/mge-fig3.png"}
+                  alt="Shared gene modules across MGE types showing evolutionary connections"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  The MGE interaction menagerie: collaborations and conflicts between different element types (Horne, Orr & Hall 2023).
+                  Shared and exchanged gene modules across MGE types, illustrating collaborative evolutionary connections (Lang, Buchan & Burrus 2025).
                 </p>
                 <ul className="space-y-2">
                   {[
@@ -320,12 +320,12 @@ const PreCourseGuideTab = () => {
               <AccordionContent className="space-y-4">
                 <img
                   src={BASE + "images/mge-fig4.png"}
-                  alt="Mobilization strategies used by IMEs"
-                  className="w-full rounded-xl border border-border/50"
+                  alt="Mobilization strategies used by IMEs to exploit conjugative helper elements"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
-                  Mobilization strategies used by IMEs to exploit conjugative helper elements (Lang, Buchan & Burrus 2025).
+                  Mobilization strategies used by IMEs to exploit and conflict with conjugative helper elements (Lang, Buchan & Burrus 2025).
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   New MGEs can pose risks: phages lyse cells, plasmids impose costs, and transposons disrupt genes.
@@ -384,15 +384,6 @@ const PreCourseGuideTab = () => {
             <AccordionItem value="methods">
               <AccordionTrigger className="text-sm font-semibold">Methods for Detecting MGEs</AccordionTrigger>
               <AccordionContent className="space-y-4">
-                <img
-                  src={BASE + "images/brito-fig1.jpg"}
-                  alt="General routes of horizontal gene transfer within natural communities"
-                  className="w-full rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  General routes of HGT within natural communities (Brito 2021).
-                </p>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs border-collapse">
                     <thead>
@@ -428,7 +419,7 @@ const PreCourseGuideTab = () => {
                 <img
                   src={BASE + "images/brito-fig2.jpg"}
                   alt="Metagenomic assessment of the mobilome: assembly challenges"
-                  className="w-full rounded-xl border border-border/50"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
                   loading="lazy"
                 />
                 <p className="text-xs text-muted-foreground italic">
@@ -452,7 +443,16 @@ const PreCourseGuideTab = () => {
             </AccordionItem>
             <AccordionItem value="dynamics">
               <AccordionTrigger className="text-sm font-semibold">HGT Dynamics in Communities</AccordionTrigger>
-              <AccordionContent className="space-y-3">
+              <AccordionContent className="space-y-4">
+                <img
+                  src={BASE + "images/brito-fig1.jpg"}
+                  alt="General routes of horizontal gene transfer within natural microbial communities"
+                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  General routes of HGT within natural microbial communities (Brito 2021).
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Key ecological insights from studying HGT in natural communities:
                 </p>
