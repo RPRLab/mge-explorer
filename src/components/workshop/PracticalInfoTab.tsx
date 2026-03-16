@@ -1,13 +1,40 @@
-import { MapPin, Coffee, Utensils, ClipboardCheck, Info, Building } from "lucide-react";
+import { useState } from "react";
+import { MapPin, Coffee, Utensils, ClipboardCheck, Info, Building, Navigation, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/6crSEruLxGhen7EK7";
 
 const PracticalInfoTab = () => {
+  const [showDirections, setShowDirections] = useState(false);
+
   return (
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-foreground">Practical Information</h2>
         <p className="text-muted-foreground">Everything you need to know before attending</p>
       </div>
+
+      {/* Directions Modal */}
+      {showDirections && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" onClick={() => setShowDirections(false)}>
+          <div className="relative max-w-4xl w-full max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute -top-12 right-0 text-white hover:bg-white/20"
+              onClick={() => setShowDirections(false)}
+            >
+              <X className="w-6 h-6" />
+            </Button>
+            <img
+              src={`${import.meta.env.BASE_URL}images/directions.png`}
+              alt="Directions to Teaching Room 10.4.469"
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
+        </div>
+      )}
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* Location */}
@@ -22,18 +49,42 @@ const PracticalInfoTab = () => {
             <div className="flex items-start gap-3">
               <Building className="w-5 h-5 text-muted-foreground mt-0.5" />
               <div>
-                <p className="font-medium text-foreground">Uni-parken 2</p>
-                <p className="text-sm text-muted-foreground">Und.lokale 14, Bygn. 10.4.469</p>
-                <p className="text-sm text-muted-foreground">Copenhagen, Denmark</p>
+                <p className="font-medium text-foreground">Teaching Room 10.4.469</p>
+                <p className="text-sm text-muted-foreground">Universitetsparken 2, Building 10</p>
+                <p className="text-sm text-muted-foreground">2100 København, Denmark</p>
               </div>
             </div>
-            
-            {/* Map placeholder */}
-            <div className="aspect-video rounded-lg bg-muted flex items-center justify-center border">
-              <div className="text-center text-muted-foreground">
-                <MapPin className="w-8 h-8 mx-auto mb-2" />
-                <p className="text-sm">University of Copenhagen Campus</p>
-              </div>
+
+            {/* Google Maps embed */}
+            <a
+              href={GOOGLE_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block aspect-video rounded-lg overflow-hidden border hover:opacity-90 transition-opacity"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2248.5!2d12.5598!3d55.7024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4652530c862e3b1d%3A0x6a3d2c4e8f5b7c9d!2sUniversitetsparken%202%2C%202100%20K%C3%B8benhavn!5e0!3m2!1sen!2sdk!4v1"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Workshop location map"
+              />
+            </a>
+
+            <div className="flex gap-2">
+              <Button variant="outline" className="flex-1 gap-2" asChild>
+                <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer">
+                  <MapPin className="w-4 h-4" />
+                  Open in Maps
+                </a>
+              </Button>
+              <Button variant="outline" className="flex-1 gap-2" onClick={() => setShowDirections(true)}>
+                <Navigation className="w-4 h-4" />
+                How to Get There
+              </Button>
             </div>
           </CardContent>
         </Card>
@@ -47,16 +98,16 @@ const PracticalInfoTab = () => {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-start gap-3 p-3 rounded-lg bg-genome-green-light">
-              <Utensils className="w-5 h-5 text-genome-green mt-0.5" />
+            <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/5">
+              <Utensils className="w-5 h-5 text-primary mt-0.5" />
               <div>
                 <p className="font-medium text-foreground">Vegetarian Lunch</p>
                 <p className="text-sm text-muted-foreground">Provided each day of the workshop</p>
               </div>
             </div>
-            
-            <div className="flex items-start gap-3 p-3 rounded-lg bg-bio-blue-light">
-              <Coffee className="w-5 h-5 text-bio-blue mt-0.5" />
+
+            <div className="flex items-start gap-3 p-3 rounded-lg bg-accent/10">
+              <Coffee className="w-5 h-5 text-accent mt-0.5" />
               <div>
                 <p className="font-medium text-foreground">Coffee & Tea</p>
                 <p className="text-sm text-muted-foreground">Available throughout the workshop</p>
