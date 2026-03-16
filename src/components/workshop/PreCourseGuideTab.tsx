@@ -471,7 +471,7 @@ condacolab.install()  # restarts the runtime
 # --- after restart, in a new cell ---
 !mamba install -c bioconda -c conda-forge prokka isescan -y`}
                 </pre>
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 2 — apt-get</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 2: apt-get</p>
                 <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`!apt-get update -qq
 !apt-get install -y -qq ncbi-blast+ samtools`}
