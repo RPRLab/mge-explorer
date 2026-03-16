@@ -1,10 +1,17 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { BookOpen, Terminal, Package, Zap, Cloud, FileText, CheckCircle2, AlertTriangle, Lightbulb, Database, ArrowRightLeft, Microscope, FlaskConical, ExternalLink, ChevronRight } from "lucide-react";
 
 const BASE = import.meta.env.BASE_URL;
+
+/* ── Subsection heading component ── */
+const SubSection = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <div className="space-y-3 pt-4 first:pt-0">
+    <h4 className="text-sm font-semibold text-foreground border-l-2 border-primary pl-3">{title}</h4>
+    {children}
+  </div>
+);
 
 /* ── Data for interactive MGE type cards ── */
 const mgeTypes = [
@@ -42,7 +49,7 @@ const PreCourseGuideTab = () => {
             What Are Mobile Genetic Elements?
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed">
             Mobile genetic elements (MGEs) are segments of DNA capable of moving within genomes and among cells.
             They mediate{" "}
@@ -58,117 +65,106 @@ const PreCourseGuideTab = () => {
             boundaries.
           </p>
 
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="types">
-              <AccordionTrigger className="text-sm font-semibold">Types of MGEs</AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <img
-                  src={BASE + "images/mge-fig1.png"}
-                  alt="MGEs and their evolutionary connections"
-                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  Overview of MGE types and their evolutionary connections (Lang, Buchan & Burrus 2025).
-                </p>
-                <p className="text-xs text-muted-foreground flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3" /> Click any card to learn more
-                </p>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {mgeTypes.map((item) => (
-                    <button
-                      key={item.name}
-                      onClick={() => setSelectedMge(item)}
-                      className={`p-3 rounded-xl border text-left transition-all duration-200 cursor-pointer group ${item.color}`}
-                    >
-                      <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors flex items-center gap-1">
-                        {item.name}
-                        <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-1">{item.short}</p>
-                    </button>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="interactions">
-              <AccordionTrigger className="text-sm font-semibold">Interactions Among MGEs</AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <img
-                  src={BASE + "images/horne-fig1.jpg"}
-                  alt="Diversity of interactions in the MGE menagerie"
-                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  The MGE interaction menagerie: collaborations and conflicts between different element types (Horne, Orr & Hall 2023).
-                </p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  MGEs form complex interaction networks within cells:
-                </p>
-                <ul className="space-y-2">
-                  {[
-                    "Conjugative plasmids often harbour IS elements, transposons and integrons carrying antibiotic resistance genes, creating nested 'Matryoshka doll' arrangements.",
-                    "Phage-inducible chromosomal islands (PICIs) parasitize helper phages, hijacking their capsid proteins for transfer.",
-                    "Some IMEs (e.g. SGI1) strongly impair transfer of their helper plasmid while boosting their own propagation.",
-                    "MGEs carry anti-phage defence systems (restriction-modification, CRISPR-Cas, abortive infection) that shape phage-host dynamics.",
-                    "The SOS DNA damage response triggers excision and transfer of diverse MGEs including ICEs and prophages.",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="effects">
-              <AccordionTrigger className="text-sm font-semibold">Impact on Host & Ecosystems</AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <img
-                  src={BASE + "images/mge-fig2.png"}
-                  alt="Effects of MGEs on host cell phenotypes"
-                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  MGE effects on host phenotypes including resistance, virulence and biofilm formation (Lang, Buchan & Burrus 2025).
-                </p>
-                <p className="text-xs text-muted-foreground flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3" /> Click any card for details and examples
-                </p>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {impactCards.map((item) => (
-                    <button
-                      key={item.label}
-                      onClick={() => setSelectedImpact(item)}
-                      className="p-3 rounded-xl bg-muted/50 border border-border/50 hover:border-primary/50 text-left transition-all duration-200 cursor-pointer group"
-                    >
-                      <p className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors flex items-center gap-2">
-                        <span>{item.icon}</span>
-                        {item.label}
-                        <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-1">{item.short}</p>
-                    </button>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="why">
-              <AccordionTrigger className="text-sm font-semibold">Why Study MGEs Computationally?</AccordionTrigger>
-              <AccordionContent className="space-y-3">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Studying MGEs requires comparing hundreds of genomes simultaneously, detecting repetitive and
-                  structurally complex sequences, and tracking transfer events across taxa. Modern sequencers
-                  generate millions of reads per sample. Bioinformatics pipelines transform this raw data into
-                  assembled genomes, annotated features, phylogenies, and comparative analyses. Recent sequencing
-                  advances keep revealing new MGE content in bacterial genomes, with many previously uncharacterized
-                  regions now recognized as mobile defence islands and other MGE-derived structures.
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <SubSection title="Types of MGEs">
+            <img
+              src={BASE + "images/mge-fig1.png"}
+              alt="MGEs and their evolutionary connections"
+              className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
+              loading="lazy"
+            />
+            <p className="text-xs text-muted-foreground italic">
+              Overview of MGE types and their evolutionary connections (Lang, Buchan & Burrus 2025).
+            </p>
+            <p className="text-xs text-muted-foreground flex items-center gap-1">
+              <ChevronRight className="w-3 h-3" /> Click any card to learn more
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {mgeTypes.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => setSelectedMge(item)}
+                  className={`p-3 rounded-xl border text-left transition-all duration-200 cursor-pointer group ${item.color}`}
+                >
+                  <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors flex items-center gap-1">
+                    {item.name}
+                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">{item.short}</p>
+                </button>
+              ))}
+            </div>
+          </SubSection>
+
+          <SubSection title="Interactions Among MGEs">
+            <img
+              src={BASE + "images/horne-fig1.jpg"}
+              alt="Diversity of interactions in the MGE menagerie"
+              className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
+              loading="lazy"
+            />
+            <p className="text-xs text-muted-foreground italic">
+              The MGE interaction menagerie: collaborations and conflicts between different element types (Horne, Orr & Hall 2023).
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              MGEs form complex interaction networks within cells:
+            </p>
+            <ul className="space-y-2">
+              {[
+                "Conjugative plasmids often harbour IS elements, transposons and integrons carrying antibiotic resistance genes, creating nested 'Matryoshka doll' arrangements.",
+                "Phage-inducible chromosomal islands (PICIs) parasitize helper phages, hijacking their capsid proteins for transfer.",
+                "Some IMEs (e.g. SGI1) strongly impair transfer of their helper plasmid while boosting their own propagation.",
+                "MGEs carry anti-phage defence systems (restriction-modification, CRISPR-Cas, abortive infection) that shape phage-host dynamics.",
+                "The SOS DNA damage response triggers excision and transfer of diverse MGEs including ICEs and prophages.",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <span className="text-muted-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </SubSection>
+
+          <SubSection title="Impact on Host & Ecosystems">
+            <img
+              src={BASE + "images/mge-fig2.png"}
+              alt="Effects of MGEs on host cell phenotypes"
+              className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
+              loading="lazy"
+            />
+            <p className="text-xs text-muted-foreground italic">
+              MGE effects on host phenotypes including resistance, virulence and biofilm formation (Lang, Buchan & Burrus 2025).
+            </p>
+            <p className="text-xs text-muted-foreground flex items-center gap-1">
+              <ChevronRight className="w-3 h-3" /> Click any card for details and examples
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {impactCards.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => setSelectedImpact(item)}
+                  className="p-3 rounded-xl bg-muted/50 border border-border/50 hover:border-primary/50 text-left transition-all duration-200 cursor-pointer group"
+                >
+                  <p className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors flex items-center gap-2">
+                    <span>{item.icon}</span>
+                    {item.label}
+                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">{item.short}</p>
+                </button>
+              ))}
+            </div>
+          </SubSection>
+
+          <SubSection title="Why Study MGEs Computationally?">
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Studying MGEs requires comparing hundreds of genomes simultaneously, detecting repetitive and
+              structurally complex sequences, and tracking transfer events across taxa. Modern sequencers
+              generate millions of reads per sample. Bioinformatics pipelines transform this raw data into
+              assembled genomes, annotated features, phylogenies, and comparative analyses. Recent sequencing
+              advances keep revealing new MGE content in bacterial genomes, with many previously uncharacterized
+              regions now recognized as mobile defence islands and other MGE-derived structures.
+            </p>
+          </SubSection>
         </CardContent>
       </Card>
 
@@ -180,7 +176,7 @@ const PreCourseGuideTab = () => {
             Horizontal Gene Transfer & Adaptive Evolution
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed">
             Horizontal gene transfer (HGT) is one of the most distinctive features of bacterial evolution.
             Evidence for HGT is found in most bacterial genomes, though many transfer events may be
@@ -188,86 +184,77 @@ const PreCourseGuideTab = () => {
             produces specific, detectable signatures in genomes.
           </p>
 
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="mechanisms">
-              <AccordionTrigger className="text-sm font-semibold">Mechanisms of DNA Transfer</AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <img
-                  src={BASE + "images/arnold-fig1.jpg"}
-                  alt="Overview of HGT mechanisms: transformation, transduction, conjugation and non-canonical routes"
-                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  Mechanisms of DNA uptake and integration: classic routes and non-canonical mechanisms (Arnold, Huang & Hanage 2022).
-                </p>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {[
-                    { name: "Transformation", desc: "Uptake of free DNA from the environment. Can be constitutive or induced by DNA damage/starvation, and may preferentially target same-species DNA.", color: "bg-blue-500/10 border-blue-500/30" },
-                    { name: "Transduction", desc: "Phage-mediated transfer of DNA. As diverse as the phages that enable it, ranging from generalized to specialized to lateral transduction.", color: "bg-red-500/10 border-red-500/30" },
-                    { name: "Conjugation", desc: "Direct cell-to-cell transfer via conjugative pili, used by plasmids and ICEs. Enables transfer of very large DNA segments.", color: "bg-emerald-500/10 border-emerald-500/30" },
-                    { name: "Non-canonical", desc: "Transfer via membrane vesicles, nanotubes, or gene transfer agents (GTAs). Their contribution to overall HGT is still being quantified.", color: "bg-violet-500/10 border-violet-500/30" },
-                  ].map((item) => (
-                    <div key={item.name} className={`p-3 rounded-xl border ${item.color}`}>
-                      <p className="font-semibold text-sm text-foreground">{item.name}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
-                    </div>
-                  ))}
+          <SubSection title="Mechanisms of DNA Transfer">
+            <img
+              src={BASE + "images/arnold-fig1.jpg"}
+              alt="Overview of HGT mechanisms: transformation, transduction, conjugation and non-canonical routes"
+              className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
+              loading="lazy"
+            />
+            <p className="text-xs text-muted-foreground italic">
+              Mechanisms of DNA uptake and integration: classic routes and non-canonical mechanisms (Arnold, Huang & Hanage 2022).
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                { name: "Transformation", desc: "Uptake of free DNA from the environment. Can be constitutive or induced by DNA damage/starvation, and may preferentially target same-species DNA.", color: "bg-blue-500/10 border-blue-500/30" },
+                { name: "Transduction", desc: "Phage-mediated transfer of DNA. As diverse as the phages that enable it, ranging from generalized to specialized to lateral transduction.", color: "bg-red-500/10 border-red-500/30" },
+                { name: "Conjugation", desc: "Direct cell-to-cell transfer via conjugative pili, used by plasmids and ICEs. Enables transfer of very large DNA segments.", color: "bg-emerald-500/10 border-emerald-500/30" },
+                { name: "Non-canonical", desc: "Transfer via membrane vesicles, nanotubes, or gene transfer agents (GTAs). Their contribution to overall HGT is still being quantified.", color: "bg-violet-500/10 border-violet-500/30" },
+              ].map((item) => (
+                <div key={item.name} className={`p-3 rounded-xl border ${item.color}`}>
+                  <p className="font-semibold text-sm text-foreground">{item.name}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
                 </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="genomic-signatures">
-              <AccordionTrigger className="text-sm font-semibold">Genomic Signatures of HGT</AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <img
-                  src={BASE + "images/arnold-fig2.jpg"}
-                  alt="Impacts of allele transfer and gene transfer on genomic variation"
-                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  Allele transfer vs. gene transfer and their impacts on genomic variation (Arnold, Huang & Hanage 2022).
-                </p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Two distinct types of recombination leave different genomic footprints:
-                </p>
-                <ul className="space-y-2">
-                  {[
-                    "Allele transfer (AT): replaces one allele with another from the same or a different population. Breaks or creates linkage depending on donor relatedness.",
-                    "Gene transfer (GT): alters the gene content of the genome. Genomic islands are commonly transferred via transduction or conjugation, leaving behind mobilization-associated genes.",
-                    "Gene-specific sweeps occur when recombination unlinks a beneficial allele from the rest of the genome, allowing selection to act on individual loci.",
-                    "Detecting HGT relies on atypical G+C content, codon usage, k-mer signatures, or phylogenetic incongruence between gene trees and species trees.",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="selection">
-              <AccordionTrigger className="text-sm font-semibold">HGT & Natural Selection</AccordionTrigger>
-              <AccordionContent className="space-y-3">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Selection and HGT interact to create distinctive signatures in bacterial genomes:
-                </p>
-                <ul className="space-y-2">
-                  {[
-                    "Many transfer events are evolutionarily neutral, representing an incessant process that only occasionally produces beneficial outcomes.",
-                    "When adaptive transfers occur, gene-specific sweeps can be observed across marine, soil and pathogenic species.",
-                    "Negative frequency-dependent selection (NFDS) and adaptation to multiple ecological niches both promote gene-specific sweeps by maintaining genetic diversity at other loci.",
-                    "The accessory genome (pangenome) reflects a balance between rapid gene acquisition, short-term persistence and selective elimination of costly genes.",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+              ))}
+            </div>
+          </SubSection>
+
+          <SubSection title="Genomic Signatures of HGT">
+            <img
+              src={BASE + "images/arnold-fig2.jpg"}
+              alt="Impacts of allele transfer and gene transfer on genomic variation"
+              className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
+              loading="lazy"
+            />
+            <p className="text-xs text-muted-foreground italic">
+              Allele transfer vs. gene transfer and their impacts on genomic variation (Arnold, Huang & Hanage 2022).
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Two distinct types of recombination leave different genomic footprints:
+            </p>
+            <ul className="space-y-2">
+              {[
+                "Allele transfer (AT): replaces one allele with another from the same or a different population. Breaks or creates linkage depending on donor relatedness.",
+                "Gene transfer (GT): alters the gene content of the genome. Genomic islands are commonly transferred via transduction or conjugation, leaving behind mobilization-associated genes.",
+                "Gene-specific sweeps occur when recombination unlinks a beneficial allele from the rest of the genome, allowing selection to act on individual loci.",
+                "Detecting HGT relies on atypical G+C content, codon usage, k-mer signatures, or phylogenetic incongruence between gene trees and species trees.",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <span className="text-muted-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </SubSection>
+
+          <SubSection title="HGT & Natural Selection">
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Selection and HGT interact to create distinctive signatures in bacterial genomes:
+            </p>
+            <ul className="space-y-2">
+              {[
+                "Many transfer events are evolutionarily neutral, representing an incessant process that only occasionally produces beneficial outcomes.",
+                "When adaptive transfers occur, gene-specific sweeps can be observed across marine, soil and pathogenic species.",
+                "Negative frequency-dependent selection (NFDS) and adaptation to multiple ecological niches both promote gene-specific sweeps by maintaining genetic diversity at other loci.",
+                "The accessory genome (pangenome) reflects a balance between rapid gene acquisition, short-term persistence and selective elimination of costly genes.",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <span className="text-muted-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </SubSection>
         </CardContent>
       </Card>
 
@@ -279,89 +266,80 @@ const PreCourseGuideTab = () => {
             MGE-MGE Interactions & Their Effects on HGT
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed">
             MGEs are agents with their own evolutionary interests. Their interactions with each
             other can both promote and inhibit the acquisition of new genetic material, shaping
             the flow of adaptive traits through microbial communities.
           </p>
 
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="collaborations">
-              <AccordionTrigger className="text-sm font-semibold">Collaborations Between MGEs</AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <img
-                  src={BASE + "images/mge-fig3.png"}
-                  alt="Shared gene modules across MGE types showing evolutionary connections"
-                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  Shared and exchanged gene modules across MGE types, illustrating collaborative evolutionary connections (Lang, Buchan & Burrus 2025).
-                </p>
-                <ul className="space-y-2">
-                  {[
-                    "Transposable elements form nested structures within plasmids, creating 'Russian-doll' mobility that drives global dissemination of resistance genes like blaNDM.",
-                    "Multicopy plasmids amplify gene dosage for transposon-encoded resistance genes, offering enhanced protection and selective advantages for TEs.",
-                    "Mobilizable plasmids lack conjugation genes but exploit helper plasmids for transfer. Their relaxases often evolve to interface with diverse conjugative machineries.",
-                    "Phage-plasmids are common, sometimes comprising up to 50% of phages and plasmids in some genera, and are ancient rather than recent fusions.",
-                    "Lateral transduction by integrative phages can transfer adjacent host DNA at orders of magnitude higher efficiency than canonical HGT mechanisms.",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="conflicts">
-              <AccordionTrigger className="text-sm font-semibold">Conflicts & Defence Systems</AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <img
-                  src={BASE + "images/mge-fig4.png"}
-                  alt="Mobilization strategies used by IMEs to exploit conjugative helper elements"
-                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  Mobilization strategies used by IMEs to exploit and conflict with conjugative helper elements (Lang, Buchan & Burrus 2025).
-                </p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  New MGEs can pose risks: phages lyse cells, plasmids impose costs, and transposons disrupt genes.
-                  Defence systems that restrict gene acquisition reshape patterns of HGT:
-                </p>
-                <ul className="space-y-2">
-                  {[
-                    "Defence systems are being discovered at a rapid rate, with diverse molecular functions. Many are encoded on MGEs themselves and serve the element's interests.",
-                    "PICIs parasitize helper phages, hijacking capsids for their own transfer. This can increase phage-mediated transduction by protecting recipients from lysis.",
-                    "In Vibrio cholerae, phage ICP1 and chromosomal islands (PLE, ICEs) engage in ongoing warfare: CRISPR-Cas, restriction-modification, and counter-defence systems trade dominance across seasons.",
-                    "Multidrug resistance plasmids carry 'defence islands' with multiple cooperating anti-phage systems (e.g. BREX + type-IV restriction).",
-                    "Anti-plasmid systems like Wadjet discriminate targets based on size and circularity rather than sequence, extruding and cleaving small circular plasmids.",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="tangled">
-              <AccordionTrigger className="text-sm font-semibold">A Tangled Web</AccordionTrigger>
-              <AccordionContent className="space-y-3">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  MGE interactions cannot be easily pigeonholed into conflict or collaboration.
-                  Entities may collaborate to suppress others, while antagonism at one level drives
-                  cooperation at another. PICIs are classic 'hyperparasites' (parasites of parasites),
-                  creating dynamics that are dependent on, and conflicting with, their hosts
-                  and the hosts of their hosts. Surface modifications like capsule switching
-                  wire bacteria into different networks of phage-mediated gene exchange,
-                  linking MGE interactions to the physical properties of the cell.
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <SubSection title="Collaborations Between MGEs">
+            <img
+              src={BASE + "images/mge-fig3.png"}
+              alt="Shared gene modules across MGE types showing evolutionary connections"
+              className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
+              loading="lazy"
+            />
+            <p className="text-xs text-muted-foreground italic">
+              Shared and exchanged gene modules across MGE types, illustrating collaborative evolutionary connections (Lang, Buchan & Burrus 2025).
+            </p>
+            <ul className="space-y-2">
+              {[
+                "Transposable elements form nested structures within plasmids, creating 'Russian-doll' mobility that drives global dissemination of resistance genes like blaNDM.",
+                "Multicopy plasmids amplify gene dosage for transposon-encoded resistance genes, offering enhanced protection and selective advantages for TEs.",
+                "Mobilizable plasmids lack conjugation genes but exploit helper plasmids for transfer. Their relaxases often evolve to interface with diverse conjugative machineries.",
+                "Phage-plasmids are common, sometimes comprising up to 50% of phages and plasmids in some genera, and are ancient rather than recent fusions.",
+                "Lateral transduction by integrative phages can transfer adjacent host DNA at orders of magnitude higher efficiency than canonical HGT mechanisms.",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <span className="text-muted-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </SubSection>
+
+          <SubSection title="Conflicts & Defence Systems">
+            <img
+              src={BASE + "images/mge-fig4.png"}
+              alt="Mobilization strategies used by IMEs to exploit conjugative helper elements"
+              className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
+              loading="lazy"
+            />
+            <p className="text-xs text-muted-foreground italic">
+              Mobilization strategies used by IMEs to exploit and conflict with conjugative helper elements (Lang, Buchan & Burrus 2025).
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              New MGEs can pose risks: phages lyse cells, plasmids impose costs, and transposons disrupt genes.
+              Defence systems that restrict gene acquisition reshape patterns of HGT:
+            </p>
+            <ul className="space-y-2">
+              {[
+                "Defence systems are being discovered at a rapid rate, with diverse molecular functions. Many are encoded on MGEs themselves and serve the element's interests.",
+                "PICIs parasitize helper phages, hijacking capsids for their own transfer. This can increase phage-mediated transduction by protecting recipients from lysis.",
+                "In Vibrio cholerae, phage ICP1 and chromosomal islands (PLE, ICEs) engage in ongoing warfare: CRISPR-Cas, restriction-modification, and counter-defence systems trade dominance across seasons.",
+                "Multidrug resistance plasmids carry 'defence islands' with multiple cooperating anti-phage systems (e.g. BREX + type-IV restriction).",
+                "Anti-plasmid systems like Wadjet discriminate targets based on size and circularity rather than sequence, extruding and cleaving small circular plasmids.",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <span className="text-muted-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </SubSection>
+
+          <SubSection title="A Tangled Web">
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              MGE interactions cannot be easily pigeonholed into conflict or collaboration.
+              Entities may collaborate to suppress others, while antagonism at one level drives
+              cooperation at another. PICIs are classic 'hyperparasites' (parasites of parasites),
+              creating dynamics that are dependent on, and conflicting with, their hosts
+              and the hosts of their hosts. Surface modifications like capsule switching
+              wire bacteria into different networks of phage-mediated gene exchange,
+              linking MGE interactions to the physical properties of the cell.
+            </p>
+          </SubSection>
         </CardContent>
       </Card>
 
@@ -373,110 +351,97 @@ const PreCourseGuideTab = () => {
             Studying HGT in Microbial Communities
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed">
             A suite of computational algorithms and experimental approaches now enables us to study
             the genes being transferred and the ecology of HGT in natural microbial communities
             such as the human gut, soil and marine environments.
           </p>
 
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="methods">
-              <AccordionTrigger className="text-sm font-semibold">Methods for Detecting MGEs</AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-xs border-collapse">
-                    <thead>
-                      <tr className="border-b border-border">
-                        <th className="text-left py-2 pr-3 font-semibold text-foreground">Goal</th>
-                        <th className="text-left py-2 pr-3 font-semibold text-foreground">Method</th>
-                        <th className="text-left py-2 font-semibold text-foreground">Trade-off</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-muted-foreground">
-                      {[
-                        { goal: "Identify MGEs", method: "Gene markers in metagenomes", tradeoff: "High confidence but dependent on reference databases" },
-                        { goal: "Identify MGEs", method: "k-mer partitioning / binning", tradeoff: "De novo, but lower sensitivity" },
-                        { goal: "Genomic context", method: "Long-read sequencing", tradeoff: "Full-length elements, but higher cost and error" },
-                        { goal: "Genomic context", method: "Methylation signatures", tradeoff: "High accuracy, but limited resolution" },
-                        { goal: "Link MGE to host", method: "Proximity ligation (Hi-C)", tradeoff: "Comprehensive, but expensive and low sensitivity" },
-                        { goal: "Link MGE to host", method: "Single-cell fusion PCR", tradeoff: "High sensitivity, but low throughput" },
-                      ].map((row, i) => (
-                        <tr key={i} className="border-b border-border/30">
-                          <td className="py-2 pr-3">{row.goal}</td>
-                          <td className="py-2 pr-3">{row.method}</td>
-                          <td className="py-2">{row.tradeoff}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="challenges">
-              <AccordionTrigger className="text-sm font-semibold">Metagenomic Challenges</AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <img
-                  src={BASE + "images/brito-fig2.jpg"}
-                  alt="Metagenomic assessment of the mobilome: assembly challenges"
-                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  Challenges in metagenomic assessment of the mobilome (Brito 2021).
-                </p>
-                <ul className="space-y-2">
+          <SubSection title="Methods for Detecting MGEs">
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs border-collapse">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-2 pr-3 font-semibold text-foreground">Goal</th>
+                    <th className="text-left py-2 pr-3 font-semibold text-foreground">Method</th>
+                    <th className="text-left py-2 font-semibold text-foreground">Trade-off</th>
+                  </tr>
+                </thead>
+                <tbody className="text-muted-foreground">
                   {[
-                    "Short-read sequencing (100-300 bp) struggles with repetitive and structurally complex MGE regions, producing fragmented assemblies.",
-                    "MGEs often have variable sequencing depth compared to host genomes due to free-floating phages, high-copy plasmids, and shared mobile genes across elements.",
-                    "Mobile contigs are often left unbinned or incorporated into only a subset of their host genomes during metagenomic binning.",
-                    "Reference databases of MGEs are notoriously incomplete and biased towards well-studied pathogenic organisms.",
-                    "Long-read sequencing (PacBio, Nanopore) can span entire transposon insertions, prophages, and even full plasmids, but cannot link non-integrative plasmids to hosts.",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </li>
+                    { goal: "Identify MGEs", method: "Gene markers in metagenomes", tradeoff: "High confidence but dependent on reference databases" },
+                    { goal: "Identify MGEs", method: "k-mer partitioning / binning", tradeoff: "De novo, but lower sensitivity" },
+                    { goal: "Genomic context", method: "Long-read sequencing", tradeoff: "Full-length elements, but higher cost and error" },
+                    { goal: "Genomic context", method: "Methylation signatures", tradeoff: "High accuracy, but limited resolution" },
+                    { goal: "Link MGE to host", method: "Proximity ligation (Hi-C)", tradeoff: "Comprehensive, but expensive and low sensitivity" },
+                    { goal: "Link MGE to host", method: "Single-cell fusion PCR", tradeoff: "High sensitivity, but low throughput" },
+                  ].map((row, i) => (
+                    <tr key={i} className="border-b border-border/30">
+                      <td className="py-2 pr-3">{row.goal}</td>
+                      <td className="py-2 pr-3">{row.method}</td>
+                      <td className="py-2">{row.tradeoff}</td>
+                    </tr>
                   ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="dynamics">
-              <AccordionTrigger className="text-sm font-semibold">HGT Dynamics in Communities</AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <img
-                  src={BASE + "images/brito-fig1.jpg"}
-                  alt="General routes of horizontal gene transfer within natural microbial communities"
-                  className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
-                  loading="lazy"
-                />
-                <p className="text-xs text-muted-foreground italic">
-                  General routes of HGT within natural microbial communities (Brito 2021).
-                </p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Key ecological insights from studying HGT in natural communities:
-                </p>
-                <ul className="space-y-2">
-                  {[
-                    "In addition to genetic relatedness, shared ecology governs HGT. Organisms in the same environment transfer genes more frequently.",
-                    "Broad host-range plasmids can disperse across phyla within a mouse gut in vivo, and more dramatically than in equivalent in vitro experiments.",
-                    "Gene transfer often occurs in punctuated bursts rather than at regular frequencies, triggered by inflammation, antibiotic exposure, or cellular stress signals.",
-                    "Travellers accumulate more antibiotic resistance genes after travel, suggesting the mobile gene pool is flexible and responds to selective pressures.",
-                    "MGEs interact with host genomes in specific ways: plasmid-associated genes can modulate host gene expression to promote colonization of new niches.",
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+                </tbody>
+              </table>
+            </div>
+          </SubSection>
+
+          <SubSection title="Metagenomic Challenges">
+            <img
+              src={BASE + "images/brito-fig2.jpg"}
+              alt="Metagenomic assessment of the mobilome: assembly challenges"
+              className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
+              loading="lazy"
+            />
+            <p className="text-xs text-muted-foreground italic">
+              Challenges in metagenomic assessment of the mobilome (Brito 2021).
+            </p>
+            <ul className="space-y-2">
+              {[
+                "Short-read sequencing (100-300 bp) struggles with repetitive and structurally complex MGE regions, producing fragmented assemblies.",
+                "MGEs often have variable sequencing depth compared to host genomes due to free-floating phages, high-copy plasmids, and shared mobile genes across elements.",
+                "Mobile contigs are often left unbinned or incorporated into only a subset of their host genomes during metagenomic binning.",
+                "Reference databases of MGEs are notoriously incomplete and biased towards well-studied pathogenic organisms.",
+                "Long-read sequencing (PacBio, Nanopore) can span entire transposon insertions, prophages, and even full plasmids, but cannot link non-integrative plasmids to hosts.",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <span className="text-muted-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </SubSection>
+
+          <SubSection title="HGT Dynamics in Communities">
+            <img
+              src={BASE + "images/brito-fig1.jpg"}
+              alt="General routes of horizontal gene transfer within natural microbial communities"
+              className="w-full max-h-[400px] object-contain rounded-xl border border-border/50"
+              loading="lazy"
+            />
+            <p className="text-xs text-muted-foreground italic">
+              Routes of horizontal gene transfer in natural microbial communities (Brito 2021).
+            </p>
+            <ul className="space-y-2">
+              {[
+                "In the human gut, shared genes between distantly related species reveal HGT networks shaped by co-habitat more than taxonomy.",
+                "Antibiotic resistance genes in the gut resistome are shared between commensals and pathogens, with plasmids and phages serving as primary exchange vehicles.",
+                "Soil and marine environments harbour enormous MGE diversity; ocean viromes alone are estimated to contain >10⁷ unique viral types.",
+                "Community-level HGT studies increasingly integrate metagenomics, metatranscriptomics and proximity ligation to build comprehensive transfer maps.",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <span className="text-muted-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </SubSection>
         </CardContent>
       </Card>
 
-      {/* ── Consolidated References ── */}
+      {/* ── References ── */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -485,16 +450,16 @@ const PreCourseGuideTab = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3">
+          <div className="grid gap-3 sm:grid-cols-2">
             {[
-              { authors: "Lang, Buchan & Burrus", year: 2025, title: "Interactions and evolutionary relationships among bacterial mobile genetic elements", journal: "Nature Reviews Microbiology", volume: "23, 423–438", doi: "10.1038/s41579-025-01157-y" },
-              { authors: "Arnold, Huang & Hanage", year: 2022, title: "Horizontal gene transfer and adaptive evolution in bacteria", journal: "Nature Reviews Microbiology", volume: "20, 206–218", doi: "10.1038/s41579-021-00650-4" },
-              { authors: "Horne, Orr & Hall", year: 2023, title: "How do interactions between mobile genetic elements affect horizontal gene transfer?", journal: "Current Opinion in Microbiology", volume: "73, 102282", doi: "10.1016/j.mib.2023.102282" },
-              { authors: "Brito", year: 2021, title: "Examining horizontal gene transfer in microbial communities", journal: "Nature Reviews Microbiology", volume: "19, 442–453", doi: "10.1038/s41579-021-00534-7" },
+              { authors: "Lang, Buchan & Burrus", year: 2025, title: "Mobile genetic elements in bacteria", journal: "Nat Rev Microbiol", volume: "Early access", url: "https://doi.org/10.1038/s41579-025-01148-z" },
+              { authors: "Arnold, Huang & Hanage", year: 2022, title: "Horizontal gene transfer and adaptive evolution in bacteria", journal: "Nat Rev Microbiol", volume: "20, 206–218", url: "https://doi.org/10.1038/s41579-021-00650-4" },
+              { authors: "Horne, Orr & Hall", year: 2023, title: "How do interactions between mobile genetic elements affect HGT?", journal: "Curr Opin Microbiol", volume: "73, 102282", url: "https://doi.org/10.1016/j.mib.2023.102282" },
+              { authors: "Brito", year: 2021, title: "Examining horizontal gene transfer in microbial communities", journal: "Nat Rev Microbiol", volume: "19, 442–453", url: "https://doi.org/10.1038/s41579-021-00534-7" },
             ].map((ref) => (
               <a
-                key={ref.doi}
-                href={`https://doi.org/${ref.doi}`}
+                key={ref.url}
+                href={ref.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block p-3 rounded-xl bg-muted/30 border border-border/50 hover:border-primary/40 transition-colors group"
@@ -622,18 +587,15 @@ const PreCourseGuideTab = () => {
             Managing Software with Conda & Mamba
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed text-sm">
             Bioinformatics tools have complex, often conflicting dependencies. Package managers solve this by
             creating isolated <em>environments</em>, sandboxes where each tool has exactly the versions it
             needs without interfering with anything else.
           </p>
 
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="install-conda">
-              <AccordionTrigger className="text-sm font-semibold">Installing Miniconda / Mambaforge</AccordionTrigger>
-              <AccordionContent>
-                <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
+          <SubSection title="Installing Miniconda / Mambaforge">
+            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`# Download and install Miniconda
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
@@ -644,69 +606,61 @@ bash Mambaforge-Linux-x86_64.sh
 
 # Verify
 conda --version`}
-                </pre>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="channels">
-              <AccordionTrigger className="text-sm font-semibold">Set Channel Priority (do this once)</AccordionTrigger>
-              <AccordionContent>
-                <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
+            </pre>
+          </SubSection>
+
+          <SubSection title="Set Channel Priority (do this once)">
+            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
 conda config --set channel_priority strict`}
-                </pre>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="conda-commands">
-              <AccordionTrigger className="text-sm font-semibold">Essential Conda Commands</AccordionTrigger>
-              <AccordionContent>
-                <div className="overflow-x-auto rounded-xl border border-border/50">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="bg-muted/50">
-                        <th className="text-left px-4 py-2 font-semibold text-foreground">Command</th>
-                        <th className="text-left px-4 py-2 font-semibold text-foreground">What it does</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-muted-foreground">
-                      {[
-                        ["conda create -n myenv python=3.11", "Create a new environment"],
-                        ["conda activate myenv", "Switch into an environment"],
-                        ["conda deactivate", "Leave the current environment"],
-                        ["conda install -c bioconda samtools", "Install a package from Bioconda"],
-                        ["conda env export > env.yml", "Save environment as reproducible YAML"],
-                        ["conda env create -f env.yml", "Recreate environment from YAML"],
-                        ["conda env list", "List all environments on the system"],
-                        ["conda remove -n myenv --all", "Delete an environment"],
-                      ].map(([cmd, desc]) => (
-                        <tr key={cmd} className="border-t border-border/30">
-                          <td className="px-4 py-2"><code className="text-xs font-mono text-primary">{cmd}</code></td>
-                          <td className="px-4 py-2">{desc}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="mamba">
-              <AccordionTrigger className="text-sm font-semibold">Mamba: Conda but 10× Faster</AccordionTrigger>
-              <AccordionContent>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Mamba is a drop-in replacement that uses C++ dependency solving, making environment creation dramatically faster.
-                </p>
-                <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
+            </pre>
+          </SubSection>
+
+          <SubSection title="Essential Conda Commands">
+            <div className="overflow-x-auto rounded-xl border border-border/50">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="text-left px-4 py-2 font-semibold text-foreground">Command</th>
+                    <th className="text-left px-4 py-2 font-semibold text-foreground">What it does</th>
+                  </tr>
+                </thead>
+                <tbody className="text-muted-foreground">
+                  {[
+                    ["conda create -n myenv python=3.11", "Create a new environment"],
+                    ["conda activate myenv", "Switch into an environment"],
+                    ["conda deactivate", "Leave the current environment"],
+                    ["conda install -c bioconda samtools", "Install a package from Bioconda"],
+                    ["conda env export > env.yml", "Save environment as reproducible YAML"],
+                    ["conda env create -f env.yml", "Recreate environment from YAML"],
+                    ["conda env list", "List all environments on the system"],
+                    ["conda remove -n myenv --all", "Delete an environment"],
+                  ].map(([cmd, desc]) => (
+                    <tr key={cmd} className="border-t border-border/30">
+                      <td className="px-4 py-2"><code className="text-xs font-mono text-primary">{cmd}</code></td>
+                      <td className="px-4 py-2">{desc}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </SubSection>
+
+          <SubSection title="Mamba: Conda but 10× Faster">
+            <p className="text-sm text-muted-foreground mb-3">
+              Mamba is a drop-in replacement that uses C++ dependency solving, making environment creation dramatically faster.
+            </p>
+            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`# Replace conda with mamba for any install/create command
 mamba create -n mge_tools -c bioconda -c conda-forge \\
   prokka isescan mob-suite blast samtools biopython
 
 conda activate mge_tools    # activation still uses conda
 prokka --version`}
-                </pre>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+            </pre>
+          </SubSection>
 
           <div className="flex items-start gap-2 p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-sm">
             <AlertTriangle className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
@@ -725,7 +679,7 @@ prokka --version`}
             Pixi: Project-Based Environment Management
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed text-sm">
             Pixi is a modern, Rust-written package manager built on the conda ecosystem. Unlike conda/mamba which
             manage environments globally, Pixi ties environments to a <strong className="text-foreground">project directory</strong> and
@@ -753,62 +707,55 @@ prokka --version`}
             ))}
           </div>
 
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="pixi-install">
-              <AccordionTrigger className="text-sm font-semibold">Installing & Using Pixi</AccordionTrigger>
-              <AccordionContent className="space-y-3">
-                <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
+          <SubSection title="Installing & Using Pixi">
+            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`# Install Pixi
 curl -fsSL https://pixi.sh/install.sh | bash
 pixi --version`}
-                </pre>
-                <div className="overflow-x-auto rounded-xl border border-border/50">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="bg-muted/50">
-                        <th className="text-left px-4 py-2 font-semibold text-foreground">Command</th>
-                        <th className="text-left px-4 py-2 font-semibold text-foreground">What it does</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-muted-foreground">
-                      {[
-                        ["pixi init my_project", "Initialise a new project with pixi.toml"],
-                        ["pixi add -c bioconda prokka", "Add a package to the project"],
-                        ["pixi install", "Install all dependencies from pixi.toml"],
-                        ["pixi shell", "Open a shell with the environment active"],
-                        ["pixi run prokka --help", "Run a command inside the environment"],
-                        ["pixi list", "List installed packages"],
-                      ].map(([cmd, desc]) => (
-                        <tr key={cmd} className="border-t border-border/30">
-                          <td className="px-4 py-2"><code className="text-xs font-mono text-primary">{cmd}</code></td>
-                          <td className="px-4 py-2">{desc}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="pixi-workshop">
-              <AccordionTrigger className="text-sm font-semibold">Workshop Example</AccordionTrigger>
-              <AccordionContent>
-                <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
+            </pre>
+            <div className="overflow-x-auto rounded-xl border border-border/50">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="text-left px-4 py-2 font-semibold text-foreground">Command</th>
+                    <th className="text-left px-4 py-2 font-semibold text-foreground">What it does</th>
+                  </tr>
+                </thead>
+                <tbody className="text-muted-foreground">
+                  {[
+                    ["pixi init my_project", "Initialise a new project with pixi.toml"],
+                    ["pixi add -c bioconda prokka", "Add a package to the project"],
+                    ["pixi install", "Install all dependencies from pixi.toml"],
+                    ["pixi shell", "Open a shell with the environment active"],
+                    ["pixi run prokka --help", "Run a command inside the environment"],
+                    ["pixi list", "List installed packages"],
+                  ].map(([cmd, desc]) => (
+                    <tr key={cmd} className="border-t border-border/30">
+                      <td className="px-4 py-2"><code className="text-xs font-mono text-primary">{cmd}</code></td>
+                      <td className="px-4 py-2">{desc}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </SubSection>
+
+          <SubSection title="Workshop Example">
+            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`pixi init mge_workshop
 cd mge_workshop
 pixi add -c bioconda -c conda-forge prokka isescan mob-suite blast samtools
 pixi shell
 # You're now inside the environment
 prokka --version`}
-                </pre>
-                <div className="mt-3 flex items-start gap-2 p-3 rounded-xl bg-accent/10 border border-accent/20 text-sm">
-                  <Lightbulb className="w-4 h-4 text-accent-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    <strong className="text-foreground">Sharing:</strong> Commit <code className="text-xs font-mono">pixi.toml</code> and <code className="text-xs font-mono">pixi.lock</code> to git. Anyone who clones your repo and runs <code className="text-xs font-mono">pixi install</code> gets the exact same environment.
-                  </span>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+            </pre>
+            <div className="mt-3 flex items-start gap-2 p-3 rounded-xl bg-accent/10 border border-accent/20 text-sm">
+              <Lightbulb className="w-4 h-4 text-accent-foreground mt-0.5 flex-shrink-0" />
+              <span className="text-muted-foreground">
+                <strong className="text-foreground">Sharing:</strong> Commit <code className="text-xs font-mono">pixi.toml</code> and <code className="text-xs font-mono">pixi.lock</code> to git. Anyone who clones your repo and runs <code className="text-xs font-mono">pixi install</code> gets the exact same environment.
+              </span>
+            </div>
+          </SubSection>
         </CardContent>
       </Card>
 
@@ -820,7 +767,7 @@ prokka --version`}
             Running Analyses in Google Colab
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed text-sm">
             Google Colaboratory is a free cloud Jupyter notebook environment with a temporary Linux VM,
             Python, and optional GPU. No local installation required.
@@ -850,34 +797,29 @@ prokka --version`}
             </span>
           </div>
 
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="colab-tools">
-              <AccordionTrigger className="text-sm font-semibold">Installing Bioinformatics Tools in Colab</AccordionTrigger>
-              <AccordionContent className="space-y-3">
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 1: conda/mamba via condacolab</p>
-                <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
+          <SubSection title="Installing Bioinformatics Tools in Colab">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 1: conda/mamba via condacolab</p>
+            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`!pip install -q condacolab
 import condacolab
 condacolab.install()  # restarts the runtime
 
 # --- after restart, in a new cell ---
 !mamba install -c bioconda -c conda-forge prokka isescan -y`}
-                </pre>
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 2: apt-get</p>
-                <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
+            </pre>
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 2: apt-get</p>
+            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`!apt-get update -qq
 !apt-get install -y -qq ncbi-blast+ samtools`}
-                </pre>
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 3: pip</p>
-                <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
+            </pre>
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 3: pip</p>
+            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`!pip install biopython pyrodigal`}
-                </pre>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="colab-files">
-              <AccordionTrigger className="text-sm font-semibold">Working with Files in Colab</AccordionTrigger>
-              <AccordionContent>
-                <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
+            </pre>
+          </SubSection>
+
+          <SubSection title="Working with Files in Colab">
+            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`# Mount Google Drive (recommended)
 from google.colab import drive
 drive.mount('/content/drive')
@@ -888,10 +830,8 @@ uploaded = files.upload()
 
 # Download a result file
 files.download('prokka_results/genome.gff')`}
-                </pre>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+            </pre>
+          </SubSection>
         </CardContent>
       </Card>
 
@@ -903,78 +843,71 @@ files.download('prokka_results/genome.gff')`}
             Command-Line Essentials
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed text-sm">
             Most bioinformatics tools run from the terminal (bash shell). Here is a compact reference for
             the commands you will use every day during the workshop.
           </p>
 
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="nav">
-              <AccordionTrigger className="text-sm font-semibold">Navigation & File Management</AccordionTrigger>
-              <AccordionContent>
-                <div className="overflow-x-auto rounded-xl border border-border/50">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="bg-muted/50">
-                        <th className="text-left px-4 py-2 font-semibold text-foreground">Command</th>
-                        <th className="text-left px-4 py-2 font-semibold text-foreground">What it does</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-muted-foreground">
-                      {[
-                        ["pwd", "Print current working directory"],
-                        ["ls -lh", "List files with human-readable sizes"],
-                        ["cd /path/to/dir", "Change directory"],
-                        ["mkdir -p results/prokka", "Create nested directories"],
-                        ["cp file.fna backup/", "Copy a file"],
-                        ["mv old.fna new.fna", "Rename / move a file"],
-                        ["rm -i file.fna", "Delete a file (asks confirmation)"],
-                      ].map(([cmd, desc]) => (
-                        <tr key={cmd} className="border-t border-border/30">
-                          <td className="px-4 py-2"><code className="text-xs font-mono text-primary">{cmd}</code></td>
-                          <td className="px-4 py-2">{desc}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="search">
-              <AccordionTrigger className="text-sm font-semibold">Viewing & Searching Files</AccordionTrigger>
-              <AccordionContent>
-                <div className="overflow-x-auto rounded-xl border border-border/50">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="bg-muted/50">
-                        <th className="text-left px-4 py-2 font-semibold text-foreground">Command</th>
-                        <th className="text-left px-4 py-2 font-semibold text-foreground">What it does</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-muted-foreground">
-                      {[
-                        ["less file.fna", "Scroll through a file (q to quit)"],
-                        ["head -20 file.fna", "Show first 20 lines"],
-                        ["wc -l file.fna", "Count lines in file"],
-                        ["grep '>' file.fna", "Find header lines in FASTA"],
-                        ["grep -c '>' file.fna", "Count FASTA sequences"],
-                        ["zcat file.fq.gz | head", "View gzipped FASTQ without decompressing"],
-                      ].map(([cmd, desc]) => (
-                        <tr key={cmd} className="border-t border-border/30">
-                          <td className="px-4 py-2"><code className="text-xs font-mono text-primary">{cmd}</code></td>
-                          <td className="px-4 py-2">{desc}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="pipes">
-              <AccordionTrigger className="text-sm font-semibold">Pipes, Redirects & For-Loops</AccordionTrigger>
-              <AccordionContent>
-                <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
+          <SubSection title="Navigation & File Management">
+            <div className="overflow-x-auto rounded-xl border border-border/50">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="text-left px-4 py-2 font-semibold text-foreground">Command</th>
+                    <th className="text-left px-4 py-2 font-semibold text-foreground">What it does</th>
+                  </tr>
+                </thead>
+                <tbody className="text-muted-foreground">
+                  {[
+                    ["pwd", "Print current working directory"],
+                    ["ls -lh", "List files with human-readable sizes"],
+                    ["cd /path/to/dir", "Change directory"],
+                    ["mkdir -p results/prokka", "Create nested directories"],
+                    ["cp file.fna backup/", "Copy a file"],
+                    ["mv old.fna new.fna", "Rename / move a file"],
+                    ["rm -i file.fna", "Delete a file (asks confirmation)"],
+                  ].map(([cmd, desc]) => (
+                    <tr key={cmd} className="border-t border-border/30">
+                      <td className="px-4 py-2"><code className="text-xs font-mono text-primary">{cmd}</code></td>
+                      <td className="px-4 py-2">{desc}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </SubSection>
+
+          <SubSection title="Viewing & Searching Files">
+            <div className="overflow-x-auto rounded-xl border border-border/50">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="text-left px-4 py-2 font-semibold text-foreground">Command</th>
+                    <th className="text-left px-4 py-2 font-semibold text-foreground">What it does</th>
+                  </tr>
+                </thead>
+                <tbody className="text-muted-foreground">
+                  {[
+                    ["less file.fna", "Scroll through a file (q to quit)"],
+                    ["head -20 file.fna", "Show first 20 lines"],
+                    ["wc -l file.fna", "Count lines in file"],
+                    ["grep '>' file.fna", "Find header lines in FASTA"],
+                    ["grep -c '>' file.fna", "Count FASTA sequences"],
+                    ["zcat file.fq.gz | head", "View gzipped FASTQ without decompressing"],
+                  ].map(([cmd, desc]) => (
+                    <tr key={cmd} className="border-t border-border/30">
+                      <td className="px-4 py-2"><code className="text-xs font-mono text-primary">{cmd}</code></td>
+                      <td className="px-4 py-2">{desc}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </SubSection>
+
+          <SubSection title="Pipes, Redirects & For-Loops">
+            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`# Redirect output to a file
 grep 'transposase' annotation.gff > transposase_hits.txt
 
@@ -989,10 +922,8 @@ for genome in genomes/*.fna; do
   sample=$(basename $genome .fna)
   prokka $genome --outdir results/$sample --prefix $sample
 done`}
-                </pre>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+            </pre>
+          </SubSection>
 
           <div className="flex items-start gap-2 p-3 rounded-xl bg-accent/10 border border-accent/20 text-sm">
             <Lightbulb className="w-4 h-4 text-accent-foreground mt-0.5 flex-shrink-0" />
@@ -1060,6 +991,7 @@ done`}
           </div>
         </CardContent>
       </Card>
+
       {/* ── Dialogs ── */}
       <Dialog open={!!selectedMge} onOpenChange={() => setSelectedMge(null)}>
         <DialogContent className="sm:max-w-lg">
