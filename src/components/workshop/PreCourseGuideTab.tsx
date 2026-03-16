@@ -431,7 +431,7 @@ prokka --version`}
         <CardContent className="space-y-4">
           <p className="text-muted-foreground leading-relaxed text-sm">
             Google Colaboratory is a free cloud Jupyter notebook environment with a temporary Linux VM,
-            Python, and optional GPU — no local installation required.
+            Python, and optional GPU. No local installation required.
           </p>
 
           <div className="space-y-2">
