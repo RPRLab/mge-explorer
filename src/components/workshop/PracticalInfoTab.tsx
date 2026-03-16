@@ -63,7 +63,7 @@ const PracticalInfoTab = () => {
               className="block aspect-video rounded-lg overflow-hidden border hover:opacity-90 transition-opacity"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2248.5!2d12.5598!3d55.7024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4652530c862e3b1d%3A0x6a3d2c4e8f5b7c9d!2sUniversitetsparken%202%2C%202100%20K%C3%B8benhavn!5e0!3m2!1sen!2sdk!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d549.2899676158808!2d12.561178501802237!3d55.70258157420436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46525257021706ab%3A0xe24032b1fefb9869!2sSchool%20of%20Pharmaceutical%20Sciences%2C%20University%20of%20Copenhagen!5e1!3m2!1ses!2ses!4v1773657421422!5m2!1ses!2ses"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
