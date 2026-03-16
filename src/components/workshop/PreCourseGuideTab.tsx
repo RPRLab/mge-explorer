@@ -32,7 +32,16 @@ const PreCourseGuideTab = () => {
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="types">
               <AccordionTrigger className="text-sm font-semibold">Types of MGEs</AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="space-y-4">
+                <img
+                  src={import.meta.env.BASE_URL + "images/mge-fig1.png"}
+                  alt="MGEs and their evolutionary connections"
+                  className="w-full rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  Fig. 1: Overview of MGE types and their evolutionary connections (Lang, Buchan & Burrus 2025).
+                </p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {[
                     { name: "Insertion Sequences (IS)", desc: "The simplest MGEs: a transposase gene flanked by inverted repeats. They move within a genome but need a conjugative plasmid or phage for cell-to-cell transfer." },
@@ -56,7 +65,16 @@ const PreCourseGuideTab = () => {
             </AccordionItem>
             <AccordionItem value="interactions">
               <AccordionTrigger className="text-sm font-semibold">Interactions Among MGEs</AccordionTrigger>
-              <AccordionContent className="space-y-3">
+              <AccordionContent className="space-y-4">
+                <img
+                  src={import.meta.env.BASE_URL + "images/mge-fig3.png"}
+                  alt="Evolutionary connections among gene modules in GTAs and phages"
+                  className="w-full rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  Fig. 3: Shared and distinct gene modules across GTAs and phages (Lang, Buchan & Burrus 2025).
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   MGEs form complex interaction networks within cells:
                 </p>
@@ -78,9 +96,15 @@ const PreCourseGuideTab = () => {
             </AccordionItem>
             <AccordionItem value="effects">
               <AccordionTrigger className="text-sm font-semibold">Impact on Host & Ecosystems</AccordionTrigger>
-              <AccordionContent className="space-y-3">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  MGE effects span from individual cells to entire ecosystems:
+              <AccordionContent className="space-y-4">
+                <img
+                  src={import.meta.env.BASE_URL + "images/mge-fig2.png"}
+                  alt="Effects of MGEs on host cell phenotypes"
+                  className="w-full rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  Fig. 2: MGE effects on host phenotypes including resistance, virulence and biofilm formation (Lang, Buchan & Burrus 2025).
                 </p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {[
@@ -99,7 +123,16 @@ const PreCourseGuideTab = () => {
             </AccordionItem>
             <AccordionItem value="why">
               <AccordionTrigger className="text-sm font-semibold">Why Study MGEs Computationally?</AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="space-y-4">
+                <img
+                  src={import.meta.env.BASE_URL + "images/mge-fig4.png"}
+                  alt="Mobilization strategies used by IMEs"
+                  className="w-full rounded-xl border border-border/50"
+                  loading="lazy"
+                />
+                <p className="text-xs text-muted-foreground italic">
+                  Fig. 4: Mobilization strategies used by IMEs to exploit conjugative helper elements (Lang, Buchan & Burrus 2025).
+                </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Studying MGEs requires comparing hundreds of genomes simultaneously, detecting repetitive and
                   structurally complex sequences, and tracking transfer events across taxa. Modern sequencers
@@ -107,51 +140,6 @@ const PreCourseGuideTab = () => {
                   assembled genomes, annotated features, phylogenies, and comparative analyses. Recent sequencing
                   advances keep revealing new MGE content in bacterial genomes, with many previously uncharacterized
                   regions now recognized as mobile defence islands and other MGE-derived structures.
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-
-          {/* Figures from Lang, Buchan & Burrus 2025 */}
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="figures">
-              <AccordionTrigger className="text-sm font-semibold">Figures from the Review</AccordionTrigger>
-              <AccordionContent className="space-y-6">
-                {[
-                  {
-                    src: "/images/mge-fig1.png",
-                    title: "Fig. 1: MGEs and their evolutionary connections",
-                    caption: "Overview of different MGE types including lytic and temperate phages, phage-plasmids, GTAs, PICIs, conjugative and mobilizable plasmids, transposons, ICEs, and IMEs.",
-                  },
-                  {
-                    src: "/images/mge-fig2.png",
-                    title: "Fig. 2: Effects of MGEs on host cell phenotypes",
-                    caption: "MGEs modify bacterial phenotypes including antimicrobial resistance, virulence, phage susceptibility, defence against other MGEs, sporulation, EPS production, biofilm formation and membrane vesicle release.",
-                  },
-                  {
-                    src: "/images/mge-fig3.png",
-                    title: "Fig. 3: Evolutionary connections among gene modules in GTAs and phages",
-                    caption: "Shared and distinct gene modules across gene transfer agents and phages, illustrating evolutionary relationships among these elements.",
-                  },
-                  {
-                    src: "/images/mge-fig4.png",
-                    title: "Fig. 4: Mobilization strategies used by IMEs",
-                    caption: "Different strategies IMEs use to exploit conjugative helper elements for their own transfer.",
-                  },
-                ].map((fig) => (
-                  <div key={fig.src} className="space-y-2">
-                    <p className="text-sm font-semibold text-foreground">{fig.title}</p>
-                    <img
-                      src={fig.src}
-                      alt={fig.title}
-                      className="w-full rounded-xl border border-border/50"
-                      loading="lazy"
-                    />
-                    <p className="text-xs text-muted-foreground italic">{fig.caption}</p>
-                  </div>
-                ))}
-                <p className="text-xs text-muted-foreground">
-                  Figures reproduced from Lang, Buchan & Burrus (2025), <em>Nature Reviews Microbiology</em>.
                 </p>
               </AccordionContent>
             </AccordionItem>
