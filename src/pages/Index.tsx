@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Calendar, Users, Info, ClipboardList, UserCog } from "lucide-react";
+import { BookOpen, Calendar, Users, Info, ClipboardList, UserCog, GraduationCap } from "lucide-react";
 import HeroSection from "@/components/workshop/HeroSection";
 import OverviewTab from "@/components/workshop/OverviewTab";
 import ProgramTab from "@/components/workshop/ProgramTab";
@@ -8,6 +8,7 @@ import PracticalInfoTab from "@/components/workshop/PracticalInfoTab";
 import RegistrationTab from "@/components/workshop/RegistrationTab";
 import MatrixBackground from "@/components/workshop/MatrixBackground";
 import OrganizersTab from "@/components/workshop/OrganizersSection";
+import PreCourseGuideTab from "@/components/workshop/PreCourseGuideTab";
 
 const Index = () => {
   return (
@@ -52,6 +53,13 @@ const Index = () => {
               Organizers
             </TabsTrigger>
             <TabsTrigger 
+              value="precourse"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
+            >
+              <GraduationCap className="w-4 h-4" />
+              Pre-course Guide
+            </TabsTrigger>
+            <TabsTrigger 
               value="practical"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
             >
@@ -89,6 +97,12 @@ const Index = () => {
           <TabsContent value="organizers" className="flex justify-center">
             <div className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg w-full max-w-5xl">
               <OrganizersTab />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="precourse" className="flex justify-center">
+            <div className="p-6 rounded-3xl bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg w-full max-w-5xl">
+              <PreCourseGuideTab />
             </div>
           </TabsContent>
 
