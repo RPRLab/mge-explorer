@@ -130,7 +130,7 @@ const PreCourseGuideTab = () => {
         <CardContent className="space-y-4">
           <p className="text-muted-foreground leading-relaxed">
             Everything you need to set up your environment, understand key file formats,
-            and run your first MGE discovery analyses — from the command line to the cloud.
+            and run your first MGE discovery analyses, from the command line to the cloud.
           </p>
 
           <div className="space-y-2">
