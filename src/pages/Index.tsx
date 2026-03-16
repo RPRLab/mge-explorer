@@ -42,8 +42,8 @@ const Index = () => {
       {/* Main Content with Tabs */}
       <main className="container mx-auto px-4 -mt-12 pb-6 relative z-10">
         <Tabs value={activeTab} onValueChange={handleTabChange} className="space-y-8">
-          <div className="flex justify-center">
-            <TabsList className="inline-flex flex-wrap h-auto gap-2 bg-card/80 backdrop-blur-sm p-2 rounded-full border border-border/50 shadow-lg">
+          <div className="flex justify-center sticky top-4 z-30">
+            <TabsList className="inline-flex flex-wrap h-auto gap-2 glass-card p-2 rounded-full shadow-xl">
             <TabsTrigger 
               value="overview" 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25"
