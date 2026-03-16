@@ -1,105 +1,103 @@
-import { Sun, Wrench, Download, Calendar } from "lucide-react";
+import { Sun, Wrench, Download, Calendar, Coffee, UtensilsCrossed, Users, Presentation } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-const scheduleData = [
+interface ScheduleEntry {
+  time: string;
+  title: string;
+  type: "coffee" | "talk" | "lunch" | "practical" | "intro" | "presentation";
+}
+
+interface DaySchedule {
+  day: string;
+  date: string;
+  title: string;
+  entries: ScheduleEntry[];
+}
+
+const scheduleData: DaySchedule[] = [
   {
     day: "Day 1",
     date: "Wednesday, March 18",
-    title: "Detecting MGEs in Raw Reads",
-    morning: {
-      title: "Lectures",
-      topics: [
-        "Overview of mobile genetic elements: plasmids, phages, integrative elements, and transposons",
-        "Sequencing technologies and raw-read data characteristics",
-        "Computational strategies for detecting MGEs from raw reads",
-        "k-mer–based approaches",
-        "Read classification and mapping strategies",
-        "Strengths and limitations of read-level detection",
-      ],
-    },
-    afternoon: {
-      title: "Practical Sessions",
-      topics: [
-        "Introduction to datasets and computational environment",
-        "Hands-on detection of MGEs from raw sequencing reads",
-        "Evaluation of detection performance and discussion of biases",
-      ],
-    },
+    title: "Introduction & Assembly",
+    entries: [
+      { time: "8:30–9:00", title: "☕ Coffee & informal chats", type: "coffee" },
+      { time: "9:00–9:30", title: "Introduction: course overview, groups, speaker presentations & resources", type: "intro" },
+      { time: "9:30–10:45", title: "Talk 1: Introduction to MGEs", type: "talk" },
+      { time: "10:45–11:00", title: "☕ Coffee break", type: "coffee" },
+      { time: "11:00–12:15", title: "Talk 2: Assembly of MGEs from metagenomes — Pau Piera", type: "talk" },
+      { time: "12:15–1:30", title: "🍽️ Lunch", type: "lunch" },
+      { time: "1:30–2:00", title: "Introduction to datasets & computational environment", type: "intro" },
+      { time: "2:00–5:00", title: "Work in groups", type: "practical" },
+    ],
   },
   {
     day: "Day 2",
     date: "Thursday, March 19",
-    title: "Detecting MGEs in Assembled Genomes and Contigs",
-    morning: {
-      title: "Lectures",
-      topics: [
-        "Genome and metagenome assembly concepts relevant to MGEs",
-        "Identification of MGEs in contigs and complete genomes",
-        "Comparative genomics of MGEs",
-        "Annotation of MGE-associated genes and functional modules",
-      ],
-    },
-    afternoon: {
-      title: "Practical Sessions",
-      topics: [
-        "Running MGE detection and annotation pipelines on assembled data",
-        "Exploring genomic context, synteny, and modular organization",
-        "Comparative analysis across samples or environments",
-      ],
-    },
+    title: "Prediction, Annotation & Visualization",
+    entries: [
+      { time: "8:30–9:00", title: "☕ Coffee & informal chats", type: "coffee" },
+      { time: "9:00–9:15", title: "Day intro: recap, additional resources & comments", type: "intro" },
+      { time: "9:15–10:30", title: "Talk 1: Prediction of MGEs from assembled genomes — Antonio P. Camargo", type: "talk" },
+      { time: "10:30–10:45", title: "☕ Coffee break", type: "coffee" },
+      { time: "10:45–12:00", title: "Talk 2: Introduction to annotation of defense systems — Leighton Payne", type: "talk" },
+      { time: "12:00–1:00", title: "🍽️ Lunch", type: "lunch" },
+      { time: "1:00–2:15", title: "Talk 3: Synteny plots & comparative genomics — Mario R. Mestre", type: "talk" },
+      { time: "2:15–5:00", title: "Work in groups", type: "practical" },
+    ],
   },
   {
     day: "Day 3",
     date: "Friday, March 20",
-    title: "Language Models and AI-Based Methods",
-    morning: {
-      title: "Lectures",
-      topics: [
-        "Introduction to protein and genomic language models (pLMs and gLMs)",
-        "Applications of language models to gene and MGE annotation",
-        "Case studies: AI-driven discovery and classification of MGEs",
-        "Opportunities and challenges of AI-based approaches",
-      ],
-    },
-    afternoon: {
-      title: "Practical Sessions",
-      topics: [
-        "Hands-on exploration of embedding-based analyses",
-        "Using language-model-derived features for annotation and clustering",
-        "Finalization of group analyses and preparation of presentations",
-      ],
-    },
+    title: "AI Methods, Presentations & Dinner",
+    entries: [
+      { time: "8:30–9:00", title: "☕ Coffee & informal chats", type: "coffee" },
+      { time: "9:00–9:15", title: "Day intro: recap, additional resources & comments", type: "intro" },
+      { time: "9:15–10:30", title: "Talk 1: Introduction to AI methods for MGE annotation — Susie Grigson", type: "talk" },
+      { time: "10:30–10:45", title: "☕ Coffee break", type: "coffee" },
+      { time: "10:45–12:00", title: "Talk 2: Introduction to Gaia and SeqHub — Yunha Hwang", type: "talk" },
+      { time: "12:00–1:00", title: "🍽️ Lunch", type: "lunch" },
+      { time: "1:00–4:00", title: "Work in groups + Slides preparation", type: "practical" },
+      { time: "4:00–5:00", title: "Final group presentations", type: "presentation" },
+    ],
   },
 ];
 
+const entryStyles: Record<ScheduleEntry["type"], string> = {
+  coffee: "bg-muted/50 text-muted-foreground",
+  talk: "bg-primary/5 border-l-2 border-l-primary",
+  lunch: "bg-muted/50 text-muted-foreground",
+  practical: "bg-accent/10 border-l-2 border-l-accent",
+  intro: "bg-secondary/50",
+  presentation: "bg-primary/10 border-l-2 border-l-primary",
+};
+
 const ProgramTab = () => {
   const handleDownloadSchedule = () => {
-    // Generate ICS calendar file
     const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//MGE Workshop//EN
 BEGIN:VEVENT
-DTSTART:20260318T080000
+DTSTART:20260318T083000
 DTEND:20260318T170000
-SUMMARY:MGE Workshop - Day 1: Detecting MGEs in Raw Reads
-LOCATION:Uni-parken 2, Und.lokale 14, Bygn. 10.4.469, Copenhagen
-DESCRIPTION:Morning: Lectures on MGE overview and detection strategies. Afternoon: Hands-on practical sessions.
+SUMMARY:MGE Workshop - Day 1: Introduction & Assembly
+LOCATION:Universitetsparken 2, Teaching Room 10.4.469, Copenhagen
+DESCRIPTION:Talks on Introduction to MGEs and Assembly of MGEs from metagenomes. Afternoon group work.
 END:VEVENT
 BEGIN:VEVENT
-DTSTART:20260319T080000
+DTSTART:20260319T083000
 DTEND:20260319T170000
-SUMMARY:MGE Workshop - Day 2: Detecting MGEs in Assembled Genomes
-LOCATION:Uni-parken 2, Und.lokale 14, Bygn. 10.4.469, Copenhagen
-DESCRIPTION:Morning: Lectures on genome assembly and MGE identification. Afternoon: Hands-on practical sessions.
+SUMMARY:MGE Workshop - Day 2: Prediction, Annotation & Visualization
+LOCATION:Universitetsparken 2, Teaching Room 10.4.469, Copenhagen
+DESCRIPTION:Talks on MGE prediction, defense system annotation, and synteny plots. Afternoon group work.
 END:VEVENT
 BEGIN:VEVENT
-DTSTART:20260320T080000
+DTSTART:20260320T083000
 DTEND:20260320T170000
-SUMMARY:MGE Workshop - Day 3: Language Models and AI Methods
-LOCATION:Uni-parken 2, Und.lokale 14, Bygn. 10.4.469, Copenhagen
-DESCRIPTION:Morning: Lectures on pLMs and gLMs. Afternoon: Group presentations.
+SUMMARY:MGE Workshop - Day 3: AI Methods, Presentations & Dinner
+LOCATION:Universitetsparken 2, Teaching Room 10.4.469, Copenhagen
+DESCRIPTION:Talks on AI methods and SeqHub. Afternoon presentations and dinner.
 END:VEVENT
 END:VCALENDAR`;
 
@@ -116,11 +114,10 @@ END:VCALENDAR`;
 
   return (
     <div className="space-y-6">
-      {/* Header with download button */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-foreground">Workshop Schedule</h2>
-          <p className="text-muted-foreground">Three days of lectures and hands-on practical sessions</p>
+          <p className="text-muted-foreground">Three days of lectures, hands-on sessions & group presentations</p>
         </div>
         <Button onClick={handleDownloadSchedule} className="gap-2">
           <Download className="w-4 h-4" />
@@ -128,11 +125,10 @@ END:VCALENDAR`;
         </Button>
       </div>
 
-      {/* Schedule accordion */}
       <Accordion type="multiple" defaultValue={["day-1", "day-2", "day-3"]} className="space-y-4">
         {scheduleData.map((day, index) => (
-          <AccordionItem 
-            key={day.day} 
+          <AccordionItem
+            key={day.day}
             value={`day-${index + 1}`}
             className="border rounded-lg overflow-hidden bg-card"
           >
@@ -151,48 +147,18 @@ END:VCALENDAR`;
               </div>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
-              <div className="grid md:grid-cols-2 gap-6 pt-4">
-                {/* Morning */}
-                <Card className="border-l-4 border-l-primary">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center gap-2 text-base">
-                      <Sun className="w-4 h-4 text-primary" />
-                      Morning — {day.morning.title}
-                    </CardTitle>
-                    <CardDescription>8:00 AM – 12:00 PM</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {day.morning.topics.map((topic, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                          {topic}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                {/* Afternoon */}
-                <Card className="border-l-4 border-l-accent">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center gap-2 text-base">
-                      <Wrench className="w-4 h-4 text-accent" />
-                      Afternoon — {day.afternoon.title}
-                    </CardTitle>
-                    <CardDescription>1:00 PM – 5:00 PM</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {day.afternoon.topics.map((topic, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
-                          {topic}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+              <div className="space-y-2 pt-4">
+                {day.entries.map((entry, i) => (
+                  <div
+                    key={i}
+                    className={`flex items-start gap-4 px-4 py-3 rounded-lg ${entryStyles[entry.type]}`}
+                  >
+                    <span className="text-sm font-mono font-medium text-muted-foreground whitespace-nowrap min-w-[100px]">
+                      {entry.time}
+                    </span>
+                    <span className="text-sm text-foreground">{entry.title}</span>
+                  </div>
+                ))}
               </div>
             </AccordionContent>
           </AccordionItem>
