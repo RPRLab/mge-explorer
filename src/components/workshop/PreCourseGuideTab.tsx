@@ -927,7 +927,7 @@ done`}
         <CardContent className="space-y-4">
           <ul className="space-y-2">
             {[
-              "Install Miniconda or Mambaforge and set channel priority",
+              "Install Miniconda and set channel priority",
               "Create a dedicated conda environment per project (never use base)",
               "Export env.yml before sharing or archiving your work",
               "For new projects, consider Pixi for automatic lock files",
