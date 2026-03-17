@@ -327,20 +327,9 @@ const PreCourseGuideTab = () => {
             <p className="text-xs text-muted-foreground italic">
               Challenges in metagenomic assessment of the mobilome (Brito 2021).
             </p>
-            <ul className="space-y-2">
-              {[
-                "Short-read sequencing (100-300 bp) struggles with repetitive and structurally complex MGE regions, producing fragmented assemblies.",
-                "MGEs often have variable sequencing depth compared to host genomes due to free-floating phages, high-copy plasmids, and shared mobile genes across elements.",
-                "Mobile contigs are often left unbinned or incorporated into only a subset of their host genomes during metagenomic binning.",
-                "Reference databases of MGEs are notoriously incomplete and biased towards well-studied pathogenic organisms.",
-                "Long-read sequencing (PacBio, Nanopore) can span entire transposon insertions, prophages, and even full plasmids, but cannot link non-integrative plasmids to hosts.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Short-read sequencing (100–300 bp) struggles with repetitive and structurally complex MGE regions, producing fragmented assemblies. MGEs often have variable sequencing depth compared to host genomes due to free-floating phages, high-copy plasmids, and shared mobile genes across elements. As a result, mobile contigs are often left unbinned or incorporated into only a subset of their host genomes during metagenomic binning. Reference databases of MGEs remain notoriously incomplete and biased towards well-studied pathogenic organisms. Long-read sequencing (PacBio, Nanopore) can span entire transposon insertions, prophages, and even full plasmids, but cannot link non-integrative plasmids to their hosts without additional experimental approaches.
+            </p>
           </SubSection>
 
           <SubSection title="HGT Dynamics in Communities">
