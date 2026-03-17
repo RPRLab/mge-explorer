@@ -644,19 +644,6 @@ conda config --set channel_priority strict`}
             </div>
           </SubSection>
 
-          <SubSection title="Mamba: Conda but 10× Faster">
-            <p className="text-sm text-muted-foreground mb-3">
-              Mamba is a drop-in replacement that uses C++ dependency solving, making environment creation dramatically faster.
-            </p>
-            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
-{`# Replace conda with mamba for any install/create command
-mamba create -n mge_tools -c bioconda -c conda-forge \\
-  prokka isescan mob-suite blast samtools biopython
-
-conda activate mge_tools    # activation still uses conda
-prokka --version`}
-            </pre>
-          </SubSection>
 
           <div className="flex items-start gap-2 p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-sm">
             <AlertTriangle className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
