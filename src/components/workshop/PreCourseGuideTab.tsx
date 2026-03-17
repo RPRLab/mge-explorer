@@ -342,19 +342,9 @@ const PreCourseGuideTab = () => {
             <p className="text-xs text-muted-foreground italic">
               Routes of horizontal gene transfer in natural microbial communities (Brito 2021).
             </p>
-            <ul className="space-y-2">
-              {[
-                "In the human gut, shared genes between distantly related species reveal HGT networks shaped by co-habitat more than taxonomy.",
-                "Antibiotic resistance genes in the gut resistome are shared between commensals and pathogens, with plasmids and phages serving as primary exchange vehicles.",
-                "Soil and marine environments harbour enormous MGE diversity; ocean viromes alone are estimated to contain >10⁷ unique viral types.",
-                "Community-level HGT studies increasingly integrate metagenomics, metatranscriptomics and proximity ligation to build comprehensive transfer maps.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              In the human gut, shared genes between distantly related species reveal HGT networks shaped more by co-habitat than by taxonomy. Antibiotic resistance genes in the gut resistome are shared between commensals and pathogens, with plasmids and phages serving as primary exchange vehicles. Soil and marine environments harbour enormous MGE diversity — ocean viromes alone are estimated to contain more than 10⁷ unique viral types. Community-level HGT studies increasingly integrate metagenomics, metatranscriptomics and proximity ligation to build comprehensive transfer maps that capture the full complexity of gene exchange in natural ecosystems.
+            </p>
           </SubSection>
         </CardContent>
       </Card>
