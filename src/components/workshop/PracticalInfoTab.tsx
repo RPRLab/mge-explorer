@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MapPin, Coffee, Utensils, ClipboardCheck, Info, Building, Navigation, X } from "lucide-react";
+import { MapPin, Coffee, Utensils, ClipboardCheck, Info, Building, Navigation, X, MessageCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
