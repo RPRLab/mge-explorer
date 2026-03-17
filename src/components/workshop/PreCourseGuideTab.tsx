@@ -231,40 +231,14 @@ const PreCourseGuideTab = () => {
               Allele transfer vs. gene transfer and their impacts on genomic variation (Arnold, Huang & Hanage 2022).
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Two distinct types of recombination leave different genomic footprints:
+              Two distinct types of recombination leave different genomic footprints. Allele transfer replaces one allele with another from the same or a different population, breaking or creating linkage depending on donor relatedness. Gene transfer, by contrast, alters the gene content of the genome entirely — genomic islands are commonly transferred via transduction or conjugation, leaving behind mobilization-associated genes as traces of their movement. When recombination unlinks a beneficial allele from the rest of the genome, gene-specific sweeps can occur, allowing selection to act on individual loci rather than entire genomes. Detecting these events computationally relies on signatures such as atypical G+C content, codon usage bias, k-mer composition, or phylogenetic incongruence between gene trees and species trees.
             </p>
-            <ul className="space-y-2">
-              {[
-                "Allele transfer (AT): replaces one allele with another from the same or a different population. Breaks or creates linkage depending on donor relatedness.",
-                "Gene transfer (GT): alters the gene content of the genome. Genomic islands are commonly transferred via transduction or conjugation, leaving behind mobilization-associated genes.",
-                "Gene-specific sweeps occur when recombination unlinks a beneficial allele from the rest of the genome, allowing selection to act on individual loci.",
-                "Detecting HGT relies on atypical G+C content, codon usage, k-mer signatures, or phylogenetic incongruence between gene trees and species trees.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
           </SubSection>
 
           <SubSection title="HGT & Natural Selection">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Selection and HGT interact to create distinctive signatures in bacterial genomes:
+              Selection and HGT interact to create distinctive signatures in bacterial genomes. Many transfer events are evolutionarily neutral, representing an incessant background process that only occasionally produces beneficial outcomes. When adaptive transfers do occur, gene-specific sweeps can be observed across marine, soil and pathogenic species. Negative frequency-dependent selection and adaptation to multiple ecological niches both promote these sweeps by maintaining genetic diversity at other loci. The accessory genome — the pangenome — reflects a dynamic balance between rapid gene acquisition, short-term persistence and selective elimination of costly genes.
             </p>
-            <ul className="space-y-2">
-              {[
-                "Many transfer events are evolutionarily neutral, representing an incessant process that only occasionally produces beneficial outcomes.",
-                "When adaptive transfers occur, gene-specific sweeps can be observed across marine, soil and pathogenic species.",
-                "Negative frequency-dependent selection (NFDS) and adaptation to multiple ecological niches both promote gene-specific sweeps by maintaining genetic diversity at other loci.",
-                "The accessory genome (pangenome) reflects a balance between rapid gene acquisition, short-term persistence and selective elimination of costly genes.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
           </SubSection>
         </CardContent>
       </Card>
@@ -294,20 +268,9 @@ const PreCourseGuideTab = () => {
             <p className="text-xs text-muted-foreground italic">
               Shared and exchanged gene modules across MGE types, illustrating collaborative evolutionary connections (Lang, Buchan & Burrus 2025).
             </p>
-            <ul className="space-y-2">
-              {[
-                "Transposable elements form nested structures within plasmids, creating 'Russian-doll' mobility that drives global dissemination of resistance genes like blaNDM.",
-                "Multicopy plasmids amplify gene dosage for transposon-encoded resistance genes, offering enhanced protection and selective advantages for TEs.",
-                "Mobilizable plasmids lack conjugation genes but exploit helper plasmids for transfer. Their relaxases often evolve to interface with diverse conjugative machineries.",
-                "Phage-plasmids are common, sometimes comprising up to 50% of phages and plasmids in some genera, and are ancient rather than recent fusions.",
-                "Lateral transduction by integrative phages can transfer adjacent host DNA at orders of magnitude higher efficiency than canonical HGT mechanisms.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Transposable elements form nested structures within plasmids, creating 'Russian-doll' mobility that drives global dissemination of resistance genes like bla<sub>NDM</sub>. Multicopy plasmids amplify gene dosage for transposon-encoded resistance genes, offering enhanced protection and selective advantages. Mobilizable plasmids lack conjugation genes but exploit helper plasmids for transfer, with their relaxases often evolving to interface with diverse conjugative machineries. Phage-plasmids — hybrids that function as both phages and plasmids — are surprisingly common, sometimes comprising up to 50% of phages and plasmids in some genera, and appear to be ancient rather than recent fusions. Lateral transduction by integrative phages can transfer adjacent host DNA at orders of magnitude higher efficiency than canonical HGT mechanisms.
+            </p>
           </SubSection>
 
           <SubSection title="Conflicts & Defence Systems">
@@ -321,23 +284,8 @@ const PreCourseGuideTab = () => {
               Mobilization strategies used by IMEs to exploit and conflict with conjugative helper elements (Lang, Buchan & Burrus 2025).
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              New MGEs can pose risks: phages lyse cells, plasmids impose costs, and transposons disrupt genes.
-              Defence systems that restrict gene acquisition reshape patterns of HGT:
+              New MGEs can pose risks: phages lyse cells, plasmids impose fitness costs, and transposons disrupt genes. Defence systems that restrict gene acquisition therefore reshape patterns of HGT. These systems are being discovered at a rapid rate, with diverse molecular functions, and many are encoded on MGEs themselves, serving the element's interests rather than the host's. PICIs parasitize helper phages by hijacking capsids for their own transfer, and this can actually increase phage-mediated transduction by protecting recipients from lysis. In <em>Vibrio cholerae</em>, phage ICP1 and chromosomal islands engage in ongoing warfare, trading dominance across seasons through CRISPR-Cas, restriction-modification, and counter-defence systems. Multidrug resistance plasmids carry 'defence islands' with multiple cooperating anti-phage systems, while anti-plasmid systems like Wadjet discriminate targets based on size and circularity rather than sequence, extruding and cleaving small circular plasmids.
             </p>
-            <ul className="space-y-2">
-              {[
-                "Defence systems are being discovered at a rapid rate, with diverse molecular functions. Many are encoded on MGEs themselves and serve the element's interests.",
-                "PICIs parasitize helper phages, hijacking capsids for their own transfer. This can increase phage-mediated transduction by protecting recipients from lysis.",
-                "In Vibrio cholerae, phage ICP1 and chromosomal islands (PLE, ICEs) engage in ongoing warfare: CRISPR-Cas, restriction-modification, and counter-defence systems trade dominance across seasons.",
-                "Multidrug resistance plasmids carry 'defence islands' with multiple cooperating anti-phage systems (e.g. BREX + type-IV restriction).",
-                "Anti-plasmid systems like Wadjet discriminate targets based on size and circularity rather than sequence, extruding and cleaving small circular plasmids.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
           </SubSection>
 
           <SubSection title="A Tangled Web">
@@ -369,36 +317,6 @@ const PreCourseGuideTab = () => {
             such as the human gut, soil and marine environments.
           </p>
 
-          <SubSection title="Methods for Detecting MGEs">
-            <div className="overflow-x-auto">
-              <table className="w-full text-xs border-collapse">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left py-2 pr-3 font-semibold text-foreground">Goal</th>
-                    <th className="text-left py-2 pr-3 font-semibold text-foreground">Method</th>
-                    <th className="text-left py-2 font-semibold text-foreground">Trade-off</th>
-                  </tr>
-                </thead>
-                <tbody className="text-muted-foreground">
-                  {[
-                    { goal: "Identify MGEs", method: "Gene markers in metagenomes", tradeoff: "High confidence but dependent on reference databases" },
-                    { goal: "Identify MGEs", method: "k-mer partitioning / binning", tradeoff: "De novo, but lower sensitivity" },
-                    { goal: "Genomic context", method: "Long-read sequencing", tradeoff: "Full-length elements, but higher cost and error" },
-                    { goal: "Genomic context", method: "Methylation signatures", tradeoff: "High accuracy, but limited resolution" },
-                    { goal: "Link MGE to host", method: "Proximity ligation (Hi-C)", tradeoff: "Comprehensive, but expensive and low sensitivity" },
-                    { goal: "Link MGE to host", method: "Single-cell fusion PCR", tradeoff: "High sensitivity, but low throughput" },
-                  ].map((row, i) => (
-                    <tr key={i} className="border-b border-border/30">
-                      <td className="py-2 pr-3">{row.goal}</td>
-                      <td className="py-2 pr-3">{row.method}</td>
-                      <td className="py-2">{row.tradeoff}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </SubSection>
-
           <SubSection title="Metagenomic Challenges">
             <img
               src={BASE + "images/brito-fig2.jpg"}
@@ -409,20 +327,9 @@ const PreCourseGuideTab = () => {
             <p className="text-xs text-muted-foreground italic">
               Challenges in metagenomic assessment of the mobilome (Brito 2021).
             </p>
-            <ul className="space-y-2">
-              {[
-                "Short-read sequencing (100-300 bp) struggles with repetitive and structurally complex MGE regions, producing fragmented assemblies.",
-                "MGEs often have variable sequencing depth compared to host genomes due to free-floating phages, high-copy plasmids, and shared mobile genes across elements.",
-                "Mobile contigs are often left unbinned or incorporated into only a subset of their host genomes during metagenomic binning.",
-                "Reference databases of MGEs are notoriously incomplete and biased towards well-studied pathogenic organisms.",
-                "Long-read sequencing (PacBio, Nanopore) can span entire transposon insertions, prophages, and even full plasmids, but cannot link non-integrative plasmids to hosts.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Short-read sequencing (100–300 bp) struggles with repetitive and structurally complex MGE regions, producing fragmented assemblies. MGEs often have variable sequencing depth compared to host genomes due to free-floating phages, high-copy plasmids, and shared mobile genes across elements. As a result, mobile contigs are often left unbinned or incorporated into only a subset of their host genomes during metagenomic binning. Reference databases of MGEs remain notoriously incomplete and biased towards well-studied pathogenic organisms. Long-read sequencing (PacBio, Nanopore) can span entire transposon insertions, prophages, and even full plasmids, but cannot link non-integrative plasmids to their hosts without additional experimental approaches.
+            </p>
           </SubSection>
 
           <SubSection title="HGT Dynamics in Communities">
@@ -435,19 +342,9 @@ const PreCourseGuideTab = () => {
             <p className="text-xs text-muted-foreground italic">
               Routes of horizontal gene transfer in natural microbial communities (Brito 2021).
             </p>
-            <ul className="space-y-2">
-              {[
-                "In the human gut, shared genes between distantly related species reveal HGT networks shaped by co-habitat more than taxonomy.",
-                "Antibiotic resistance genes in the gut resistome are shared between commensals and pathogens, with plasmids and phages serving as primary exchange vehicles.",
-                "Soil and marine environments harbour enormous MGE diversity; ocean viromes alone are estimated to contain >10⁷ unique viral types.",
-                "Community-level HGT studies increasingly integrate metagenomics, metatranscriptomics and proximity ligation to build comprehensive transfer maps.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              In the human gut, shared genes between distantly related species reveal HGT networks shaped more by co-habitat than by taxonomy. Antibiotic resistance genes in the gut resistome are shared between commensals and pathogens, with plasmids and phages serving as primary exchange vehicles. Soil and marine environments harbour enormous MGE diversity — ocean viromes alone are estimated to contain more than 10⁷ unique viral types. Community-level HGT studies increasingly integrate metagenomics, metatranscriptomics and proximity ligation to build comprehensive transfer maps that capture the full complexity of gene exchange in natural ecosystems.
+            </p>
           </SubSection>
         </CardContent>
       </Card>
