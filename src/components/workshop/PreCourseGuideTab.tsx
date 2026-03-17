@@ -594,15 +594,11 @@ const PreCourseGuideTab = () => {
             needs without interfering with anything else.
           </p>
 
-          <SubSection title="Installing Miniconda / Mambaforge">
+          <SubSection title="Installing Miniconda">
             <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`# Download and install Miniconda
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
-
-# Or install Mambaforge (conda + mamba, recommended)
-wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
-bash Mambaforge-Linux-x86_64.sh
 
 # Verify
 conda --version`}
