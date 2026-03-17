@@ -780,14 +780,14 @@ prokka --version`}
           </div>
 
           <SubSection title="Installing Bioinformatics Tools in Colab">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 1: conda/mamba via condacolab</p>
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 1: conda via condacolab</p>
             <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`!pip install -q condacolab
 import condacolab
 condacolab.install()  # restarts the runtime
 
 # --- after restart, in a new cell ---
-!mamba install -c bioconda -c conda-forge prokka isescan -y`}
+!conda install -c bioconda -c conda-forge prokka isescan -y`}
             </pre>
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 2: apt-get</p>
             <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
