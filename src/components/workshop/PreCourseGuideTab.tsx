@@ -317,36 +317,6 @@ const PreCourseGuideTab = () => {
             such as the human gut, soil and marine environments.
           </p>
 
-          <SubSection title="Methods for Detecting MGEs">
-            <div className="overflow-x-auto">
-              <table className="w-full text-xs border-collapse">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left py-2 pr-3 font-semibold text-foreground">Goal</th>
-                    <th className="text-left py-2 pr-3 font-semibold text-foreground">Method</th>
-                    <th className="text-left py-2 font-semibold text-foreground">Trade-off</th>
-                  </tr>
-                </thead>
-                <tbody className="text-muted-foreground">
-                  {[
-                    { goal: "Identify MGEs", method: "Gene markers in metagenomes", tradeoff: "High confidence but dependent on reference databases" },
-                    { goal: "Identify MGEs", method: "k-mer partitioning / binning", tradeoff: "De novo, but lower sensitivity" },
-                    { goal: "Genomic context", method: "Long-read sequencing", tradeoff: "Full-length elements, but higher cost and error" },
-                    { goal: "Genomic context", method: "Methylation signatures", tradeoff: "High accuracy, but limited resolution" },
-                    { goal: "Link MGE to host", method: "Proximity ligation (Hi-C)", tradeoff: "Comprehensive, but expensive and low sensitivity" },
-                    { goal: "Link MGE to host", method: "Single-cell fusion PCR", tradeoff: "High sensitivity, but low throughput" },
-                  ].map((row, i) => (
-                    <tr key={i} className="border-b border-border/30">
-                      <td className="py-2 pr-3">{row.goal}</td>
-                      <td className="py-2 pr-3">{row.method}</td>
-                      <td className="py-2">{row.tradeoff}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </SubSection>
-
           <SubSection title="Metagenomic Challenges">
             <img
               src={BASE + "images/brito-fig2.jpg"}
