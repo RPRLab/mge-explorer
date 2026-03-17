@@ -177,6 +177,26 @@ const PracticalInfoTab = () => {
             </p>
           </CardContent>
         </Card>
+        {/* Discord Community */}
+        <Card className="md:col-span-2 border-primary/20 bg-gradient-to-r from-primary/5 to-accent/5">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <MessageCircle className="w-5 h-5 text-primary" />
+              Join Our Discord Community
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <p className="text-muted-foreground">
+              Connect with fellow participants, ask questions, and stay updated on workshop announcements through our Discord server.
+            </p>
+            <Button className="gap-2" asChild>
+              <a href="https://discord.gg/RmjBsXUN" target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="w-4 h-4" />
+                Join Discord Server
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
