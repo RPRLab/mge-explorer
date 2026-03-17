@@ -268,20 +268,9 @@ const PreCourseGuideTab = () => {
             <p className="text-xs text-muted-foreground italic">
               Shared and exchanged gene modules across MGE types, illustrating collaborative evolutionary connections (Lang, Buchan & Burrus 2025).
             </p>
-            <ul className="space-y-2">
-              {[
-                "Transposable elements form nested structures within plasmids, creating 'Russian-doll' mobility that drives global dissemination of resistance genes like blaNDM.",
-                "Multicopy plasmids amplify gene dosage for transposon-encoded resistance genes, offering enhanced protection and selective advantages for TEs.",
-                "Mobilizable plasmids lack conjugation genes but exploit helper plasmids for transfer. Their relaxases often evolve to interface with diverse conjugative machineries.",
-                "Phage-plasmids are common, sometimes comprising up to 50% of phages and plasmids in some genera, and are ancient rather than recent fusions.",
-                "Lateral transduction by integrative phages can transfer adjacent host DNA at orders of magnitude higher efficiency than canonical HGT mechanisms.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Transposable elements form nested structures within plasmids, creating 'Russian-doll' mobility that drives global dissemination of resistance genes like bla<sub>NDM</sub>. Multicopy plasmids amplify gene dosage for transposon-encoded resistance genes, offering enhanced protection and selective advantages. Mobilizable plasmids lack conjugation genes but exploit helper plasmids for transfer, with their relaxases often evolving to interface with diverse conjugative machineries. Phage-plasmids — hybrids that function as both phages and plasmids — are surprisingly common, sometimes comprising up to 50% of phages and plasmids in some genera, and appear to be ancient rather than recent fusions. Lateral transduction by integrative phages can transfer adjacent host DNA at orders of magnitude higher efficiency than canonical HGT mechanisms.
+            </p>
           </SubSection>
 
           <SubSection title="Conflicts & Defence Systems">
