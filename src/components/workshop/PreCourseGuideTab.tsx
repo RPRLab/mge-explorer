@@ -51,18 +51,23 @@ const PreCourseGuideTab = () => {
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed">
-            Mobile genetic elements (MGEs) are segments of DNA capable of moving within genomes and among cells.
-            They mediate{" "}
-            <strong className="text-foreground">horizontal gene transfer</strong>, drive genome plasticity, and
-            enable bacteria to acquire traits such as antimicrobial resistance, virulence and new metabolic
-            capabilities. Prophages are found in ~75% of complete bacterial genomes, and MGEs can account for ~25%
-            of a species' pangenome (e.g. <em>E. coli</em>).
+            Mobile genetic elements (MGEs) are pieces of DNA that can move within genomes or spread between cells.
+            In bacteria, they are one of the main drivers of horizontal gene transfer, which allows genes to move
+            much faster than by normal inheritance alone. This is one of the reasons bacterial genomes can change
+            so quickly and adapt so effectively to new conditions.
           </p>
-          <p className="text-muted-foreground leading-relaxed text-sm">
-            MGEs are best understood as a{" "}
-            <strong className="text-foreground">spectrum of inter-related elements</strong> that share and exchange
-            genes, interact cooperatively or antagonistically within cells, and blur traditional classification
-            boundaries.
+          <p className="text-muted-foreground leading-relaxed">
+            MGEs are important because they often carry genes with immediate biological consequences. They can
+            spread antibiotic resistance genes, virulence factors, defense systems against phages, and metabolic
+            traits that help bacteria survive in new environments. Through this process, MGEs shape the traits
+            and behaviors of bacterial cells and populations.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            It is often useful to think of MGEs as a connected ecosystem rather than a set of completely separate
+            categories. Plasmids, transposons, prophages, integrative and conjugative elements, phage satellites,
+            and related elements each have their own strategies for persistence and transfer, but they also exchange
+            genes, depend on one another, and sometimes parasitize one another. Because of this, the boundaries
+            between different MGE types are often less clear than textbook definitions suggest.
           </p>
 
           <SubSection title="Types of MGEs">
@@ -74,6 +79,14 @@ const PreCourseGuideTab = () => {
             />
             <p className="text-xs text-muted-foreground italic">
               Overview of MGE types and their evolutionary connections (Lang, Buchan & Burrus 2025).
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Some MGEs mainly move DNA around within a genome. Insertion sequences and transposons are classic
+              examples, as they can insert into new locations and reshuffle local genome structure. Others are
+              especially important for transfer between cells. Plasmids can move by conjugation, prophages can
+              move through phage infection cycles, and integrative and conjugative elements combine features of
+              both chromosomal integration and intercellular transfer. Together, these elements form a broad
+              continuum of strategies for genome change, gene exchange, and adaptation.
             </p>
             <p className="text-xs text-muted-foreground flex items-center gap-1">
               <ChevronRight className="w-3 h-3" /> Click any card to learn more
@@ -95,7 +108,7 @@ const PreCourseGuideTab = () => {
             </div>
           </SubSection>
 
-          <SubSection title="Interactions Among MGEs">
+          <SubSection title="How MGEs Interact with Each Other">
             <img
               src={BASE + "images/horne-fig1.jpg"}
               alt="Diversity of interactions in the MGE menagerie"
@@ -106,25 +119,16 @@ const PreCourseGuideTab = () => {
               The MGE interaction menagerie: collaborations and conflicts between different element types (Horne, Orr & Hall 2023).
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              MGEs form complex interaction networks within cells:
+              MGEs rarely act alone. A plasmid can carry transposons and integrons, creating nested structures
+              in which one mobile element is embedded inside another. Some phage satellites hijack helper phages
+              to ensure their own spread, while some mobilizable elements exploit the conjugation machinery of
+              other elements. Many MGEs also encode defense systems that block phages or competing mobile elements.
+              As a result, life inside a bacterial cell often includes a dense network of cooperation, conflict,
+              dependency, and competition between different kinds of mobile DNA.
             </p>
-            <ul className="space-y-2">
-              {[
-                "Conjugative plasmids often harbour IS elements, transposons and integrons carrying antibiotic resistance genes, creating nested 'Matryoshka doll' arrangements.",
-                "Phage-inducible chromosomal islands (PICIs) parasitize helper phages, hijacking their capsid proteins for transfer.",
-                "Some IMEs (e.g. SGI1) strongly impair transfer of their helper plasmid while boosting their own propagation.",
-                "MGEs carry anti-phage defence systems (restriction-modification, CRISPR-Cas, abortive infection) that shape phage-host dynamics.",
-                "The SOS DNA damage response triggers excision and transfer of diverse MGEs including ICEs and prophages.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
           </SubSection>
 
-          <SubSection title="Impact on Host & Ecosystems">
+          <SubSection title="Why MGEs Matter">
             <img
               src={BASE + "images/mge-fig2.png"}
               alt="Effects of MGEs on host cell phenotypes"
@@ -133,6 +137,13 @@ const PreCourseGuideTab = () => {
             />
             <p className="text-xs text-muted-foreground italic">
               MGE effects on host phenotypes including resistance, virulence and biofilm formation (Lang, Buchan & Burrus 2025).
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              MGEs help explain how antibiotic resistance spreads, how new virulence traits appear, how bacteria
+              defend themselves against phages, and how microbes adapt to changing environments. They are therefore
+              central to microbial evolution, and they are also highly relevant to medicine, biotechnology,
+              agriculture, and environmental microbiology. Understanding how bacteria gain new traits often requires
+              understanding the mobile elements they carry.
             </p>
             <p className="text-xs text-muted-foreground flex items-center gap-1">
               <ChevronRight className="w-3 h-3" /> Click any card for details and examples
@@ -157,12 +168,12 @@ const PreCourseGuideTab = () => {
 
           <SubSection title="Why Study MGEs Computationally?">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Studying MGEs requires comparing hundreds of genomes simultaneously, detecting repetitive and
-              structurally complex sequences, and tracking transfer events across taxa. Modern sequencers
-              generate millions of reads per sample. Bioinformatics pipelines transform this raw data into
-              assembled genomes, annotated features, phylogenies, and comparative analyses. Recent sequencing
-              advances keep revealing new MGE content in bacterial genomes, with many previously uncharacterized
-              regions now recognized as mobile defence islands and other MGE-derived structures.
+              MGEs are diverse, repetitive, and often difficult to reconstruct from sequencing data. Many of them
+              are fragmented across assemblies, embedded inside one another, or shared across different genomes and
+              environments. Studying them therefore requires computational approaches that can compare many genomes
+              at once, detect characteristic genes and sequence patterns, and place these elements in their genomic
+              and evolutionary context. Modern sequencing provides the raw data, while bioinformatics makes it
+              possible to detect, classify, and interpret MGEs at scale.
             </p>
           </SubSection>
         </CardContent>
@@ -940,37 +951,6 @@ done`}
               </li>
             ))}
           </ul>
-
-          <div className="mt-4">
-            <p className="text-sm font-semibold text-foreground mb-3">Useful Databases & Resources</p>
-            <div className="overflow-x-auto rounded-xl border border-border/50">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-muted/50">
-                    <th className="text-left px-4 py-2 font-semibold text-foreground">Resource</th>
-                    <th className="text-left px-4 py-2 font-semibold text-foreground">What it provides</th>
-                  </tr>
-                </thead>
-                <tbody className="text-muted-foreground">
-                  {[
-                    ["Bioconda", "Bioinformatics package channel"],
-                    ["Pixi docs", "Official Pixi documentation"],
-                    ["ISfinder", "Insertion sequence database"],
-                    ["PLSDB", "Plasmid database"],
-                    ["NCBI BLAST", "Sequence similarity search"],
-                    ["Prokka", "Rapid prokaryotic annotation"],
-                    ["ISEScan", "IS element prediction"],
-                    ["MOB-suite", "Plasmid characterisation"],
-                  ].map(([name, desc]) => (
-                    <tr key={name} className="border-t border-border/30">
-                      <td className="px-4 py-2 font-medium text-foreground">{name}</td>
-                      <td className="px-4 py-2">{desc}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
         </CardContent>
       </Card>
 
