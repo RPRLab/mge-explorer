@@ -951,37 +951,6 @@ done`}
               </li>
             ))}
           </ul>
-
-          <div className="mt-4">
-            <p className="text-sm font-semibold text-foreground mb-3">Useful Databases & Resources</p>
-            <div className="overflow-x-auto rounded-xl border border-border/50">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-muted/50">
-                    <th className="text-left px-4 py-2 font-semibold text-foreground">Resource</th>
-                    <th className="text-left px-4 py-2 font-semibold text-foreground">What it provides</th>
-                  </tr>
-                </thead>
-                <tbody className="text-muted-foreground">
-                  {[
-                    ["Bioconda", "Bioinformatics package channel"],
-                    ["Pixi docs", "Official Pixi documentation"],
-                    ["ISfinder", "Insertion sequence database"],
-                    ["PLSDB", "Plasmid database"],
-                    ["NCBI BLAST", "Sequence similarity search"],
-                    ["Prokka", "Rapid prokaryotic annotation"],
-                    ["ISEScan", "IS element prediction"],
-                    ["MOB-suite", "Plasmid characterisation"],
-                  ].map(([name, desc]) => (
-                    <tr key={name} className="border-t border-border/30">
-                      <td className="px-4 py-2 font-medium text-foreground">{name}</td>
-                      <td className="px-4 py-2">{desc}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
         </CardContent>
       </Card>
 
