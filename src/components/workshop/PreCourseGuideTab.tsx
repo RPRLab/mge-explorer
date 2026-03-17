@@ -673,7 +673,6 @@ conda config --set channel_priority strict`}
           <div className="grid gap-3 sm:grid-cols-3">
             {[
               { name: "Conda", badge: "Classic", items: ["Global environments", "env.yml (manual export)", "Moderate speed", "No built-in lock file", "Best for: General use, HPC"] },
-              { name: "Mamba", badge: "Faster", items: ["Global environments", "env.yml (manual export)", "Very fast (C++)", "No built-in lock file", "Best for: Complex envs, HPC"] },
               { name: "Pixi", badge: "Modern", items: ["Per-project (.pixi/)", "pixi.toml (auto-tracked)", "Very fast (Rust)", "pixi.lock (automatic)", "Best for: New projects, sharing"] },
             ].map((tool) => (
               <div key={tool.name} className="p-4 rounded-xl bg-muted/30 border border-border/50">
