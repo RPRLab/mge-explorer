@@ -579,12 +579,12 @@ const PreCourseGuideTab = () => {
         </CardContent>
       </Card>
 
-      {/* ── Conda / Mamba ── */}
+      {/* ── Conda ── */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Package className="w-5 h-5 text-primary" />
-            Managing Software with Conda & Mamba
+            Managing Software with Conda
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
