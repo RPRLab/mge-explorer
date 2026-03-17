@@ -284,23 +284,8 @@ const PreCourseGuideTab = () => {
               Mobilization strategies used by IMEs to exploit and conflict with conjugative helper elements (Lang, Buchan & Burrus 2025).
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              New MGEs can pose risks: phages lyse cells, plasmids impose costs, and transposons disrupt genes.
-              Defence systems that restrict gene acquisition reshape patterns of HGT:
+              New MGEs can pose risks: phages lyse cells, plasmids impose fitness costs, and transposons disrupt genes. Defence systems that restrict gene acquisition therefore reshape patterns of HGT. These systems are being discovered at a rapid rate, with diverse molecular functions, and many are encoded on MGEs themselves, serving the element's interests rather than the host's. PICIs parasitize helper phages by hijacking capsids for their own transfer, and this can actually increase phage-mediated transduction by protecting recipients from lysis. In <em>Vibrio cholerae</em>, phage ICP1 and chromosomal islands engage in ongoing warfare, trading dominance across seasons through CRISPR-Cas, restriction-modification, and counter-defence systems. Multidrug resistance plasmids carry 'defence islands' with multiple cooperating anti-phage systems, while anti-plasmid systems like Wadjet discriminate targets based on size and circularity rather than sequence, extruding and cleaving small circular plasmids.
             </p>
-            <ul className="space-y-2">
-              {[
-                "Defence systems are being discovered at a rapid rate, with diverse molecular functions. Many are encoded on MGEs themselves and serve the element's interests.",
-                "PICIs parasitize helper phages, hijacking capsids for their own transfer. This can increase phage-mediated transduction by protecting recipients from lysis.",
-                "In Vibrio cholerae, phage ICP1 and chromosomal islands (PLE, ICEs) engage in ongoing warfare: CRISPR-Cas, restriction-modification, and counter-defence systems trade dominance across seasons.",
-                "Multidrug resistance plasmids carry 'defence islands' with multiple cooperating anti-phage systems (e.g. BREX + type-IV restriction).",
-                "Anti-plasmid systems like Wadjet discriminate targets based on size and circularity rather than sequence, extruding and cleaving small circular plasmids.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
           </SubSection>
 
           <SubSection title="A Tangled Web">
