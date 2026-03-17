@@ -495,7 +495,7 @@ const PreCourseGuideTab = () => {
             <ul className="space-y-2">
               {[
                 "Recognise and work with the key genomics file formats (FASTA, FASTQ, GFF3, BAM, VCF)",
-                "Install and manage bioinformatics software with Conda, Mamba, and Pixi",
+                "Install and manage bioinformatics software with Conda and Pixi",
                 "Set up and run analyses in Google Colab",
                 "Navigate the Linux command line and process files efficiently",
               ].map((obj, i) => (
@@ -579,12 +579,12 @@ const PreCourseGuideTab = () => {
         </CardContent>
       </Card>
 
-      {/* ── Conda / Mamba ── */}
+      {/* ── Conda ── */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Package className="w-5 h-5 text-primary" />
-            Managing Software with Conda & Mamba
+            Managing Software with Conda
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -594,15 +594,11 @@ const PreCourseGuideTab = () => {
             needs without interfering with anything else.
           </p>
 
-          <SubSection title="Installing Miniconda / Mambaforge">
+          <SubSection title="Installing Miniconda">
             <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`# Download and install Miniconda
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
-
-# Or install Mambaforge (conda + mamba, recommended)
-wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
-bash Mambaforge-Linux-x86_64.sh
 
 # Verify
 conda --version`}
@@ -648,19 +644,6 @@ conda config --set channel_priority strict`}
             </div>
           </SubSection>
 
-          <SubSection title="Mamba: Conda but 10× Faster">
-            <p className="text-sm text-muted-foreground mb-3">
-              Mamba is a drop-in replacement that uses C++ dependency solving, making environment creation dramatically faster.
-            </p>
-            <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
-{`# Replace conda with mamba for any install/create command
-mamba create -n mge_tools -c bioconda -c conda-forge \\
-  prokka isescan mob-suite blast samtools biopython
-
-conda activate mge_tools    # activation still uses conda
-prokka --version`}
-            </pre>
-          </SubSection>
 
           <div className="flex items-start gap-2 p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-sm">
             <AlertTriangle className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
@@ -681,7 +664,7 @@ prokka --version`}
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed text-sm">
-            Pixi is a modern, Rust-written package manager built on the conda ecosystem. Unlike conda/mamba which
+            Pixi is a modern, Rust-written package manager built on the conda ecosystem. Unlike conda which
             manage environments globally, Pixi ties environments to a <strong className="text-foreground">project directory</strong> and
             auto-tracks everything in a <code className="text-xs bg-muted/50 px-1 rounded font-mono">pixi.toml</code> file.
           </p>
@@ -690,7 +673,6 @@ prokka --version`}
           <div className="grid gap-3 sm:grid-cols-3">
             {[
               { name: "Conda", badge: "Classic", items: ["Global environments", "env.yml (manual export)", "Moderate speed", "No built-in lock file", "Best for: General use, HPC"] },
-              { name: "Mamba", badge: "Faster", items: ["Global environments", "env.yml (manual export)", "Very fast (C++)", "No built-in lock file", "Best for: Complex envs, HPC"] },
               { name: "Pixi", badge: "Modern", items: ["Per-project (.pixi/)", "pixi.toml (auto-tracked)", "Very fast (Rust)", "pixi.lock (automatic)", "Best for: New projects, sharing"] },
             ].map((tool) => (
               <div key={tool.name} className="p-4 rounded-xl bg-muted/30 border border-border/50">
@@ -798,14 +780,14 @@ prokka --version`}
           </div>
 
           <SubSection title="Installing Bioinformatics Tools in Colab">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 1: conda/mamba via condacolab</p>
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 1: conda via condacolab</p>
             <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
 {`!pip install -q condacolab
 import condacolab
 condacolab.install()  # restarts the runtime
 
 # --- after restart, in a new cell ---
-!mamba install -c bioconda -c conda-forge prokka isescan -y`}
+!conda install -c bioconda -c conda-forge prokka isescan -y`}
             </pre>
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Method 2: apt-get</p>
             <pre className="text-xs font-mono bg-background/80 text-primary p-4 rounded-lg overflow-x-auto border border-border/30 whitespace-pre-wrap">
@@ -945,7 +927,7 @@ done`}
         <CardContent className="space-y-4">
           <ul className="space-y-2">
             {[
-              "Install Miniconda or Mambaforge and set channel priority",
+              "Install Miniconda and set channel priority",
               "Create a dedicated conda environment per project (never use base)",
               "Export env.yml before sharing or archiving your work",
               "For new projects, consider Pixi for automatic lock files",
