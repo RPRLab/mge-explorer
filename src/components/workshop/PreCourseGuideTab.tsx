@@ -231,40 +231,14 @@ const PreCourseGuideTab = () => {
               Allele transfer vs. gene transfer and their impacts on genomic variation (Arnold, Huang & Hanage 2022).
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Two distinct types of recombination leave different genomic footprints:
+              Two distinct types of recombination leave different genomic footprints. Allele transfer replaces one allele with another from the same or a different population, breaking or creating linkage depending on donor relatedness. Gene transfer, by contrast, alters the gene content of the genome entirely — genomic islands are commonly transferred via transduction or conjugation, leaving behind mobilization-associated genes as traces of their movement. When recombination unlinks a beneficial allele from the rest of the genome, gene-specific sweeps can occur, allowing selection to act on individual loci rather than entire genomes. Detecting these events computationally relies on signatures such as atypical G+C content, codon usage bias, k-mer composition, or phylogenetic incongruence between gene trees and species trees.
             </p>
-            <ul className="space-y-2">
-              {[
-                "Allele transfer (AT): replaces one allele with another from the same or a different population. Breaks or creates linkage depending on donor relatedness.",
-                "Gene transfer (GT): alters the gene content of the genome. Genomic islands are commonly transferred via transduction or conjugation, leaving behind mobilization-associated genes.",
-                "Gene-specific sweeps occur when recombination unlinks a beneficial allele from the rest of the genome, allowing selection to act on individual loci.",
-                "Detecting HGT relies on atypical G+C content, codon usage, k-mer signatures, or phylogenetic incongruence between gene trees and species trees.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
           </SubSection>
 
           <SubSection title="HGT & Natural Selection">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Selection and HGT interact to create distinctive signatures in bacterial genomes:
+              Selection and HGT interact to create distinctive signatures in bacterial genomes. Many transfer events are evolutionarily neutral, representing an incessant background process that only occasionally produces beneficial outcomes. When adaptive transfers do occur, gene-specific sweeps can be observed across marine, soil and pathogenic species. Negative frequency-dependent selection and adaptation to multiple ecological niches both promote these sweeps by maintaining genetic diversity at other loci. The accessory genome — the pangenome — reflects a dynamic balance between rapid gene acquisition, short-term persistence and selective elimination of costly genes.
             </p>
-            <ul className="space-y-2">
-              {[
-                "Many transfer events are evolutionarily neutral, representing an incessant process that only occasionally produces beneficial outcomes.",
-                "When adaptive transfers occur, gene-specific sweeps can be observed across marine, soil and pathogenic species.",
-                "Negative frequency-dependent selection (NFDS) and adaptation to multiple ecological niches both promote gene-specific sweeps by maintaining genetic diversity at other loci.",
-                "The accessory genome (pangenome) reflects a balance between rapid gene acquisition, short-term persistence and selective elimination of costly genes.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
           </SubSection>
         </CardContent>
       </Card>
