@@ -664,7 +664,7 @@ conda config --set channel_priority strict`}
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-muted-foreground leading-relaxed text-sm">
-            Pixi is a modern, Rust-written package manager built on the conda ecosystem. Unlike conda/mamba which
+            Pixi is a modern, Rust-written package manager built on the conda ecosystem. Unlike conda which
             manage environments globally, Pixi ties environments to a <strong className="text-foreground">project directory</strong> and
             auto-tracks everything in a <code className="text-xs bg-muted/50 px-1 rounded font-mono">pixi.toml</code> file.
           </p>
