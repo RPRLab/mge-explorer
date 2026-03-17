@@ -495,7 +495,7 @@ const PreCourseGuideTab = () => {
             <ul className="space-y-2">
               {[
                 "Recognise and work with the key genomics file formats (FASTA, FASTQ, GFF3, BAM, VCF)",
-                "Install and manage bioinformatics software with Conda, Mamba, and Pixi",
+                "Install and manage bioinformatics software with Conda and Pixi",
                 "Set up and run analyses in Google Colab",
                 "Navigate the Linux command line and process files efficiently",
               ].map((obj, i) => (
